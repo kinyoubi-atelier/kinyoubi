@@ -410,13 +410,25 @@ export default function HomeContent() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="flex flex-col items-center"
           >
+            {/* Founder photo */}
+            <div className="relative mb-8">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/founder-ankit.jpg"
+                alt={SITE.founder}
+                className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover object-center grayscale shadow-soft"
+              />
+              <div className="absolute -inset-0.5 rounded-full border border-gold/20 pointer-events-none" />
+            </div>
+
             <p className="font-heading italic text-2xl md:text-3xl lg:text-4xl text-text-primary leading-relaxed tracking-tight">
               Backgrounds in aerospace engineering, quantitative analysis, and systems architecture.
               We bring structure to complexity.
             </p>
             <p className="text-text-secondary mt-6">
-              — The team at Kinyoubi Atelier & Co.
+              — {SITE.founder}, Founder
             </p>
           </motion.div>
           <BrushStrokeDivider variant={1} className="mt-14" />

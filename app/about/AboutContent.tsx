@@ -195,29 +195,52 @@ export default function AboutContent() {
 
       {/* Founder */}
       <section className="py-20 md:py-28 px-6 md:px-12 bg-surface-dark">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">Founder</p>
-            <h2 className="font-heading text-display-sm md:text-display text-text-on-dark mb-8 tracking-tight">
-              {SITE.founder}
-            </h2>
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-14 items-center">
+            {/* Photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="md:col-span-2 flex justify-center"
+            >
+              <div className="relative">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/founder-ankit.jpg"
+                  alt={SITE.founder}
+                  className="w-48 h-48 md:w-56 md:h-56 rounded-2xl object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 shadow-lg"
+                />
+                <div className="absolute -inset-1 rounded-2xl border border-gold/20 pointer-events-none" />
+              </div>
+            </motion.div>
 
-            <div className="space-y-6 mb-8">
-              <p className="text-text-on-dark/80 text-lg leading-relaxed">
-                Our founder brings a rare convergence of experience: aerospace engineering, seven years reading derivatives markets, software systems architecture, and deep regulatory research methodology. The result is a practice that treats every project as a system — with clear constraints, defined risk boundaries, and measurable outcomes.
-              </p>
-              <p className="text-text-on-dark/80 text-lg leading-relaxed">
-                This multidisciplinary background isn't decorative. It's the reason we can architect a backend, analyze a contract, and design the compliance workflow — in the same engagement.
-              </p>
-            </div>
+            {/* Bio */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="md:col-span-3"
+            >
+              <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">Founder</p>
+              <h2 className="font-heading text-display-sm md:text-display text-text-on-dark mb-8 tracking-tight">
+                {SITE.founder}
+              </h2>
 
-            <p className="text-sm text-gold/80">{SITE.location}</p>
-          </motion.div>
+              <div className="space-y-6 mb-8">
+                <p className="text-text-on-dark/80 text-lg leading-relaxed">
+                  Our founder brings a rare convergence of experience: aerospace engineering, seven years reading derivatives markets, software systems architecture, and deep regulatory research methodology. The result is a practice that treats every project as a system — with clear constraints, defined risk boundaries, and measurable outcomes.
+                </p>
+                <p className="text-text-on-dark/80 text-lg leading-relaxed">
+                  This multidisciplinary background isn't decorative. It's the reason we can architect a backend, analyze a contract, and design the compliance workflow — in the same engagement.
+                </p>
+              </div>
+
+              <p className="text-sm text-gold/80">{SITE.location}</p>
+            </motion.div>
+          </div>
           <BrushStrokeDivider variant={2} className="mt-16 opacity-40" />
         </div>
       </section>
