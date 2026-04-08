@@ -2,7 +2,7 @@ export const SITE = {
   name: 'Kinyoubi Atelier & Co.',
   tagline: 'Software that ships. Complexity, handled.',
   description: 'Software development, technical consulting, and regulatory research — delivered with precision and speed.',
-  url: 'https://kinyoubi.com',
+  url: 'https://kinyoubi-atelier.github.io',
   email: 'kinyoubi.atelier@outlook.com',
   location: 'Jeypore, Odisha, India',
   founder: 'Ankit Sahu',

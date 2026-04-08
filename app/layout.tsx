@@ -22,11 +22,20 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: SITE.name,
     description: SITE.description,
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Kinyoubi Atelier & Co. — Software that ships. Complexity, handled.',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE.name,
     description: SITE.description,
+    images: ['/og-image.png'],
   },
   icons: {
     icon: [
