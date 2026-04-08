@@ -29,20 +29,20 @@ const services = [
   {
     icon: Code2,
     title: 'Software Development',
-    description: 'Web applications, backend systems, and APIs — built with modern stacks, shipped production-ready.',
-    href: '/services',
+    description: 'Next.js for server-rendered React with automatic code-splitting. TypeScript for compile-time safety across the stack. PostgreSQL for relational integrity where your data demands it. We ship to Vercel and AWS with CI/CD baked in — not bolted on.',
+    href: '/services#software-development',
   },
   {
     icon: Lightbulb,
     title: 'Technical Consulting',
-    description: 'Architecture reviews, system design, and hands-on support for teams that need senior thinking.',
-    href: '/services',
+    description: 'Node.js event loops vs. Python concurrency models. Monolith-first or microservices from day one. PostgreSQL vs. a document store for your access patterns. We help teams make architecture decisions grounded in how the technology actually behaves under load.',
+    href: '/services#technical-consulting',
   },
   {
     icon: FileSearch,
     title: 'Regulatory & Contract Research',
-    description: 'Compliance navigation, contract analysis, and research workflows — move fast, step carefully.',
-    href: '/services',
+    description: 'Structured research methodology — identify applicable frameworks, organize findings by jurisdiction and severity, and deliver actionable briefs. We parse regulatory language and contract clauses into summaries your team can act on. Alongside legal counsel, never in place of them.',
+    href: '/services#regulatory-research',
   },
 ]
 
@@ -260,20 +260,22 @@ export default function HomeContent() {
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 viewport={{ once: true, margin: '-50px' }}
               >
-                <Card hoverable className="h-full group cursor-pointer">
-                  <div className="h-10 w-10 rounded-lg bg-gold/10 flex items-center justify-center mb-5">
-                    <service.icon className="h-5 w-5 text-gold" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-xl font-semibold text-text-primary mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-text-secondary leading-relaxed mb-5">
-                    {service.description}
-                  </p>
-                  <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1">
-                    Learn more <ArrowRight className="h-3 w-3" />
-                  </span>
-                </Card>
+                <a href={service.href} className="block h-full">
+                  <Card hoverable className="h-full group cursor-pointer">
+                    <div className="h-10 w-10 rounded-lg bg-gold/10 flex items-center justify-center mb-5">
+                      <service.icon className="h-5 w-5 text-gold" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="text-xl font-semibold text-text-primary mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-text-secondary leading-relaxed mb-5">
+                      {service.description}
+                    </p>
+                    <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1">
+                      Learn more <ArrowRight className="h-3 w-3" />
+                    </span>
+                  </Card>
+                </a>
               </motion.div>
             ))}
           </div>

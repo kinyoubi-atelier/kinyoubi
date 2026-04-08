@@ -106,6 +106,7 @@ function ResearchVisual() {
 
 interface ServiceData {
   icon: React.ElementType
+  id: string
   label: string
   title: string
   description: string
@@ -117,6 +118,7 @@ interface ServiceData {
 const services: ServiceData[] = [
   {
     icon: Code2,
+    id: 'software-development',
     label: 'Software Development',
     title: 'Production-ready code, modern stacks, fast timelines.',
     description:
@@ -126,6 +128,7 @@ const services: ServiceData[] = [
   },
   {
     icon: Lightbulb,
+    id: 'technical-consulting',
     label: 'Technical Consulting',
     title: 'Senior-level thinking, without the full-time hire.',
     description:
@@ -135,6 +138,7 @@ const services: ServiceData[] = [
   },
   {
     icon: Cpu,
+    id: 'ai-workflows',
     label: 'AI-Powered Workflow Development',
     title: 'Intelligent automation that replaces manual processes.',
     description:
@@ -144,6 +148,7 @@ const services: ServiceData[] = [
   },
   {
     icon: FileSearch,
+    id: 'regulatory-research',
     label: 'Regulatory Research & Contract Analysis',
     title: 'Move fast without stepping on landmines.',
     description:
@@ -214,7 +219,8 @@ export default function ServicesContent() {
         return (
           <section
             key={service.label}
-            className={`py-20 md:py-28 px-6 md:px-12 ${isAlt ? 'bg-background-alt' : ''}`}
+            id={service.id}
+            className={`py-20 md:py-28 px-6 md:px-12 scroll-mt-20 ${isAlt ? 'bg-background-alt' : ''}`}
           >
             <div className="max-w-5xl mx-auto">
               <motion.div
