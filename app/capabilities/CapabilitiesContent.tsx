@@ -105,7 +105,7 @@ function ResearchDiagram() {
     { label: 'Tier 1', title: 'Landscape Scan', desc: 'What exists, what applies', color: '#F0EEEA' },
     { label: 'Tier 2', title: 'Deep Research', desc: 'Statute & contract analysis', color: '#F0EEEA' },
     { label: 'Tier 3', title: 'Compliance Map', desc: 'Requirements & gaps', color: '#F0EEEA' },
-    { label: 'Tier 4', title: 'Counsel Brief', desc: 'Structured deliverable', color: '#142850' },
+    { label: 'Tier 4', title: 'Research Brief', desc: 'Structured deliverable', color: '#142850' },
   ]
   return (
     <svg viewBox="0 0 560 180" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
