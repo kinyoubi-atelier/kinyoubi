@@ -63,40 +63,43 @@ function BuildPipelineDiagram() {
     { label: 'Deployment', sub: 'Staged rollout' },
   ]
   return (
-    <div className="w-full overflow-x-auto -mx-4 px-4">
-      <svg viewBox="0 0 540 110" className="w-full min-w-[340px] max-w-2xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-full overflow-x-auto -mx-4 px-4 pb-2">
+      <svg viewBox="0 0 700 110" className="w-full min-w-[480px] max-w-3xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
         {steps.map((step, i) => {
-          const x = i * 108
+          const x = i * 140
           const isLast = i === steps.length - 1
           return (
             <g key={step.label}>
-              <rect x={x} y="14" width="100" height="58" rx="12"
+              <rect x={x} y="14" width="126" height="60" rx="12"
                 fill={isLast ? '#142850' : '#FFFFFF'}
                 stroke={isLast ? '#142850' : '#E5E7EB'}
                 strokeWidth="1.5"
               />
-              <text x={x + 50} y="38" textAnchor="middle"
+              <text x={x + 63} y="40" textAnchor="middle"
                 fill={isLast ? '#F8F7F4' : '#1A1A1A'}
-                fontSize="12" fontFamily="system-ui" fontWeight="600"
+                fontSize="13" fontFamily="system-ui" fontWeight="600"
               >{step.label}</text>
-              <text x={x + 50} y="56" textAnchor="middle"
+              <text x={x + 63} y="58" textAnchor="middle"
                 fill={isLast ? '#D4AF61' : '#9CA3AF'}
                 fontSize="11" fontFamily="system-ui"
               >{step.sub}</text>
               {!isLast && (
-                <path d={`M${x + 102} 43 L${x + 106} 43`} stroke="#a08535" strokeWidth="1.5" />
+                <path d={`M${x + 129} 44 L${x + 137} 44`} stroke="#a08535" strokeWidth="1.5" markerEnd="url(#arrowPipe)" />
               )}
             </g>
           )
         })}
         {/* Progress line underneath */}
-        <rect x="0" y="88" width="540" height="4" rx="2" fill="#F0EEEA" />
-        <rect x="0" y="88" width="540" height="4" rx="2" fill="url(#progressGrad)" />
+        <rect x="0" y="90" width="700" height="4" rx="2" fill="#F0EEEA" />
+        <rect x="0" y="90" width="700" height="4" rx="2" fill="url(#progressGrad)" />
         <defs>
-          <linearGradient id="progressGrad" x1="0" y1="0" x2="540" y2="0">
+          <linearGradient id="progressGrad" x1="0" y1="0" x2="700" y2="0">
             <stop offset="0%" stopColor="#a08535" stopOpacity="0.1" />
             <stop offset="100%" stopColor="#a08535" stopOpacity="0.6" />
           </linearGradient>
+          <marker id="arrowPipe" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0 0 L6 3 L0 6" fill="none" stroke="#a08535" strokeWidth="1" />
+          </marker>
         </defs>
       </svg>
     </div>
@@ -111,11 +114,11 @@ function ResearchDiagram() {
     { label: 'Tier 4', title: 'Research Brief', desc: 'Structured deliverable', color: '#142850' },
   ]
   return (
-    <div className="w-full overflow-x-auto -mx-4 px-4">
-      <svg viewBox="0 0 580 160" className="w-full min-w-[340px] max-w-2xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-full overflow-x-auto -mx-4 px-4 pb-2">
+      <svg viewBox="0 0 780 165" className="w-full min-w-[580px] max-w-3xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
         {tiers.map((tier, i) => {
-          const x = i * 144
-          const cx = x + 68
+          const x = i * 196
+          const cx = x + 90
           const isLast = i === tiers.length - 1
           return (
             <g key={tier.label}>
@@ -124,29 +127,29 @@ function ResearchDiagram() {
               <text x={cx} y="20" textAnchor="middle" fill={isLast ? '#D4AF61' : '#a08535'} fontSize="11" fontFamily="system-ui" fontWeight="600">{tier.label}</text>
 
               {/* Main card */}
-              <rect x={x + 2} y="38" width="132" height="74" rx="14"
+              <rect x={x} y="38" width="180" height="78" rx="14"
                 fill={isLast ? '#142850' : '#FFFFFF'}
                 stroke={isLast ? '#142850' : '#E5E7EB'}
                 strokeWidth="1.5"
               />
-              <text x={cx} y="66" textAnchor="middle"
+              <text x={cx} y="68" textAnchor="middle"
                 fill={isLast ? '#F8F7F4' : '#1A1A1A'}
-                fontSize="14" fontFamily="system-ui" fontWeight="600"
+                fontSize="15" fontFamily="system-ui" fontWeight="600"
               >{tier.title}</text>
-              <text x={cx} y="86" textAnchor="middle"
+              <text x={cx} y="90" textAnchor="middle"
                 fill={isLast ? '#D4AF61' : '#9CA3AF'}
                 fontSize="12" fontFamily="system-ui"
               >{tier.desc}</text>
 
               {/* Arrow */}
               {i < tiers.length - 1 && (
-                <path d={`M${x + 136} 75 L${x + 146} 75`} stroke="#a08535" strokeWidth="1.5" markerEnd="url(#arrowGold2)" />
+                <path d={`M${x + 184} 77 L${x + 192} 77`} stroke="#a08535" strokeWidth="1.5" markerEnd="url(#arrowGold2)" />
               )}
             </g>
           )
         })}
         {/* Bottom annotation */}
-        <text x="290" y="142" textAnchor="middle" fill="#9CA3AF" fontSize="12" fontFamily="system-ui">
+        <text x="390" y="148" textAnchor="middle" fill="#9CA3AF" fontSize="12" fontFamily="system-ui">
           Each tier is documented, cited, and calibrated to complexity
         </text>
 
