@@ -166,34 +166,42 @@ function ResearchDiagram() {
 function BarbellDiagram() {
   return (
     <div className="w-full overflow-x-auto -mx-4 px-4">
-      <svg viewBox="0 0 420 140" className="w-full min-w-[300px] max-w-md mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Conservative core */}
-        <circle cx="105" cy="60" r="52" fill="#142850" opacity="0.08" />
-        <circle cx="105" cy="60" r="40" fill="#142850" opacity="0.12" />
-        <text x="105" y="55" textAnchor="middle" fill="#142850" fontSize="12" fontFamily="system-ui" fontWeight="600">Conservative</text>
-        <text x="105" y="72" textAnchor="middle" fill="#142850" fontSize="12" fontFamily="system-ui" fontWeight="600">Core</text>
-        <text x="105" y="94" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Predictable outcomes</text>
+      <svg viewBox="0 0 460 160" className="w-full min-w-[320px] max-w-lg mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Conservative core — layered rings */}
+        <circle cx="110" cy="68" r="56" fill="url(#navyRadial)" />
+        <circle cx="110" cy="68" r="56" fill="none" stroke="#142850" strokeWidth="1" opacity="0.15" />
+        <circle cx="110" cy="68" r="42" fill="#142850" opacity="0.08" />
+        <circle cx="110" cy="68" r="42" fill="none" stroke="#142850" strokeWidth="1.5" opacity="0.25" />
+        <text x="110" y="62" textAnchor="middle" fill="#142850" fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Conservative</text>
+        <text x="110" y="80" textAnchor="middle" fill="#142850" fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Core</text>
+        <text x="110" y="106" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="system-ui">Predictable outcomes</text>
 
-        {/* Connection bar */}
-        <rect x="155" y="56" width="110" height="8" rx="4" fill="#F0EEEA" />
-        <rect x="155" y="56" width="110" height="8" rx="4" fill="url(#barbellGrad)" />
-        <text x="210" y="48" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Hard boundary</text>
+        {/* Connection — dashed line with label */}
+        <line x1="168" y1="68" x2="292" y2="68" stroke="#9CA3AF" strokeWidth="1.5" strokeDasharray="6 4" />
+        <circle cx="230" cy="68" r="3" fill="#9CA3AF" />
+        <rect x="195" y="42" width="70" height="20" rx="10" fill="#F0EEEA" />
+        <text x="230" y="56" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="system-ui" fontWeight="500">Boundary</text>
 
-        {/* Active position */}
-        <circle cx="315" cy="60" r="52" fill="#a08535" opacity="0.08" />
-        <circle cx="315" cy="60" r="40" fill="#a08535" opacity="0.12" />
-        <text x="315" y="55" textAnchor="middle" fill="#a08535" fontSize="12" fontFamily="system-ui" fontWeight="600">Active</text>
-        <text x="315" y="72" textAnchor="middle" fill="#a08535" fontSize="12" fontFamily="system-ui" fontWeight="600">Position</text>
-        <text x="315" y="94" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Calculated variance</text>
+        {/* Active position — layered rings */}
+        <circle cx="350" cy="68" r="56" fill="url(#goldRadial)" />
+        <circle cx="350" cy="68" r="56" fill="none" stroke="#a08535" strokeWidth="1" opacity="0.15" />
+        <circle cx="350" cy="68" r="42" fill="#a08535" opacity="0.06" />
+        <circle cx="350" cy="68" r="42" fill="none" stroke="#a08535" strokeWidth="1.5" opacity="0.25" />
+        <text x="350" y="62" textAnchor="middle" fill="#a08535" fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Active</text>
+        <text x="350" y="80" textAnchor="middle" fill="#a08535" fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Position</text>
+        <text x="350" y="106" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="system-ui">Calculated variance</text>
 
-        <text x="210" y="132" textAnchor="middle" fill="#6B7280" fontSize="12" fontFamily="system-ui">The two never mix.</text>
+        <text x="230" y="148" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui" fontWeight="500" opacity="0.5">The two never mix.</text>
 
         <defs>
-          <linearGradient id="barbellGrad" x1="155" y1="0" x2="265" y2="0">
-            <stop offset="0%" stopColor="#142850" stopOpacity="0.3" />
-            <stop offset="50%" stopColor="#9CA3AF" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#a08535" stopOpacity="0.3" />
-          </linearGradient>
+          <radialGradient id="navyRadial" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#142850" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#142850" stopOpacity="0.03" />
+          </radialGradient>
+          <radialGradient id="goldRadial" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#a08535" stopOpacity="0.10" />
+            <stop offset="100%" stopColor="#a08535" stopOpacity="0.02" />
+          </radialGradient>
         </defs>
       </svg>
     </div>
