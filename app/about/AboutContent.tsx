@@ -11,29 +11,31 @@ import { SITE } from '@/lib/constants'
 
 function IntersectionDiagram() {
   return (
-    <svg viewBox="0 0 400 360" className="w-full max-w-sm mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Outer circles */}
-      <circle cx="160" cy="130" r="90" fill="#142850" opacity="0.06" />
-      <circle cx="240" cy="130" r="90" fill="#a08535" opacity="0.06" />
-      <circle cx="160" cy="210" r="90" fill="#142850" opacity="0.04" />
-      <circle cx="240" cy="210" r="90" fill="#a08535" opacity="0.04" />
+    <div className="w-full overflow-x-auto -mx-4 px-4">
+      <svg viewBox="0 0 360 320" className="w-full min-w-[280px] max-w-sm mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Outer circles */}
+        <circle cx="140" cy="120" r="85" fill="#142850" opacity="0.06" />
+        <circle cx="220" cy="120" r="85" fill="#a08535" opacity="0.06" />
+        <circle cx="140" cy="195" r="85" fill="#142850" opacity="0.04" />
+        <circle cx="220" cy="195" r="85" fill="#a08535" opacity="0.04" />
 
-      {/* Labels */}
-      <text x="110" y="90" textAnchor="middle" fill="#142850" fontSize="12" fontFamily="system-ui" fontWeight="600">Engineering</text>
-      <text x="290" y="90" textAnchor="middle" fill="#a08535" fontSize="12" fontFamily="system-ui" fontWeight="600">Finance</text>
-      <text x="110" y="280" textAnchor="middle" fill="#142850" fontSize="12" fontFamily="system-ui" fontWeight="600">Regulatory</text>
-      <text x="290" y="280" textAnchor="middle" fill="#a08535" fontSize="12" fontFamily="system-ui" fontWeight="600">Design</text>
+        {/* Labels */}
+        <text x="95" y="78" textAnchor="middle" fill="#142850" fontSize="13" fontFamily="system-ui" fontWeight="600">Engineering</text>
+        <text x="265" y="78" textAnchor="middle" fill="#a08535" fontSize="13" fontFamily="system-ui" fontWeight="600">Finance</text>
+        <text x="95" y="258" textAnchor="middle" fill="#142850" fontSize="13" fontFamily="system-ui" fontWeight="600">Regulatory</text>
+        <text x="265" y="258" textAnchor="middle" fill="#a08535" fontSize="13" fontFamily="system-ui" fontWeight="600">Design</text>
 
-      {/* Center node */}
-      <circle cx="200" cy="170" r="36" fill="#142850" />
-      <text x="200" y="167" textAnchor="middle" fill="#D4AF61" fontSize="10" fontFamily="system-ui" fontWeight="600">Kinyoubi</text>
-      <text x="200" y="180" textAnchor="middle" fill="#F8F7F4" fontSize="9" fontFamily="system-ui">Atelier</text>
+        {/* Center node */}
+        <circle cx="180" cy="157" r="38" fill="#142850" />
+        <text x="180" y="153" textAnchor="middle" fill="#D4AF61" fontSize="12" fontFamily="system-ui" fontWeight="600">Kinyoubi</text>
+        <text x="180" y="168" textAnchor="middle" fill="#F8F7F4" fontSize="11" fontFamily="system-ui">Atelier</text>
 
-      {/* Subtitle */}
-      <text x="200" y="330" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="system-ui">
-        The intersection is rare. That's the point.
-      </text>
-    </svg>
+        {/* Subtitle */}
+        <text x="180" y="304" textAnchor="middle" fill="#9CA3AF" fontSize="12" fontFamily="system-ui">
+          The intersection is rare. That&apos;s the point.
+        </text>
+      </svg>
+    </div>
   )
 }
 

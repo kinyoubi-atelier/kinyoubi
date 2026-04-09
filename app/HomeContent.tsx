@@ -120,52 +120,56 @@ function HeroPattern() {
 
 function OrchestratorDiagram() {
   return (
-    <svg viewBox="0 0 480 200" className="w-full max-w-lg mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Orchestrator node */}
-      <rect x="170" y="10" width="140" height="44" rx="22" fill="#142850" />
-      <text x="240" y="37" textAnchor="middle" fill="#F8F7F4" fontSize="13" fontFamily="system-ui">Orchestrator</text>
+    <div className="w-full overflow-x-auto -mx-4 px-4">
+      <svg viewBox="0 0 420 190" className="w-full min-w-[320px] max-w-lg mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Orchestrator node */}
+        <rect x="140" y="8" width="140" height="46" rx="23" fill="#142850" />
+        <text x="210" y="37" textAnchor="middle" fill="#F8F7F4" fontSize="14" fontFamily="system-ui" fontWeight="500">Orchestrator</text>
 
-      {/* Connection lines */}
-      <line x1="200" y1="54" x2="80" y2="100" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-      <line x1="240" y1="54" x2="240" y2="100" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-      <line x1="280" y1="54" x2="400" y2="100" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        {/* Connection lines */}
+        <line x1="175" y1="54" x2="70" y2="96" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <line x1="210" y1="54" x2="210" y2="96" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <line x1="245" y1="54" x2="350" y2="96" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
 
-      {/* Worker nodes */}
-      <rect x="20" y="100" width="120" height="40" rx="20" fill="#F0EEEA" stroke="#a08535" strokeWidth="1.5" />
-      <text x="80" y="125" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui">Worker A</text>
+        {/* Worker nodes */}
+        <rect x="10" y="96" width="120" height="42" rx="21" fill="#F0EEEA" stroke="#a08535" strokeWidth="1.5" />
+        <text x="70" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui">Worker A</text>
 
-      <rect x="180" y="100" width="120" height="40" rx="20" fill="#F0EEEA" stroke="#a08535" strokeWidth="1.5" />
-      <text x="240" y="125" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui">Worker B</text>
+        <rect x="150" y="96" width="120" height="42" rx="21" fill="#F0EEEA" stroke="#a08535" strokeWidth="1.5" />
+        <text x="210" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui">Worker B</text>
 
-      <rect x="340" y="100" width="120" height="40" rx="20" fill="#F0EEEA" stroke="#a08535" strokeWidth="1.5" />
-      <text x="400" y="125" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui">Worker C</text>
+        <rect x="290" y="96" width="120" height="42" rx="21" fill="#F0EEEA" stroke="#a08535" strokeWidth="1.5" />
+        <text x="350" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui">Worker C</text>
 
-      {/* Synthesis lines */}
-      <line x1="80" y1="140" x2="200" y2="170" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-      <line x1="240" y1="140" x2="240" y2="170" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-      <line x1="400" y1="140" x2="280" y2="170" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        {/* Synthesis lines */}
+        <line x1="70" y1="138" x2="170" y2="160" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <line x1="210" y1="138" x2="210" y2="160" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <line x1="350" y1="138" x2="250" y2="160" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
 
-      {/* Synthesis node */}
-      <rect x="180" y="165" width="120" height="32" rx="16" fill="#142850" />
-      <text x="240" y="186" textAnchor="middle" fill="#D4AF61" fontSize="12" fontFamily="system-ui">Synthesis</text>
-    </svg>
+        {/* Synthesis node */}
+        <rect x="150" y="156" width="120" height="32" rx="16" fill="#142850" />
+        <text x="210" y="177" textAnchor="middle" fill="#D4AF61" fontSize="13" fontFamily="system-ui" fontWeight="500">Synthesis</text>
+      </svg>
+    </div>
   )
 }
 
 function PipelineDiagram() {
   const steps = ['Requirements', 'Architecture', 'Build', 'Test', 'Deploy']
   return (
-    <svg viewBox="0 0 520 80" className="w-full max-w-xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {steps.map((step, i) => (
-        <g key={step}>
-          <rect x={i * 104} y="20" width="90" height="40" rx="20" fill={i === 4 ? '#142850' : '#F0EEEA'} stroke="#a08535" strokeWidth="1.5" />
-          <text x={i * 104 + 45} y="45" textAnchor="middle" fill={i === 4 ? '#F8F7F4' : '#1A1A1A'} fontSize="11" fontFamily="system-ui">{step}</text>
-          {i < steps.length - 1 && (
-            <line x1={i * 104 + 92} y1="40" x2={i * 104 + 102} y2="40" stroke="#a08535" strokeWidth="1.5" />
-          )}
-        </g>
-      ))}
-    </svg>
+    <div className="w-full overflow-x-auto -mx-4 px-4">
+      <svg viewBox="0 0 520 80" className="w-full min-w-[340px] max-w-xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {steps.map((step, i) => (
+          <g key={step}>
+            <rect x={i * 104} y="20" width="92" height="42" rx="21" fill={i === 4 ? '#142850' : '#F0EEEA'} stroke="#a08535" strokeWidth="1.5" />
+            <text x={i * 104 + 46} y="46" textAnchor="middle" fill={i === 4 ? '#F8F7F4' : '#1A1A1A'} fontSize="12" fontFamily="system-ui" fontWeight="500">{step}</text>
+            {i < steps.length - 1 && (
+              <line x1={i * 104 + 94} y1="41" x2={i * 104 + 102} y2="41" stroke="#a08535" strokeWidth="1.5" />
+            )}
+          </g>
+        ))}
+      </svg>
+    </div>
   )
 }
 

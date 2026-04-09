@@ -10,46 +10,47 @@ import { IPNotice } from '@/components/ui/IPNotice'
 
 function OrchestratorDiagram() {
   return (
-    <svg viewBox="0 0 560 260" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Planning phase */}
-      <rect x="210" y="8" width="140" height="44" rx="22" fill="#142850" />
-      <text x="280" y="35" textAnchor="middle" fill="#F8F7F4" fontSize="13" fontFamily="system-ui" fontWeight="500">Orchestrator</text>
-      <text x="280" y="65" textAnchor="middle" fill="#6B7280" fontSize="10" fontFamily="system-ui">Planning & Decomposition</text>
+    <div className="w-full overflow-x-auto -mx-4 px-4">
+      <svg viewBox="0 0 460 240" className="w-full min-w-[320px] max-w-xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Planning phase */}
+        <rect x="160" y="6" width="140" height="46" rx="23" fill="#142850" />
+        <text x="230" y="34" textAnchor="middle" fill="#F8F7F4" fontSize="14" fontFamily="system-ui" fontWeight="500">Orchestrator</text>
+        <text x="230" y="64" textAnchor="middle" fill="#6B7280" fontSize="12" fontFamily="system-ui">Planning &amp; Decomposition</text>
 
-      {/* Arrows down */}
-      <path d="M200 72 L100 108" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" markerEnd="url(#arrowGold)" />
-      <path d="M280 72 L280 108" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-      <path d="M360 72 L460 108" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        {/* Arrows down */}
+        <path d="M175 72 L80 100" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" markerEnd="url(#arrowGold)" />
+        <path d="M230 72 L230 100" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <path d="M285 72 L380 100" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
 
-      {/* Workers */}
-      <rect x="30" y="108" width="140" height="48" rx="12" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
-      <text x="100" y="128" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui" fontWeight="500">Worker A</text>
-      <text x="100" y="144" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="system-ui">Isolated context</text>
+        {/* Workers */}
+        <rect x="10" y="100" width="140" height="50" rx="12" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
+        <text x="80" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui" fontWeight="500">Worker A</text>
+        <text x="80" y="139" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Isolated context</text>
 
-      <rect x="210" y="108" width="140" height="48" rx="12" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
-      <text x="280" y="128" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui" fontWeight="500">Worker B</text>
-      <text x="280" y="144" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="system-ui">Parallel execution</text>
+        <rect x="160" y="100" width="140" height="50" rx="12" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
+        <text x="230" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui" fontWeight="500">Worker B</text>
+        <text x="230" y="139" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Parallel execution</text>
 
-      <rect x="390" y="108" width="140" height="48" rx="12" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
-      <text x="460" y="128" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui" fontWeight="500">Worker C</text>
-      <text x="460" y="144" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="system-ui">Verification loops</text>
+        <rect x="310" y="100" width="140" height="50" rx="12" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
+        <text x="380" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui" fontWeight="500">Worker C</text>
+        <text x="380" y="139" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Verification loops</text>
 
-      {/* Arrows to synthesis */}
-      <path d="M100 156 L220 196" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-      <path d="M280 156 L280 196" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-      <path d="M460 156 L340 196" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        {/* Arrows to synthesis */}
+        <path d="M80 150 L180 184" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <path d="M230 150 L230 184" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <path d="M380 150 L280 184" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
 
-      {/* Synthesis */}
-      <rect x="190" y="196" width="180" height="44" rx="22" fill="#142850" />
-      <text x="280" y="216" textAnchor="middle" fill="#D4AF61" fontSize="12" fontFamily="system-ui" fontWeight="500">Synthesis & Delivery</text>
-      <text x="280" y="253" textAnchor="middle" fill="#6B7280" fontSize="10" fontFamily="system-ui">Graceful error recovery built in</text>
+        {/* Synthesis */}
+        <rect x="140" y="184" width="180" height="46" rx="23" fill="#142850" />
+        <text x="230" y="212" textAnchor="middle" fill="#D4AF61" fontSize="13" fontFamily="system-ui" fontWeight="500">Synthesis &amp; Delivery</text>
 
-      <defs>
-        <marker id="arrowGold" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <path d="M0 0 L6 3 L0 6" fill="none" stroke="#a08535" strokeWidth="1" />
-        </marker>
-      </defs>
-    </svg>
+        <defs>
+          <marker id="arrowGold" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0 0 L6 3 L0 6" fill="none" stroke="#a08535" strokeWidth="1" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
   )
 }
 
@@ -57,46 +58,48 @@ function BuildPipelineDiagram() {
   const steps = [
     { label: 'Requirements', sub: 'Constraints & goals' },
     { label: 'Architecture', sub: 'System design' },
-    { label: 'Implementation', sub: 'Parallel workstreams' },
-    { label: 'Testing', sub: 'Automated + manual' },
+    { label: 'Implementation', sub: 'Parallel streams' },
+    { label: 'Testing', sub: 'Auto + manual' },
     { label: 'Deployment', sub: 'Staged rollout' },
   ]
   return (
-    <svg viewBox="0 0 600 120" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {steps.map((step, i) => {
-        const x = i * 120
-        const isLast = i === steps.length - 1
-        return (
-          <g key={step.label}>
-            <rect x={x} y="20" width="108" height="56" rx="12"
-              fill={isLast ? '#142850' : '#FFFFFF'}
-              stroke={isLast ? '#142850' : '#E5E7EB'}
-              strokeWidth="1.5"
-            />
-            <text x={x + 54} y="44" textAnchor="middle"
-              fill={isLast ? '#F8F7F4' : '#1A1A1A'}
-              fontSize="11" fontFamily="system-ui" fontWeight="500"
-            >{step.label}</text>
-            <text x={x + 54} y="60" textAnchor="middle"
-              fill={isLast ? '#D4AF61' : '#9CA3AF'}
-              fontSize="9" fontFamily="system-ui"
-            >{step.sub}</text>
-            {!isLast && (
-              <path d={`M${x + 110} 48 L${x + 118} 48`} stroke="#a08535" strokeWidth="1.5" />
-            )}
-          </g>
-        )
-      })}
-      {/* Progress line underneath */}
-      <rect x="0" y="96" width="600" height="4" rx="2" fill="#F0EEEA" />
-      <rect x="0" y="96" width="600" height="4" rx="2" fill="url(#progressGrad)" />
-      <defs>
-        <linearGradient id="progressGrad" x1="0" y1="0" x2="600" y2="0">
-          <stop offset="0%" stopColor="#a08535" stopOpacity="0.1" />
-          <stop offset="100%" stopColor="#a08535" stopOpacity="0.6" />
-        </linearGradient>
-      </defs>
-    </svg>
+    <div className="w-full overflow-x-auto -mx-4 px-4">
+      <svg viewBox="0 0 540 110" className="w-full min-w-[340px] max-w-2xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {steps.map((step, i) => {
+          const x = i * 108
+          const isLast = i === steps.length - 1
+          return (
+            <g key={step.label}>
+              <rect x={x} y="14" width="100" height="58" rx="12"
+                fill={isLast ? '#142850' : '#FFFFFF'}
+                stroke={isLast ? '#142850' : '#E5E7EB'}
+                strokeWidth="1.5"
+              />
+              <text x={x + 50} y="38" textAnchor="middle"
+                fill={isLast ? '#F8F7F4' : '#1A1A1A'}
+                fontSize="12" fontFamily="system-ui" fontWeight="600"
+              >{step.label}</text>
+              <text x={x + 50} y="56" textAnchor="middle"
+                fill={isLast ? '#D4AF61' : '#9CA3AF'}
+                fontSize="11" fontFamily="system-ui"
+              >{step.sub}</text>
+              {!isLast && (
+                <path d={`M${x + 102} 43 L${x + 106} 43`} stroke="#a08535" strokeWidth="1.5" />
+              )}
+            </g>
+          )
+        })}
+        {/* Progress line underneath */}
+        <rect x="0" y="88" width="540" height="4" rx="2" fill="#F0EEEA" />
+        <rect x="0" y="88" width="540" height="4" rx="2" fill="url(#progressGrad)" />
+        <defs>
+          <linearGradient id="progressGrad" x1="0" y1="0" x2="540" y2="0">
+            <stop offset="0%" stopColor="#a08535" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="#a08535" stopOpacity="0.6" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
   )
 }
 
@@ -108,84 +111,89 @@ function ResearchDiagram() {
     { label: 'Tier 4', title: 'Research Brief', desc: 'Structured deliverable', color: '#142850' },
   ]
   return (
-    <svg viewBox="0 0 560 180" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {tiers.map((tier, i) => {
-        const x = i * 140
-        const isLast = i === tiers.length - 1
-        return (
-          <g key={tier.label}>
-            {/* Tier badge */}
-            <rect x={x + 30} y="8" width="68" height="24" rx="12" fill={isLast ? '#142850' : '#a08535'} opacity={isLast ? 1 : 0.15} />
-            <text x={x + 64} y="24" textAnchor="middle" fill={isLast ? '#D4AF61' : '#a08535'} fontSize="10" fontFamily="system-ui" fontWeight="600">{tier.label}</text>
+    <div className="w-full overflow-x-auto -mx-4 px-4">
+      <svg viewBox="0 0 580 160" className="w-full min-w-[340px] max-w-2xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {tiers.map((tier, i) => {
+          const x = i * 144
+          const cx = x + 68
+          const isLast = i === tiers.length - 1
+          return (
+            <g key={tier.label}>
+              {/* Tier badge */}
+              <rect x={cx - 30} y="4" width="60" height="24" rx="12" fill={isLast ? '#142850' : '#a08535'} opacity={isLast ? 1 : 0.15} />
+              <text x={cx} y="20" textAnchor="middle" fill={isLast ? '#D4AF61' : '#a08535'} fontSize="11" fontFamily="system-ui" fontWeight="600">{tier.label}</text>
 
-            {/* Main card */}
-            <rect x={x + 4} y="44" width="120" height="72" rx="12"
-              fill={isLast ? '#142850' : '#FFFFFF'}
-              stroke={isLast ? '#142850' : '#E5E7EB'}
-              strokeWidth="1.5"
-            />
-            <text x={x + 64} y="72" textAnchor="middle"
-              fill={isLast ? '#F8F7F4' : '#1A1A1A'}
-              fontSize="12" fontFamily="system-ui" fontWeight="500"
-            >{tier.title}</text>
-            <text x={x + 64} y="92" textAnchor="middle"
-              fill={isLast ? '#D4AF61' : '#9CA3AF'}
-              fontSize="10" fontFamily="system-ui"
-            >{tier.desc}</text>
+              {/* Main card */}
+              <rect x={x + 2} y="38" width="132" height="74" rx="14"
+                fill={isLast ? '#142850' : '#FFFFFF'}
+                stroke={isLast ? '#142850' : '#E5E7EB'}
+                strokeWidth="1.5"
+              />
+              <text x={cx} y="66" textAnchor="middle"
+                fill={isLast ? '#F8F7F4' : '#1A1A1A'}
+                fontSize="14" fontFamily="system-ui" fontWeight="600"
+              >{tier.title}</text>
+              <text x={cx} y="86" textAnchor="middle"
+                fill={isLast ? '#D4AF61' : '#9CA3AF'}
+                fontSize="12" fontFamily="system-ui"
+              >{tier.desc}</text>
 
-            {/* Arrow */}
-            {i < tiers.length - 1 && (
-              <path d={`M${x + 126} 80 L${x + 142} 80`} stroke="#a08535" strokeWidth="1.5" markerEnd="url(#arrowGold2)" />
-            )}
-          </g>
-        )
-      })}
-      {/* Bottom annotation */}
-      <text x="280" y="150" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="system-ui">
-        Each tier is documented, cited, and calibrated to complexity
-      </text>
+              {/* Arrow */}
+              {i < tiers.length - 1 && (
+                <path d={`M${x + 136} 75 L${x + 146} 75`} stroke="#a08535" strokeWidth="1.5" markerEnd="url(#arrowGold2)" />
+              )}
+            </g>
+          )
+        })}
+        {/* Bottom annotation */}
+        <text x="290" y="142" textAnchor="middle" fill="#9CA3AF" fontSize="12" fontFamily="system-ui">
+          Each tier is documented, cited, and calibrated to complexity
+        </text>
 
-      <defs>
-        <marker id="arrowGold2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <path d="M0 0 L6 3 L0 6" fill="none" stroke="#a08535" strokeWidth="1" />
-        </marker>
-      </defs>
-    </svg>
+        <defs>
+          <marker id="arrowGold2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0 0 L6 3 L0 6" fill="none" stroke="#a08535" strokeWidth="1" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
   )
 }
 
 function BarbellDiagram() {
   return (
-    <svg viewBox="0 0 480 140" className="w-full max-w-md mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Conservative core */}
-      <circle cx="120" cy="60" r="52" fill="#142850" opacity="0.08" />
-      <circle cx="120" cy="60" r="40" fill="#142850" opacity="0.12" />
-      <text x="120" y="55" textAnchor="middle" fill="#142850" fontSize="11" fontFamily="system-ui" fontWeight="600">Conservative</text>
-      <text x="120" y="70" textAnchor="middle" fill="#142850" fontSize="11" fontFamily="system-ui" fontWeight="600">Core</text>
-      <text x="120" y="92" textAnchor="middle" fill="#9CA3AF" fontSize="9" fontFamily="system-ui">Predictable outcomes</text>
+    <div className="w-full overflow-x-auto -mx-4 px-4">
+      <svg viewBox="0 0 420 140" className="w-full min-w-[300px] max-w-md mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Conservative core */}
+        <circle cx="105" cy="60" r="52" fill="#142850" opacity="0.08" />
+        <circle cx="105" cy="60" r="40" fill="#142850" opacity="0.12" />
+        <text x="105" y="55" textAnchor="middle" fill="#142850" fontSize="12" fontFamily="system-ui" fontWeight="600">Conservative</text>
+        <text x="105" y="72" textAnchor="middle" fill="#142850" fontSize="12" fontFamily="system-ui" fontWeight="600">Core</text>
+        <text x="105" y="94" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Predictable outcomes</text>
 
-      {/* Connection bar */}
-      <rect x="170" y="56" width="140" height="8" rx="4" fill="#F0EEEA" />
-      <rect x="170" y="56" width="140" height="8" rx="4" fill="url(#barbellGrad)" />
-      <text x="240" y="50" textAnchor="middle" fill="#9CA3AF" fontSize="9" fontFamily="system-ui">Hard boundary</text>
+        {/* Connection bar */}
+        <rect x="155" y="56" width="110" height="8" rx="4" fill="#F0EEEA" />
+        <rect x="155" y="56" width="110" height="8" rx="4" fill="url(#barbellGrad)" />
+        <text x="210" y="48" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Hard boundary</text>
 
-      {/* Active position */}
-      <circle cx="360" cy="60" r="52" fill="#a08535" opacity="0.08" />
-      <circle cx="360" cy="60" r="40" fill="#a08535" opacity="0.12" />
-      <text x="360" y="55" textAnchor="middle" fill="#a08535" fontSize="11" fontFamily="system-ui" fontWeight="600">Active</text>
-      <text x="360" y="70" textAnchor="middle" fill="#a08535" fontSize="11" fontFamily="system-ui" fontWeight="600">Position</text>
-      <text x="360" y="92" textAnchor="middle" fill="#9CA3AF" fontSize="9" fontFamily="system-ui">Calculated variance</text>
+        {/* Active position */}
+        <circle cx="315" cy="60" r="52" fill="#a08535" opacity="0.08" />
+        <circle cx="315" cy="60" r="40" fill="#a08535" opacity="0.12" />
+        <text x="315" y="55" textAnchor="middle" fill="#a08535" fontSize="12" fontFamily="system-ui" fontWeight="600">Active</text>
+        <text x="315" y="72" textAnchor="middle" fill="#a08535" fontSize="12" fontFamily="system-ui" fontWeight="600">Position</text>
+        <text x="315" y="94" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Calculated variance</text>
 
-      <text x="240" y="132" textAnchor="middle" fill="#6B7280" fontSize="10" fontFamily="system-ui">The two never mix.</text>
+        <text x="210" y="132" textAnchor="middle" fill="#6B7280" fontSize="12" fontFamily="system-ui">The two never mix.</text>
 
-      <defs>
-        <linearGradient id="barbellGrad" x1="170" y1="0" x2="310" y2="0">
-          <stop offset="0%" stopColor="#142850" stopOpacity="0.3" />
-          <stop offset="50%" stopColor="#9CA3AF" stopOpacity="0.2" />
-          <stop offset="100%" stopColor="#a08535" stopOpacity="0.3" />
-        </linearGradient>
-      </defs>
-    </svg>
+        <defs>
+          <linearGradient id="barbellGrad" x1="155" y1="0" x2="265" y2="0">
+            <stop offset="0%" stopColor="#142850" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="#9CA3AF" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#a08535" stopOpacity="0.3" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
   )
 }
 
