@@ -7,6 +7,7 @@ import { UmamiAnalytics, CrispChat } from '@/components/scripts/Analytics'
 import { CookieConsent } from '@/components/ui/CookieConsent'
 import { SITE } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <UmamiAnalytics />
         <CrispChat />
         <CookieConsent />
+        <SpeedInsights />
       </body>
     </html>
   )
