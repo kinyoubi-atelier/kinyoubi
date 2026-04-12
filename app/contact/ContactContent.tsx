@@ -351,6 +351,44 @@ export default function ContactContent() {
                 </p>
               </div>
 
+              {/* Availability windows */}
+              <div>
+                <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
+                  Availability windows
+                </p>
+                <div className="space-y-3">
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    <span className="font-semibold text-text-primary">EMEA (Berlin / Paris / London / Dublin):</span> 13:30–18:00 IST ↔ 09:00–13:30 CET / 08:00–12:30 GMT — live meetings, same-day replies.
+                  </p>
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    <span className="font-semibold text-text-primary">US East Coast:</span> 18:30–22:00 IST ↔ 09:00–12:30 ET — live meetings, same-day replies.
+                  </p>
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    <span className="font-semibold text-text-primary">US West Coast:</span> async-first; live meetings by appointment 20:30–22:00 IST ↔ 08:00–09:30 PT.
+                  </p>
+                </div>
+              </div>
+
+              {/* Response SLA */}
+              <div>
+                <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
+                  Response SLA
+                </p>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  First response within one business day (Monday–Friday, IST business week). Same day during listed overlap windows. Out-of-hours escalation on request once an engagement is live.
+                </p>
+              </div>
+
+              {/* Invoicing */}
+              <div>
+                <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
+                  Invoicing
+                </p>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  Invoices issued in USD, EUR, GBP, or INR depending on counterparty. Net 30 default. Wire transfers supported as standard; ACH and SEPA available on request once payment rails are confirmed.
+                </p>
+              </div>
+
               {/* Cal.com scheduling embed */}
               <CalEmbed variant="card" />
             </motion.div>

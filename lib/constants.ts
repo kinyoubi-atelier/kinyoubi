@@ -26,5 +26,7 @@ export const LEGAL_LINKS = [
   { label: 'Terms of Use', href: '/legal/terms' },
   { label: 'Privacy Policy', href: '/legal/privacy' },
   { label: 'Security', href: '/security' },
+  { label: 'DPA', href: '/legal/dpa' },
+  { label: 'MSA', href: '/legal/msa' },
   { label: 'Copyright', href: '/legal/copyright' },
 ] as const
