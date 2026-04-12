@@ -293,7 +293,7 @@ export default function ContactContent() {
                     className="p-4 bg-error/10 border border-error/30 rounded-lg"
                   >
                     <p className="text-sm text-error">
-                      {error} —{' '}
+                      {error}. {' '}
                       <a href={`mailto:${SITE.email}`} className="underline">
                         {SITE.email}
                       </a>
@@ -358,10 +358,10 @@ export default function ContactContent() {
                 </p>
                 <div className="space-y-3">
                   <p className="text-sm text-text-secondary leading-relaxed">
-                    <span className="font-semibold text-text-primary">EMEA (Berlin / Paris / London / Dublin):</span> 13:30–18:00 IST ↔ 09:00–13:30 CET / 08:00–12:30 GMT — live meetings, same-day replies.
+                    <span className="font-semibold text-text-primary">EMEA (Berlin / Paris / London / Dublin):</span> 13:30–18:00 IST ↔ 09:00–13:30 CET / 08:00–12:30 GMT. Live meetings, same-day replies.
                   </p>
                   <p className="text-sm text-text-secondary leading-relaxed">
-                    <span className="font-semibold text-text-primary">US East Coast:</span> 18:30–22:00 IST ↔ 09:00–12:30 ET — live meetings, same-day replies.
+                    <span className="font-semibold text-text-primary">US East Coast:</span> 18:30–22:00 IST ↔ 09:00–12:30 ET. Live meetings, same-day replies.
                   </p>
                   <p className="text-sm text-text-secondary leading-relaxed">
                     <span className="font-semibold text-text-primary">US West Coast:</span> async-first; live meetings by appointment 20:30–22:00 IST ↔ 08:00–09:30 PT.

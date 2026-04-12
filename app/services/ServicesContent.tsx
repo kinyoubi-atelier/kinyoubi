@@ -131,7 +131,7 @@ interface ServiceData {
 //     work rhythm table.
 //
 //   Technical Consulting   → "Architecture review before the
-//     six-figure rewrite" — positions the service against the
+//     six-figure rewrite" - positions the service against the
 //     cost of the problem it prevents, not against hourly billing.
 //
 //   AI-Powered Workflows   → "Replace 14 hours of manual work
@@ -151,7 +151,7 @@ const services: ServiceData[] = [
     label: 'Software Development',
     title: 'Field-capture apps that work without a signal. Pipelines that run in under a minute.',
     description:
-      'We build for the operating conditions your system actually sees — low-connectivity geographies, brittle legacy spreadsheets, audits that can\'t break production. The stack is modern (Next.js, TypeScript, PostgreSQL, Flutter where it earns its place). The commitment is that we ship in weeks, not quarters, and hand you something that runs without us.',
+      'We build for the operating conditions your system actually sees: low-connectivity geographies, brittle legacy spreadsheets, audits that can\'t break production. The stack is modern (Next.js, TypeScript, PostgreSQL, Flutter where it earns its place). The commitment is that we ship in weeks, not quarters, and hand you something that runs without us.',
     deliverables: ['Offline-first mobile capture', 'Idempotent batch pipelines', 'Backend services & APIs', 'Workflow automation', 'CI/CD with security headers baked in'],
     visual: <DevStackVisual />,
   },
@@ -161,7 +161,7 @@ const services: ServiceData[] = [
     label: 'Technical Consulting',
     title: 'The architecture review that costs less than the rewrite it prevents.',
     description:
-      'For teams staring at a decision that will compound for years — data model, auth model, sync strategy, cloud region, build-vs-buy. We sit with your team, model the access patterns and failure modes, and write an ADR you can point to in six months when someone asks why you chose what you chose. No retainer. No vendor lock-in. No padding.',
+      'For teams staring at a decision that will compound for years: data model, auth model, sync strategy, cloud region, build-vs-buy. We sit with your team, model the access patterns and failure modes, and write an ADR you can point to in six months when someone asks why you chose what you chose. No retainer. No vendor lock-in. No padding.',
     deliverables: ['Architecture decision records', 'Threat models', 'Technical audits', 'Implementation roadmaps', 'Build-vs-buy memos'],
     visual: <ArchitectureVisual />,
   },
@@ -171,7 +171,7 @@ const services: ServiceData[] = [
     label: 'AI-Powered Workflow Development',
     title: 'Replace fourteen hours of manual work with a one-minute script.',
     description:
-      'That number is a real outcome from our archive-automation engagement: 3,905 records reconciled, 116 fuzzy-duplicate locality names merged, ~14 hours of manual triage replaced with an idempotent pipeline that re-runs in under a minute. We build orchestrators that decompose problems into verifiable stages — each with its own failure mode and its own retry — so your team stops living inside the spreadsheet.',
+      'That number is a real outcome from our archive-automation engagement: 3,905 records reconciled, 116 fuzzy-duplicate locality names merged, ~14 hours of manual triage replaced with an idempotent pipeline that re-runs in under a minute. We build orchestrators that decompose problems into verifiable stages; each has its own failure mode and its own retry logic. This stops your team from living inside the spreadsheet.',
     deliverables: ['Multi-agent orchestration', 'Document processing pipelines', 'Fuzzy-match & dedupe workflows', 'LLM integrations with guardrails', 'Idempotent re-runnable scripts'],
     visual: <AgentWorkflowVisual />,
   },
@@ -179,7 +179,7 @@ const services: ServiceData[] = [
     icon: FileSearch,
     id: 'regulatory-research',
     label: 'Regulatory Research & Contract Analysis',
-    title: 'DPDP and RBI alignment built into the code — not bolted on after launch.',
+    title: 'DPDP and RBI alignment built into the code, not bolted on after launch.',
     description:
       'Our BFSI-MIS engagement was designed to India\'s Digital Personal Data Protection Act from week one: threat model before schema, row-level security before API, client-side field-level encryption on every sensitive free-text field before a row hits the database. We research the regulatory framework that applies to your build, map it to concrete controls, and hand the mapping to your legal counsel in a form they can sign off on in a single review.',
     deliverables: ['Regulatory landscape briefs', 'Control-to-framework mappings', 'Contract-clause analysis', 'Compliance workflow design', 'Research memoranda'],
@@ -209,7 +209,7 @@ const faqItems = [
   },
   {
     question: 'What happens after the project is delivered?',
-    answer: 'Every engagement includes documentation, knowledge transfer, and a post-launch support window. We don\'t build systems that depend on us to run — the goal is always a clean handoff.',
+    answer: 'Every engagement includes documentation, knowledge transfer, and a post-launch support window. We don\'t build systems that depend on us to run. The goal is always a clean handoff.',
   },
   {
     question: 'Do you provide legal advice?',
@@ -235,7 +235,7 @@ export default function ServicesContent() {
               What we build
             </h1>
             <p className="text-lg md:text-xl text-text-secondary max-w-2xl leading-relaxed">
-              Software, systems, and research — each delivered with engineering precision and the speed your timeline demands.
+              Software, systems, and research; each delivered with engineering precision and the speed your timeline demands.
             </p>
           </motion.div>
         </div>

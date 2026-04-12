@@ -71,7 +71,7 @@ const principles = [
   },
   {
     title: 'Systems, not one-offs',
-    description: 'Every deliverable is designed to be repeatable, auditable, and maintainable — not a bespoke artifact that dies with the project.',
+    description: 'Every deliverable is designed to be repeatable, auditable, and maintainable, not a bespoke artifact that dies with the project.',
   },
   {
     title: 'Clarity as craft',
@@ -157,7 +157,7 @@ export default function AboutContent() {
                 Where disciplines converge
               </h2>
               <p className="text-lg text-text-secondary leading-relaxed mb-8">
-                Most firms specialize in one domain. We integrate four. This isn't dilettantism — it's the ability to see a software problem through the lens of risk, a compliance question through the lens of systems design, and a business decision through the lens of architecture.
+                Most firms specialize in one domain. We integrate four. This isn't dilettantism. It's the ability to see a software problem through the lens of risk, a compliance question through the lens of systems design, and a business decision through the lens of architecture.
               </p>
             </motion.div>
 
@@ -233,10 +233,10 @@ export default function AboutContent() {
 
               <div className="space-y-6 mb-8">
                 <p className="text-text-on-dark/80 text-lg leading-relaxed">
-                  Our founder brings a rare convergence of experience: aerospace engineering, seven years reading derivatives markets, software systems architecture, and deep regulatory research methodology. The result is a practice that treats every project as a system — with clear constraints, defined risk boundaries, and measurable outcomes.
+                  Our founder brings a rare convergence of experience: aerospace engineering, seven years reading derivatives markets, software systems architecture, and deep regulatory research methodology. The result is a practice that treats every project as a system with clear constraints, defined risk boundaries, and measurable outcomes.
                 </p>
                 <p className="text-text-on-dark/80 text-lg leading-relaxed">
-                  This multidisciplinary background isn't decorative. It's the reason we can architect a backend, analyze a contract, and design the compliance workflow — in the same engagement.
+                  This multidisciplinary background isn't decorative. It's the reason we can architect a backend, analyze a contract, and design the compliance workflow in the same engagement.
                 </p>
               </div>
 

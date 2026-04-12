@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — Kinyoubi Atelier & Co.',
+  title: 'Privacy Policy | Kinyoubi Atelier & Co.',
   description: 'Privacy policy for Kinyoubi Atelier & Co. website. DPDP Act 2023 compliant.',
 }
 

@@ -167,7 +167,7 @@ function BarbellDiagram() {
   return (
     <div className="w-full overflow-x-auto -mx-4 px-4">
       <svg viewBox="0 0 460 160" className="w-full min-w-[320px] max-w-lg mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Conservative core — layered rings */}
+        {/* Conservative core: layered rings */}
         <circle cx="110" cy="68" r="56" fill="url(#navyRadial)" />
         <circle cx="110" cy="68" r="56" fill="none" stroke="#142850" strokeWidth="1" opacity="0.15" />
         <circle cx="110" cy="68" r="42" fill="#142850" opacity="0.08" />
@@ -176,13 +176,13 @@ function BarbellDiagram() {
         <text x="110" y="80" textAnchor="middle" fill="#142850" fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Core</text>
         <text x="110" y="106" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="system-ui">Predictable outcomes</text>
 
-        {/* Connection — dashed line with label */}
+        {/* Connection: dashed line with label */}
         <line x1="168" y1="68" x2="292" y2="68" stroke="#9CA3AF" strokeWidth="1.5" strokeDasharray="6 4" />
         <circle cx="230" cy="68" r="3" fill="#9CA3AF" />
         <rect x="195" y="42" width="70" height="20" rx="10" fill="#F0EEEA" />
         <text x="230" y="56" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="system-ui" fontWeight="500">Boundary</text>
 
-        {/* Active position — layered rings */}
+        {/* Active position: layered rings */}
         <circle cx="350" cy="68" r="56" fill="url(#goldRadial)" />
         <circle cx="350" cy="68" r="56" fill="none" stroke="#a08535" strokeWidth="1" opacity="0.15" />
         <circle cx="350" cy="68" r="42" fill="#a08535" opacity="0.06" />
@@ -229,7 +229,7 @@ const sections: CapabilitySection[] = [
     label: 'Development Process',
     title: 'Systematized Build Pipeline',
     description:
-      'Every engagement follows a structured process — from requirements to deployment. Parallel workstreams, automated testing, staged rollout. The pipeline produces consistent, high-quality output regardless of project complexity.',
+      'Every engagement follows a structured process: from requirements to deployment. Parallel workstreams, automated testing, staged rollout. The pipeline produces consistent, high-quality output regardless of project complexity.',
     diagram: <BuildPipelineDiagram />,
   },
   {

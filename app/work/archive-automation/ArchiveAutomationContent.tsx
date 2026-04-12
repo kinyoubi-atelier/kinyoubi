@@ -33,7 +33,7 @@ const pipeline = [
   {
     idx: '02',
     title: 'Normalise names',
-    body: 'Detect fuzzy-duplicate locality names across delivery areas and merge them into canonical folders — 116 distinct merges.',
+    body: 'Detect fuzzy-duplicate locality names across delivery areas and merge them into canonical folders; 116 distinct merges.',
   },
   {
     idx: '03',
@@ -45,7 +45,7 @@ const pipeline = [
 const demonstrates = [
   {
     title: 'Reading the real problem, not the stated one.',
-    body: 'The request was "sort the files." The actual deliverable had to solve data inconsistency first — otherwise the sort would produce 796 fractured folders instead of the ~680 real ones.',
+    body: 'The request was "sort the files." The actual deliverable had to solve data inconsistency first; otherwise, the sort would produce 796 fractured folders instead of the ~680 real ones.',
   },
   {
     title: 'Idempotency and restart safety.',
@@ -61,7 +61,7 @@ const demonstrates = [
   },
   {
     title: 'API integration with persistence.',
-    body: 'The Google Drive uploader survives crashes, network drops, and repeated runs — a one-line CSV log is often a better choice than a database for this scale of batch work.',
+    body: 'The Google Drive uploader survives crashes, network drops, and repeated runs; a one-line CSV log is often a better choice than a database for this scale of batch work.',
   },
 ]
 
@@ -252,10 +252,10 @@ export default function ArchiveAutomationContent() {
               The problem
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed mb-5">
-              An LPG distributorship I worked with had accumulated a flat folder of roughly four thousand scanned KYC images — each file named only by an internal consumer number. Finding a single customer&apos;s record meant opening an Excel sheet, looking up the consumer number, then scrolling through thousands of identically named files. For field staff responsible for delivery areas containing dozens of villages, this was functionally unusable.
+              An LPG distributorship I worked with had accumulated a flat folder of roughly four thousand scanned KYC images; each file was named only by an internal consumer number. Finding a single customer&apos;s record meant opening an Excel sheet, looking up the consumer number, then scrolling through thousands of identically named files. For field staff responsible for delivery areas containing dozens of villages, this was functionally unusable.
             </p>
             <p className="text-text-secondary text-lg leading-relaxed">
-              Beneath the surface was a harder problem: a decade of manual data entry had produced well over a hundred fuzzy-duplicate locality names in the database — transliteration variants, suffix inconsistencies (<code className="text-sm text-gold bg-background-alt px-1.5 py-0.5 rounded border border-text-primary/10">Street</code> vs. <code className="text-sm text-gold bg-background-alt px-1.5 py-0.5 rounded border border-text-primary/10">Road</code> vs. <code className="text-sm text-gold bg-background-alt px-1.5 py-0.5 rounded border border-text-primary/10">Lane</code>), and typos that looked different to a computer but identical to the staff who&apos;d typed them.
+              Beneath the surface was a harder problem: a decade of manual data entry had produced well over a hundred fuzzy-duplicate locality names in the database. These included transliteration variants, suffix inconsistencies (<code className="text-sm text-gold bg-background-alt px-1.5 py-0.5 rounded border border-text-primary/10">Street</code> vs. <code className="text-sm text-gold bg-background-alt px-1.5 py-0.5 rounded border border-text-primary/10">Road</code> vs. <code className="text-sm text-gold bg-background-alt px-1.5 py-0.5 rounded border border-text-primary/10">Lane</code>), and typos that looked different to a computer but identical to the staff who&apos;d typed them.
             </p>
           </motion.div>
         </div>
@@ -360,10 +360,10 @@ export default function ArchiveAutomationContent() {
               The data-cleaning problem nobody noticed
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed mb-5">
-              After the first run I had 796 distinct <code className="text-sm text-gold bg-surface-card px-1.5 py-0.5 rounded border border-text-primary/10">region/locality</code> folders — which was obviously wrong. A village with one name in 2014 had been entered with a different spelling in 2017, and a variant transliteration in 2021. <em>Market Street</em>, <em>Market Road</em>, and <em>Marketpur</em> were the same place. A locality entered as <em>Ramanagar</em> by one operator and <em>Raamnagar</em> by another needed to collapse into a single folder.
+              After the first run I had 796 distinct <code className="text-sm text-gold bg-surface-card px-1.5 py-0.5 rounded border border-text-primary/10">region/locality</code> folders; this was obviously wrong. A village with one name in 2014 had been entered with a different spelling in 2017, and a variant transliteration in 2021. <em>Market Street</em>, <em>Market Road</em>, and <em>Marketpur</em> were the same place. A locality entered as <em>Ramanagar</em> by one operator and <em>Raamnagar</em> by another needed to collapse into a single folder.
             </p>
             <p className="text-text-secondary text-lg leading-relaxed mb-4">
-              I worked through the folder listing, identified the fuzzy-duplicate clusters, and generated a repeatable merge script. One hundred and sixteen normalisations later — 105 sub-area merges and 11 suffix consolidations — the archive dropped to a much tighter structure that matched the way staff actually referred to places:
+              I worked through the folder listing, identified the fuzzy-duplicate clusters, and generated a repeatable merge script. One hundred and sixteen normalisations later (105 sub-area merges and 11 suffix consolidations), the archive dropped to a much tighter structure that matched the way staff actually referred to places:
             </p>
 
             <CodeBlock>{codeStage2}</CodeBlock>
@@ -393,7 +393,7 @@ export default function ArchiveAutomationContent() {
             </p>
             <ul className="space-y-3 text-text-secondary text-lg leading-relaxed mb-6 list-disc pl-6 marker:text-gold">
               <li>Handles the full Google OAuth 2.0 desktop flow, caching the token so subsequent runs are non-interactive.</li>
-              <li>Is fully resumable — it writes each successful upload to a CSV log, so a crash or network drop never re-uploads a file that is already on Drive.</li>
+              <li>Is fully resumable; it writes each successful upload to a CSV log, so a crash or network drop never re-uploads a file that is already on Drive.</li>
               <li>Sets each uploaded file to public-readable via the Drive permissions API, then captures the <code className="text-sm text-gold bg-background-alt px-1.5 py-0.5 rounded border border-text-primary/10">webViewLink</code>.</li>
               <li>Rewrites the Excel with <code className="text-sm text-gold bg-background-alt px-1.5 py-0.5 rounded border border-text-primary/10">openpyxl</code>, turning the consumer-number column into clickable blue hyperlinks.</li>
             </ul>
@@ -490,7 +490,7 @@ export default function ArchiveAutomationContent() {
               Have a problem shaped like this?
             </h2>
             <p className="text-text-on-dark/70 mb-8 text-lg">
-              Messy data, fragile spreadsheets, or a legacy archive nobody wants to touch — tell us about it.
+              Messy data, fragile spreadsheets, or a legacy archive nobody wants to touch; tell us about it.
             </p>
             <Button href="/contact" variant="primary" size="lg">
               Start a conversation

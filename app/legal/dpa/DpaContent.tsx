@@ -26,7 +26,7 @@ export default function DpaContent() {
           <AlertTriangle className="h-5 w-5 text-gold flex-shrink-0 mt-0.5" strokeWidth={2} />
           <div>
             <p className="text-sm font-semibold text-text-primary mb-2">
-              Template v1 — DRAFT. Not counsel-reviewed.
+              Template v1 · DRAFT. Not counsel-reviewed.
             </p>
             <p className="text-sm text-text-secondary leading-relaxed">
               This Data Processing Addendum is a template and has not been reviewed by a licensed attorney. It must be reviewed by legal counsel in both India and the relevant counterparty jurisdiction before execution. Do not use without independent legal review.
@@ -40,9 +40,9 @@ export default function DpaContent() {
           A <HighlightLabel>Data Processing Addendum (DPA)</HighlightLabel> is a legal contract that governs how Kinyoubi Atelier & Co. processes personal data on your behalf. It specifies security controls, confidentiality obligations, sub-processor management, and data subject rights. It's required by:
         </p>
         <ul className="text-text-secondary leading-relaxed space-y-2 ml-5 list-disc">
-          <li><HighlightLabel>GDPR (EU)</HighlightLabel> — requires a processor agreement before any personal data is shared</li>
-          <li><HighlightLabel>UK GDPR</HighlightLabel> — equivalent requirements for UK data subjects</li>
-          <li><HighlightLabel>DPDP Act 2023 (India)</HighlightLabel> — aligns processor obligations with Indian data protection law</li>
+          <li><HighlightLabel>GDPR (EU)</HighlightLabel>: requires a processor agreement before any personal data is shared</li>
+          <li><HighlightLabel>UK GDPR</HighlightLabel>: equivalent requirements for UK data subjects</li>
+          <li><HighlightLabel>DPDP Act 2023 (India)</HighlightLabel>: aligns processor obligations with Indian data protection law</li>
         </ul>
       </LegalSection>
 
@@ -116,15 +116,15 @@ export default function DpaContent() {
           The full DPA template includes:
         </p>
         <ul className="text-text-secondary leading-relaxed space-y-2 ml-5 list-disc">
-          <li><HighlightLabel>Definitions:</HighlightLabel> Controller, processor, personal data, data subject, sub-processor</li>
-          <li><HighlightLabel>Processing scope:</HighlightLabel> What data is processed, why, for how long, and for what purpose</li>
-          <li><HighlightLabel>Processor obligations:</HighlightLabel> Our commitment to process only on your written instructions, maintain confidentiality, and implement security</li>
-          <li><HighlightLabel>Sub-processor management:</HighlightLabel> How we notify you of changes and allow objections</li>
-          <li><HighlightLabel>International transfers:</HighlightLabel> Standard Contractual Clauses (SCCs) for moving EU personal data outside the EEA</li>
-          <li><HighlightLabel>Data subject rights:</HighlightLabel> Our role in assisting with access, deletion, portability, and objection requests</li>
-          <li><HighlightLabel>Breach notification:</HighlightLabel> 72-hour notification of confirmed security incidents</li>
-          <li><HighlightLabel>Auditing:</HighlightLabel> Your right to audit our security measures and compliance</li>
-          <li><HighlightLabel>Data deletion/return:</HighlightLabel> Our obligation to return or securely delete data upon engagement end</li>
+          <li><HighlightLabel>Definitions.</HighlightLabel> Controller, processor, personal data, data subject, sub-processor</li>
+          <li><HighlightLabel>Processing scope.</HighlightLabel> What data is processed, why, for how long, and for what purpose</li>
+          <li><HighlightLabel>Processor obligations.</HighlightLabel> Our commitment to process only on your written instructions, maintain confidentiality, and implement security</li>
+          <li><HighlightLabel>Sub-processor management.</HighlightLabel> How we notify you of changes and allow objections</li>
+          <li><HighlightLabel>International transfers.</HighlightLabel> Standard Contractual Clauses (SCCs) for moving EU personal data outside the EEA</li>
+          <li><HighlightLabel>Data subject rights.</HighlightLabel> Our role in assisting with access, deletion, portability, and objection requests</li>
+          <li><HighlightLabel>Breach notification.</HighlightLabel> 72-hour notification of confirmed security incidents</li>
+          <li><HighlightLabel>Auditing.</HighlightLabel> Your right to audit our security measures and compliance</li>
+          <li><HighlightLabel>Data deletion/return.</HighlightLabel> Our obligation to return or securely delete data upon engagement end</li>
         </ul>
       </LegalSection>
 
@@ -150,16 +150,16 @@ export default function DpaContent() {
         </p>
         <ul className="text-text-secondary leading-relaxed space-y-3 ml-5">
           <li>
-            <HighlightLabel>Master Services Agreement (MSA)</HighlightLabel> — The main contract governing all services, fees, IP ownership, liability, and dispute resolution. The DPA is incorporated into the MSA.
+            <HighlightLabel>Master Services Agreement (MSA).</HighlightLabel> The main contract governing all services, fees, IP ownership, liability, and dispute resolution. The DPA is incorporated into the MSA.
           </li>
           <li>
-            <HighlightLabel>Statement of Work (SOW)</HighlightLabel> — Project-specific details: scope, deliverables, timeline, and milestones.
+            <HighlightLabel>Statement of Work (SOW).</HighlightLabel> Project-specific details: scope, deliverables, timeline, and milestones.
           </li>
           <li>
-            <HighlightLabel>Standard Contractual Clauses (SCCs)</HighlightLabel> — Legal mechanism for transferring EU personal data outside the EEA. Referenced and incorporated in the DPA.
+            <HighlightLabel>Standard Contractual Clauses (SCCs).</HighlightLabel> Legal mechanism for transferring EU personal data outside the EEA. Referenced and incorporated in the DPA.
           </li>
           <li>
-            <HighlightLabel><Link href="/security" className="text-gold hover:underline">Security & Data Protection page</Link></HighlightLabel> — Public summary of our security posture and compliance frameworks.
+            <HighlightLabel><Link href="/security" className="text-gold hover:underline">Security & Data Protection page</Link></HighlightLabel>. Public summary of our security posture and compliance frameworks.
           </li>
         </ul>
       </LegalSection>

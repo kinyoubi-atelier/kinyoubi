@@ -60,7 +60,7 @@ const thisSite = [
   },
   {
     icon: Globe2,
-    title: 'Contact form — sub-processors',
+    title: 'Contact form: sub-processors',
     body:
       'The optional contact form is routed through Formspree or Web3Forms (configurable), with a parallel write to a Google Sheets log if enabled. These are the only third parties that receive form submissions. Form fields collected are limited to name, email, project type, and message body. No payment data, no credentials, no PII beyond what a user voluntarily types into an inquiry.',
   },
@@ -71,7 +71,7 @@ const clientEngagements = [
     icon: Lock,
     title: 'Encryption at rest, client-side field-level where it matters',
     body:
-      'For client builds that store customer data — like the regulated BFSI MIS platform on /work/bfsi-mis — we use client-side field-level encryption on sensitive free-text fields before they reach the database. The PostgreSQL instance itself is encrypted at rest via the managed database provider (AWS RDS KMS by default). Keys rotate on a schedule we document in the engagement.',
+      'For client builds that store customer data (like the regulated BFSI MIS platform on /work/bfsi-mis) we use client-side field-level encryption on sensitive free-text fields before they reach the database. The PostgreSQL instance itself is encrypted at rest via the managed database provider (AWS RDS KMS by default). Keys rotate on a schedule we document in the engagement.',
   },
   {
     icon: ShieldCheck,
@@ -81,7 +81,7 @@ const clientEngagements = [
   },
   {
     icon: Globe2,
-    title: 'Data residency — pinned to the client\'s jurisdiction',
+    title: 'Data residency: pinned to the client\'s jurisdiction',
     body:
       'For India-regulated engagements, primary storage, compute, and model inference are pinned to the AWS Mumbai region (ap-south-1) with no cross-border data movement. For clients in other jurisdictions, we pin to whichever region meets their regulatory constraints (EU for GDPR data controllers, US for HIPAA-in-scope workloads, etc.).',
   },
@@ -102,10 +102,10 @@ const compliance = [
   {
     framework: 'DPDP Act, 2023 (India)',
     posture:
-      'Client engagements that fall under DPDP are designed to the Act from day one — not retrofitted. This includes purpose limitation, role-based consent handling, client-side field-level encryption on sensitive free-text, and audit trails for read and write access. The case study on /work/bfsi-mis describes the exact controls for one such build.',
+      'Client engagements that fall under DPDP are designed to the Act from day one, not retrofitted. This includes purpose limitation, role-based consent handling, client-side field-level encryption on sensitive free-text, and audit trails for read and write access. The case study on /work/bfsi-mis describes the exact controls for one such build.',
   },
   {
-    framework: 'Contractual — MSAs, DPAs, SCCs',
+    framework: 'Contractual: MSAs, DPAs, SCCs',
     posture:
       'A DPA is available on request and can be executed before any production data is exchanged. For transfers of EU personal data out of the EEA, we rely on the current Standard Contractual Clauses. We are happy to review a client\'s preferred DPA template as an alternative to ours.',
   },
@@ -120,7 +120,7 @@ const incidentResponse = {
 const dataWePublish = [
   'Last PageSpeed Insights run date and the unedited screenshot (below)',
   'Test URL, device strategy, and Lighthouse version',
-  'Core Web Vitals: LCP, INP, CLS as reported by PSI — not targets, not goals',
+  'Core Web Vitals: LCP, INP, CLS as reported by PSI; not targets, not goals',
 ]
 
 export default function SecurityContent() {
@@ -151,8 +151,8 @@ export default function SecurityContent() {
             </h1>
             <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl">
               Written for buyers who Ctrl-F for &ldquo;GDPR&rdquo;, &ldquo;DPDP&rdquo;, &ldquo;encryption&rdquo;, and
-              &ldquo;DPA&rdquo; before they take a sales call. Every control below is scoped explicitly &mdash;
-              this marketing site versus a client engagement &mdash; so nothing conflates the two.
+              &ldquo;DPA&rdquo; before they take a sales call. Every control below is scoped explicitly:
+              this marketing site versus a client engagement, so nothing conflates the two.
             </p>
           </motion.div>
         </div>
@@ -169,8 +169,8 @@ export default function SecurityContent() {
                   Two distinct scopes on this page
                 </p>
                 <p className="text-sm text-text-secondary leading-relaxed">
-                  &ldquo;This site&rdquo; refers to <span className="font-mono text-xs">kinyoubi-atelier.github.io</span>
-                  &nbsp;&mdash; the marketing surface you&rsquo;re reading now. It stores no customer data. &ldquo;Client
+                  &ldquo;This site&rdquo; refers to <span className="font-mono text-xs">kinyoubi-atelier.github.io</span>:
+                  the marketing surface you&rsquo;re reading now. It stores no customer data. &ldquo;Client
                   engagements&rdquo; refers to the systems we build <em>for</em> clients, which have their own
                   security posture documented per-project in the engagement&rsquo;s own security memo. Do not
                   assume controls from one scope apply to the other.
@@ -354,7 +354,7 @@ export default function SecurityContent() {
             viewport={{ once: true }}
           >
             <p className="text-xs font-medium text-gold uppercase tracking-widest mb-3">
-              Performance &mdash; measured, not projected
+              Performance: measured, not projected
             </p>
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight mb-6">
               Core Web Vitals, with the screenshot
@@ -362,7 +362,7 @@ export default function SecurityContent() {
             <p className="text-text-secondary text-lg leading-relaxed mb-8">
               A performance firm publishing performance claims should publish the evidence. Below is the
               most recent unedited PageSpeed Insights run for this site. No cherry-picked metrics, no
-              averaged-across-pages synthesis &mdash; the raw screenshot, the date, and the test URL.
+              averaged-across-pages synthesis: the raw screenshot, the date, and the test URL.
             </p>
 
             <div className="rounded-card border border-text-primary/5 bg-background-alt p-6 md:p-8">
@@ -391,7 +391,7 @@ export default function SecurityContent() {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src="/perf/psi-mobile.png"
-                  alt="PageSpeed Insights — mobile run for kinyoubi-atelier.github.io"
+                  alt="PageSpeed Insights: mobile run for kinyoubi-atelier.github.io"
                   className="w-full rounded border border-text-primary/10"
                   onError={() => setImgError(true)}
                 />
@@ -432,8 +432,8 @@ export default function SecurityContent() {
         <div className="max-w-3xl mx-auto">
           <BrushStrokeDivider variant={1} className="mb-10 opacity-30" />
           <p className="text-sm text-text-tertiary leading-relaxed">
-            Questions not answered here &mdash; questionnaires, audit attestations, a pre-existing vendor
-            template you need us to fill &mdash; email{' '}
+            Questions not answered here: questionnaires, audit attestations, a pre-existing vendor
+            template you need us to fill. Email{' '}
             <a
               href="mailto:kinyoubi.atelier@outlook.com?subject=Security%20question"
               className="text-gold hover:underline"

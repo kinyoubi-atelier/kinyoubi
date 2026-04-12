@@ -3,11 +3,11 @@ import { SITE } from '@/lib/constants'
 import ServicesContent from './ServicesContent'
 
 export const metadata: Metadata = {
-  title: `Services — ${SITE.name}`,
+  title: `Services | ${SITE.name}`,
   description: 'Software development, technical consulting, AI workflow development, and regulatory research services.',
   openGraph: {
-    title: `Services — ${SITE.name}`,
-    description: 'Software, consulting, and research — delivered with engineering precision.',
+    title: `Services | ${SITE.name}`,
+    description: 'Software, consulting, and research. Delivered with engineering precision.',
     url: `${SITE.url}/services`,
     type: 'website',
   },

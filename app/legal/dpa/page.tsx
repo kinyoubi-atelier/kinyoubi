@@ -3,7 +3,7 @@ import Link from 'next/link'
 import DpaContent from './DpaContent'
 
 export const metadata: Metadata = {
-  title: 'Data Processing Addendum — Kinyoubi Atelier & Co.',
+  title: 'Data Processing Addendum | Kinyoubi Atelier & Co.',
   description:
     'Data Processing Addendum (DPA) for Kinyoubi Atelier & Co. GDPR-compliant and DPDP Act 2023 aligned.',
 }

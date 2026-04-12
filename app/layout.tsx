@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Kinyoubi Atelier & Co. — Software that ships. Complexity, handled.',
+        alt: 'Kinyoubi Atelier & Co. Software that ships. Complexity, handled.',
       },
     ],
   },

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import MsaContent from './MsaContent'
 
 export const metadata: Metadata = {
-  title: 'Master Services Agreement — Kinyoubi Atelier & Co.',
+  title: 'Master Services Agreement | Kinyoubi Atelier & Co.',
   description:
     'Master Services Agreement (MSA) for Kinyoubi Atelier & Co. Governs all software development, consulting, and regulatory research services.',
 }

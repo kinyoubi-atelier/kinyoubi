@@ -28,7 +28,7 @@ const services = [
   {
     icon: Code2,
     title: 'Software Development',
-    description: 'Next.js for server-rendered React with automatic code-splitting. TypeScript for compile-time safety across the stack. PostgreSQL for relational integrity where your data demands it. We ship to Vercel and AWS with CI/CD baked in — not bolted on.',
+    description: 'Next.js for server-rendered React with automatic code-splitting. TypeScript for compile-time safety across the stack. PostgreSQL for relational integrity where your data demands it. We ship to Vercel and AWS with CI/CD baked in; not bolted on.',
     href: '/services#software-development',
   },
   {
@@ -40,7 +40,7 @@ const services = [
   {
     icon: FileSearch,
     title: 'Regulatory & Contract Research',
-    description: 'Structured research methodology — identify applicable frameworks, organize findings by jurisdiction and severity, and deliver actionable briefs. We parse regulatory language and contract clauses into summaries your team can act on. Alongside legal counsel, never in place of them.',
+    description: 'Structured research methodology: identify applicable frameworks, organize findings by jurisdiction and severity, and deliver actionable briefs. We parse regulatory language and contract clauses into summaries your team can act on. Alongside legal counsel, never in place of them.',
     href: '/services#regulatory-research',
   },
 ]
@@ -69,7 +69,7 @@ const processSteps = [
   },
 ]
 
-// Static, verifiable numbers. No animation — the earlier in-view counter
+// Static, verifiable numbers. No animation; the earlier in-view counter
 // was flashing "0+" on first paint, which reads as broken JS. Every number
 // here is traceable: quantitative-analysis tenure, disciplines on file,
 // published response SLA, and the case-study metric for the archive
@@ -77,7 +77,7 @@ const processSteps = [
 const stats = [
   { value: '7+', label: 'Years in quantitative analysis' },
   { value: '4', label: 'Disciplines integrated' },
-  { value: '48h', label: 'Response SLA — business days' },
+  { value: '48h', label: 'Response SLA, business days' },
   { value: '~14 hrs', label: 'Manual work replaced, most recent build' },
 ]
 
@@ -90,7 +90,7 @@ const capabilities = [
   {
     icon: GitBranch,
     title: 'Systematized Pipelines',
-    description: 'Every build follows a structured pipeline — from requirements to deployment, nothing is ad hoc.',
+    description: 'Every build follows a structured pipeline: from requirements to deployment, nothing is ad hoc.',
   },
   {
     icon: Shield,
@@ -210,7 +210,7 @@ export default function HomeContent() {
 
             {/* Subtext */}
             <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
-              A software development studio that moves fast on hard problems — from backend architecture to regulatory compliance.
+              A software development studio that moves fast on hard problems: from backend architecture to regulatory compliance.
             </p>
 
             {/* CTAs */}
@@ -300,7 +300,7 @@ export default function HomeContent() {
       </section>
 
       {/* ──────────────────────────────────────────────
-          SECTION 4: Process — "How We Work"
+          SECTION 4: Process - "How We Work"
       ────────────────────────────────────────────── */}
       <section className="py-24 md:py-32 px-6 md:px-12 bg-surface-dark">
         <div className="max-w-6xl mx-auto">
@@ -450,7 +450,7 @@ export default function HomeContent() {
               We bring structure to complexity.
             </p>
             <p className="text-text-secondary mt-6">
-              — {SITE.founder}, Founder
+              {SITE.founder}, Founder
             </p>
           </motion.div>
           <BrushStrokeDivider variant={1} className="mt-14" />
@@ -527,7 +527,7 @@ export default function HomeContent() {
               The proof is in the work
             </h2>
             <p className="text-text-secondary mt-4 max-w-xl">
-              A small, growing portfolio — from live client sites to the one you're reading now.
+              A small, growing portfolio: from live client sites to the one you're reading now.
             </p>
           </motion.div>
 
@@ -548,7 +548,7 @@ export default function HomeContent() {
             Temporary minimal card. Previous copy on this block described
             Roobaroo as a "multi-tenant school management system" with
             fabricated portal roles, institutions and AWS Amplify tags.
-            That was wrong — Roobaroo is a restaurant website. Until the
+            That was wrong. Roobaroo is a restaurant website. Until the
             real case study copy is written with the founder, we render a
             restrained stub that only states verifiable facts: it's a
             live client project and here is the link.
@@ -588,7 +588,7 @@ export default function HomeContent() {
 
           {/*
             ── Featured project: Archive automation ──
-            Python pipeline for an LPG distributorship — reconciled ~4,000
+            Python pipeline for an LPG distributorship: reconciled ~4,000
             scanned KYC records against an Excel master, normalised 116
             fuzzy-duplicate locality names, and published the result to
             Google Drive with clickable hyperlinks back into the sheet.
@@ -623,7 +623,7 @@ export default function HomeContent() {
                   </span>
                 </div>
 
-                {/* Metric strip — all numbers from Ankit's verified write-up */}
+                {/* Metric strip: all numbers from Ankit's verified write-up */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-text-primary/5">
                   {[
                     { num: '3,905', label: 'Records reconciled' },
@@ -642,7 +642,7 @@ export default function HomeContent() {
           </motion.div>
 
           {/*
-            BFSI MIS case study — regulated financial institution engagement.
+            BFSI MIS case study: regulated financial institution engagement.
             All specific client identifiers are redacted under confidentiality
             obligations. Content is load-bearing on Ankit's signed founder
             attestation on the case study page itself.
@@ -664,7 +664,7 @@ export default function HomeContent() {
                     <p className="text-xs text-text-tertiary uppercase tracking-widest mb-0.5">Client project · BFSI · Regulated SaaS</p>
                     <h3 className="text-xl font-semibold text-text-primary mb-2">Compliance-first MIS platform for a regulated financial institution</h3>
                     <p className="text-sm text-text-secondary leading-relaxed">
-                      A multi-site Management Information System engineered from day one for RBI alignment and DPDP Act readiness — secure data foundation, offline-first capture, and an AI-assisted insight layer, all hosted in-region.
+                      A multi-site Management Information System engineered from day one for RBI alignment and DPDP Act readiness: secure data foundation, offline-first capture, and an AI-assisted insight layer, all hosted in-region.
                     </p>
                   </div>
                   <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0">
@@ -675,7 +675,7 @@ export default function HomeContent() {
                   </span>
                 </div>
 
-                {/* Stack chips in place of metrics — this phase is foundation work, no KPIs published */}
+                {/* Stack chips in place of metrics: this phase is foundation work, no KPIs published */}
                 <div className="flex flex-wrap gap-2 pt-6 border-t border-text-primary/5">
                   {[
                     'Flutter',
@@ -698,7 +698,7 @@ export default function HomeContent() {
 
           {/* ── This site's measured Core Web Vitals ──
               We only publish numbers we've measured. The PageSpeed Insights
-              run screenshot lives at /public/perf/psi-mobile.png — see
+              run screenshot lives at /public/perf/psi-mobile.png; see
               /public/perf/README.md for the exact capture procedure and
               drop-in slot. Until the file exists, this card surfaces a
               link to /security#performance where the screenshot is hosted
@@ -712,7 +712,7 @@ export default function HomeContent() {
             <Card bordered className="p-8 md:p-10">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
-                  <p className="text-xs font-medium text-gold uppercase tracking-widest mb-2">This site — measured</p>
+                  <p className="text-xs font-medium text-gold uppercase tracking-widest mb-2">This site: measured</p>
                   <h3 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight mb-2">
                     Core Web Vitals, published with the screenshot
                   </h3>

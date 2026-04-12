@@ -26,7 +26,7 @@ export default function MsaContent() {
           <AlertTriangle className="h-5 w-5 text-gold flex-shrink-0 mt-0.5" strokeWidth={2} />
           <div>
             <p className="text-sm font-semibold text-text-primary mb-2">
-              Template v1 — DRAFT. Not counsel-reviewed.
+              Template v1 · DRAFT. Not counsel-reviewed.
             </p>
             <p className="text-sm text-text-secondary leading-relaxed">
               This Master Services Agreement is a template and has not been reviewed by a licensed attorney. It must be reviewed by legal counsel in both India and the relevant counterparty jurisdiction before execution. Do not use without independent legal review.
@@ -228,13 +228,13 @@ export default function MsaContent() {
         </p>
         <ul className="text-text-secondary leading-relaxed space-y-3 ml-5">
           <li>
-            <HighlightLabel><Link href="/legal/dpa" className="text-gold hover:underline">Data Processing Addendum (DPA)</Link></HighlightLabel> — Covers data protection, security, breach notification, and sub-processor management. Incorporated into the MSA if your engagement involves personal data.
+            <HighlightLabel><Link href="/legal/dpa" className="text-gold hover:underline">Data Processing Addendum (DPA)</Link></HighlightLabel>. Covers data protection, security, breach notification, and sub-processor management. Incorporated into the MSA if your engagement involves personal data.
           </li>
           <li>
-            <HighlightLabel>Statement of Work (SOW)</HighlightLabel> — Project-specific details: scope, deliverables, timeline, and fees. Issued under and governed by the MSA.
+            <HighlightLabel>Statement of Work (SOW).</HighlightLabel> Project-specific details: scope, deliverables, timeline, and fees. Issued under and governed by the MSA.
           </li>
           <li>
-            <HighlightLabel>Standard Contractual Clauses (SCCs)</HighlightLabel> — Legal mechanism for GDPR-compliant data transfers. Referenced in the DPA.
+            <HighlightLabel>Standard Contractual Clauses (SCCs).</HighlightLabel> Legal mechanism for GDPR-compliant data transfers. Referenced in the DPA.
           </li>
         </ul>
       </LegalSection>

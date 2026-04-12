@@ -21,12 +21,12 @@ const heroChips = [
 const heroMeta = [
   { k: 'Client', v: 'Regulated Indian financial institution (anonymized)' },
   { k: 'Stakeholder', v: 'Senior operations & compliance leadership' },
-  { k: 'Phase', v: 'Foundation phase — data & infrastructure' },
+  { k: 'Phase', v: 'Foundation phase: data & infrastructure' },
   { k: 'Stack', v: 'Flutter · AWS ap-south-1 · PostgreSQL · Bedrock' },
 ]
 
 const clientProblem = [
-  'Leadership needed a single pane of glass across the field network — not a once-a-month deck.',
+  'Leadership needed a single pane of glass across the field network, not a once-a-month deck.',
   'Field officers in low-connectivity geographies needed to capture daily numbers without depending on a stable mobile data connection.',
   'Risk and compliance needed cryptographic assurance that sensitive fields were protected at rest, in transit, and across the AI layer.',
   'Leadership wanted natural-language insights (e.g. "Why did this product line soften in a specific region this week?") without exposing any row-level customer data to a third-party model.',
@@ -45,7 +45,7 @@ const compliance = [
   { concern: 'Data residency (RBI cloud guidance)', how: 'Primary storage, compute, and model inference pinned to AWS Mumbai (ap-south-1). No cross-border data movement.' },
   { concern: 'Transport security', how: 'TLS 1.3 enforced on every API surface; no downgrade paths.' },
   { concern: 'PII protection at rest', how: 'Client-side field-level encryption for sensitive free-text fields before they reach the database. Keys rotate on schedule.' },
-  { concern: 'Tenant isolation', how: 'PostgreSQL row-level security per role — tenancy boundaries survive application bugs.' },
+  { concern: 'Tenant isolation', how: 'PostgreSQL row-level security per role; tenancy boundaries survive application bugs.' },
   { concern: 'Least privilege', how: 'Scoped IAM roles on every service; no broad wildcards on data-plane resources.' },
   { concern: 'AI data exposure (DPDP Act readiness)', how: 'AI layer consumes only aggregated, de-identified views through a hardened view layer. No IAM path to raw rows.' },
   { concern: 'Auditability', how: "Full audit trail of read and write events, retained per the institution's record-keeping requirements." },
@@ -53,9 +53,9 @@ const compliance = [
 
 type ArtifactStatus = 'done' | 'wip' | 'next'
 const artifacts: { path: string; scope: string; status: ArtifactStatus }[] = [
-  { path: 'schema.sql', scope: 'PostgreSQL DDL — core tables, FLE annotations, indexes', status: 'wip' },
+  { path: 'schema.sql', scope: 'PostgreSQL DDL: core tables, FLE annotations, indexes', status: 'wip' },
   { path: 'policies/rls.sql', scope: 'Row-level security policies across the role matrix', status: 'wip' },
-  { path: 'template.yaml', scope: 'SAM / CloudFormation scaffold — Cognito, RDS, Lambda', status: 'wip' },
+  { path: 'template.yaml', scope: 'SAM / CloudFormation scaffold: Cognito, RDS, Lambda', status: 'wip' },
   { path: 'docs/encryption-policy.md', scope: 'Written policy identifying every FLE field and its rationale', status: 'done' },
   { path: 'docs/rbi-mapping.md', scope: 'Control-by-control mapping to RBI outsourcing guidance', status: 'done' },
   { path: 'tests/rls-matrix.sql', scope: 'Negative-path test suite for every role × scope combination', status: 'next' },
@@ -230,7 +230,7 @@ function ArchitectureDiagram() {
           Data, compute, and inference all pinned to region. No raw PII crosses the de-identification boundary.
         </text>
         <text x="365" y="226" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontStyle="italic" fontFamily="Inter, system-ui, sans-serif">
-          Illustrative — simplified for public disclosure.
+          Illustrative; simplified for public disclosure.
         </text>
       </svg>
       <figcaption className="mt-4 text-sm text-text-tertiary text-center">
@@ -265,7 +265,7 @@ function RepoTree() {
 ├── infra/
 │   ├── template.yaml               `}{redact}{`
 │   └── stacks/                     `}{redact}{`
-├── mobile/                         `}<span className="text-text-tertiary/70">[Flutter — phase 2]</span>{`
+├── mobile/                         `}<span className="text-text-tertiary/70">[Flutter, phase 2]</span>{`
 ├── docs/
 │   ├── encryption-policy.md        `}{published}{`
 │   ├── threat-model.md             `}{redact}{`
@@ -301,7 +301,7 @@ export default function BfsiMisContent() {
               A compliance-first MIS platform for a regulated Indian financial institution
             </h1>
             <p className="text-lg md:text-xl text-text-secondary leading-relaxed mb-8 max-w-2xl">
-              How Kinyoubi Atelier &amp; Co. designed the secure data foundation, offline-first capture layer, and AI-assisted insight engine for a multi-site Management Information System — engineered from day one for RBI alignment and DPDP Act readiness.
+              How Kinyoubi Atelier &amp; Co. designed the secure data foundation, offline-first capture layer, and AI-assisted insight engine for a multi-site Management Information System, engineered from day one for RBI alignment and DPDP Act readiness.
             </p>
 
             <div className="flex flex-wrap gap-2 mb-10">
@@ -345,15 +345,15 @@ export default function BfsiMisContent() {
               At a glance
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed mb-5">
-              A regulated Indian financial institution engaged Kinyoubi Atelier &amp; Co. to replace an Excel-and-email reporting loop that senior operations leadership relied on to track daily field performance. The brief sounded deceptively simple — &ldquo;give us one pane of glass&rdquo; — but three hard constraints shape every serious build in this segment: strict regulatory posture under RBI supervision, patchy connectivity across field sites, and the non-negotiable rule that raw personally identifiable information (PII) must never leave the institution&apos;s trust boundary, least of all through a third-party AI API.
+              A regulated Indian financial institution engaged Kinyoubi Atelier &amp; Co. to replace an Excel-and-email reporting loop that senior operations leadership relied on to track daily field performance. The brief sounded deceptively simple ("give us one pane of glass"), but three hard constraints shape every serious build in this segment: strict regulatory posture under RBI supervision, patchy connectivity across field sites, and the non-negotiable rule that raw personally identifiable information (PII) must never leave the institution&apos;s trust boundary, least of all through a third-party AI API.
             </p>
             <p className="text-text-secondary text-lg leading-relaxed">
-              This case study describes the foundation phase — the secure data layer, identity, and infrastructure scaffolding — and why the underlying pattern is productizable across the wider regulated-SaaS segment in India.
+              This case study describes the foundation phase: the secure data layer, identity, and infrastructure scaffolding. It explains why the underlying pattern is productizable across the wider regulated-SaaS segment in India.
             </p>
 
             <div className="mt-8 border-l-2 border-gold pl-5 py-3 bg-background-alt rounded-r-card">
               <p className="text-text-secondary text-base leading-relaxed mb-0">
-                <strong className="text-text-primary">Note on confidentiality.</strong> Client identity, site data, internal product taxonomies, named stakeholders, and any proprietary metrics have been redacted or generalized. Code samples are simplified, sanitized illustrations of architectural patterns — not production artifacts.
+                <strong className="text-text-primary">Note on confidentiality.</strong> Client identity, site data, internal product taxonomies, named stakeholders, and any proprietary metrics have been redacted or generalized. Code samples are simplified, sanitized illustrations of architectural patterns, not production artifacts.
               </p>
             </div>
           </motion.div>
@@ -371,7 +371,7 @@ export default function BfsiMisContent() {
               Large regulated financial institutions in India operate at a scale that makes operational visibility genuinely hard. Daily reporting across a wide field network still happens through spreadsheets stitched together locally, emailed upstream, and re-keyed into leadership decks the night before review calls. The data is always at least a day stale, frequently inconsistent across sites, and carries enough embedded PII that even informal sharing creates regulatory exposure.
             </p>
             <p className="text-text-secondary text-lg leading-relaxed">
-              Our thesis going in: the opportunity isn&apos;t &ldquo;another dashboard.&rdquo; It is a <em>compliance-native operating layer</em> — a system of record for daily field activity that is secure by construction, usable on weak networks, and capable of generating narrative insights without ever shipping raw customer data out of the institution&apos;s VPC.
+              Our thesis going in: the opportunity isn&apos;t &ldquo;another dashboard.&rdquo; It is a <em>compliance-native operating layer</em>, a system of record for daily field activity that is secure by construction, usable on weak networks, and capable of generating narrative insights without ever shipping raw customer data out of the institution&apos;s VPC.
             </p>
           </motion.div>
         </div>
@@ -401,7 +401,7 @@ export default function BfsiMisContent() {
               Our approach
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed mb-5">
-              We scoped the foundation phase tightly: before writing a single line of frontend code, we would finalize the secure data foundation. Three deliverables — a PostgreSQL schema with row-level security (RLS) enforced at the database, an Infrastructure-as-Code scaffold covering identity and data services, and a clear written policy on which fields require client-side field-level encryption (FLE) before they are allowed to touch the database at all.
+              We scoped the foundation phase tightly: before writing a single line of frontend code, we would finalize the secure data foundation. Three deliverables shaped this work: a PostgreSQL schema with row-level security (RLS) enforced at the database, an Infrastructure-as-Code scaffold covering identity and data services, and a clear written policy on which fields require client-side field-level encryption (FLE) before they are allowed to touch the database at all.
             </p>
             <p className="text-text-secondary text-lg leading-relaxed mb-8">
               Three principles guided the design:
@@ -411,7 +411,7 @@ export default function BfsiMisContent() {
               <div className="rounded-card border border-text-primary/5 bg-surface-card p-6 md:p-7">
                 <h3 className="text-base font-semibold text-gold mb-2">1 · Zero raw PII to external APIs.</h3>
                 <p className="text-text-secondary leading-relaxed mb-0">
-                  AI-assisted insight generation runs against <em>aggregated, tokenized, de-identified</em> views — never against raw rows. The Bedrock-connected Lambda sits inside a private subnet, reads pre-aggregated shapes through a hardened view layer, and has no IAM path to customer-identifying columns. This is an architectural guarantee, not a policy promise.
+                  AI-assisted insight generation runs against <em>aggregated, tokenized, de-identified</em> views; never against raw rows. The Bedrock-connected Lambda sits inside a private subnet, reads pre-aggregated shapes through a hardened view layer, and has no IAM path to customer-identifying columns. This is an architectural guarantee, not a policy promise.
                 </p>
               </div>
               <div className="rounded-card border border-text-primary/5 bg-surface-card p-6 md:p-7">
@@ -460,15 +460,15 @@ export default function BfsiMisContent() {
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }}>
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight mb-4">
-              A look inside — sanitized snippets
+              A look inside: sanitized snippets
             </h2>
             <p className="text-text-tertiary text-base leading-relaxed mb-4">
-              The following are illustrative, abstracted patterns — not production code. They are included to convey engineering posture, not implementation.
+              The following are illustrative, abstracted patterns; they are not production code. They are included to convey engineering posture, not implementation.
             </p>
 
             <CodeBlock caption="01 · Schema skeleton with field-level encryption annotations">{codeSchema}</CodeBlock>
-            <CodeBlock caption="02 · Row-level security — tenancy enforced by the database">{codeRls}</CodeBlock>
-            <CodeBlock caption="03 · IaC stub — identity with MFA enforced (SAM / CloudFormation)">{codeIac}</CodeBlock>
+            <CodeBlock caption="02 · Row-level security: tenancy enforced by the database">{codeRls}</CodeBlock>
+            <CodeBlock caption="03 · IaC stub: identity with MFA enforced (SAM / CloudFormation)">{codeIac}</CodeBlock>
           </motion.div>
         </div>
       </section>
@@ -555,7 +555,7 @@ export default function BfsiMisContent() {
             {/* Work rhythm */}
             <h3 className="font-heading text-xl text-text-primary mb-3 mt-12">Foundation phase · work rhythm</h3>
             <p className="text-text-secondary leading-relaxed mb-5">
-              A week-by-week view of how the foundation phase was executed. No absolute dates — the cadence itself is the signal.
+              A week-by-week view of how the foundation phase was executed. No absolute dates; the cadence itself is the signal.
             </p>
 
             <div className="rounded-card border border-text-primary/10 overflow-hidden bg-surface-card">
@@ -625,7 +625,7 @@ export default function BfsiMisContent() {
               At the close of the foundation phase, the institution had a defensible base to build on: a reviewed PostgreSQL schema with RLS policies written and tested against the role matrix, an Infrastructure-as-Code scaffold covering identity and the data tier, and a written encryption policy identifying every field that must be client-side encrypted before storage. Crucially, the architecture decisions were documented in a form the client&apos;s internal risk and compliance team could review against RBI guidance line by line.
             </p>
             <p className="text-sm text-text-tertiary leading-relaxed">
-              Phase 2 — the officer capture app, leadership dashboards, and Bedrock-mediated insights — is in active build. Outcome metrics will be added here once the system is in production and the client has approved their disclosure. We do not publish fabricated KPIs.
+              Phase 2 (the officer capture app, leadership dashboards, and Bedrock-mediated insights) is in active build. Outcome metrics will be added here once the system is in production and the client has approved their disclosure. We do not publish fabricated KPIs.
             </p>
           </motion.div>
         </div>
@@ -639,7 +639,7 @@ export default function BfsiMisContent() {
               Why this build matters
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed mb-5">
-              Every large regulated financial institution in India has some version of the same problem: operational data trapped in spreadsheets, reporting that is stale by the time leadership sees it, and a regulatory environment that makes &ldquo;just pipe it into an AI tool&rdquo; a non-starter. The pattern we have built here — offline-first capture, database-enforced tenancy, encryption at the edge, and an AI layer that only ever sees de-identified aggregates — is not specific to one institution. It is a template for regulated SaaS in the Indian BFSI market, and one we believe productizes cleanly.
+              Every large regulated financial institution in India has some version of the same problem: operational data trapped in spreadsheets, reporting that is stale by the time leadership sees it, and a regulatory environment that makes "just pipe it into an AI tool" a non-starter. The pattern we have built here (offline-first capture, database-enforced tenancy, encryption at the edge, and an AI layer that only ever sees de-identified aggregates) is not specific to one institution. It is a template for regulated SaaS in the Indian BFSI market, and one we believe productizes cleanly.
             </p>
             <p className="text-text-secondary text-lg leading-relaxed">
               Kinyoubi Atelier &amp; Co. builds compliance-first software for regulated industries. If you&apos;re a partner or investor interested in how we turn regulated pilots into repeatable product patterns, we&apos;d be glad to share more under NDA.

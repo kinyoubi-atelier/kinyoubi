@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Copyright — Kinyoubi Atelier & Co.',
+  title: 'Copyright | Kinyoubi Atelier & Co.',
   description: 'Copyright notice and intellectual property information for Kinyoubi Atelier & Co.',
 }
 

@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'Kinyoubi Atelier & Co.',
   tagline: 'Software that ships. Complexity, handled.',
-  description: 'Software development, technical consulting, and regulatory research — delivered with precision and speed.',
+  description: 'Software development, technical consulting, and regulatory research. Delivered with precision and speed.',
   url: 'https://kinyoubi-atelier.github.io',
   email: 'kinyoubi.atelier@outlook.com',
   // Public-facing location string. Used in the footer and About panel.
