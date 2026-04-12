@@ -17,7 +17,7 @@
 | **PAN (Permanent Account Number)** | [TBD — 10-digit Indian tax ID] |
 | **GSTIN** | [TBD — if registered for GST; otherwise "Not applicable / below threshold"] |
 | **IEC (Importer Exporter Code)** | [TBD — 10-digit DGFT code; required for service exports] |
-| **Website** | https://kinyoubi-atelier.github.io / [custom domain TBD] |
+| **Website** | https://kinyoubiatelier.com / [custom domain TBD] |
 | **Year Founded** | 2024 |
 | **Annual Revenue (USD)** | `[TBD — fill as of latest FY; redact if confidential]` |
 | **Employees** | 1 (founder) |

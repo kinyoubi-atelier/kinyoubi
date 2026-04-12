@@ -15,7 +15,7 @@ Representative: [TBD — authorized signatory]
 **Service Provider ("We", "Kinyoubi", "Processor"):**  
 Name: Kinyoubi Atelier & Co.  
 Address: Jeypore, Koraput District, Odisha 764001, India  
-Email: kinyoubi.atelier@outlook.com  
+Email: ankit@kinyoubiatelier.com  
 Representative: Ankit Sahu, Founder
 
 ---
@@ -559,8 +559,8 @@ Electronic signatures (including DocuSign, email signature images, or digital ce
 
 - **For service inquiries:** [TBD — support email or contact]
 - **For invoices and payment:** [TBD — accounting contact]
-- **For legal notices:** kinyoubi.atelier@outlook.com
-- **For security or data protection:** kinyoubi.atelier@outlook.com (Subject: "Security Question")
+- **For legal notices:** ankit@kinyoubiatelier.com
+- **For security or data protection:** ankit@kinyoubiatelier.com (Subject: "Security Question")
 
 ### 21.2 Response Time
 

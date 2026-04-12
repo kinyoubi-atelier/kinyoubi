@@ -2,8 +2,8 @@ export const SITE = {
   name: 'Kinyoubi Atelier & Co.',
   tagline: 'Software that ships. Complexity, handled.',
   description: 'Software development, technical consulting, and regulatory research. Delivered with precision and speed.',
-  url: 'https://kinyoubi-atelier.github.io',
-  email: 'kinyoubi.atelier@outlook.com',
+  url: 'https://kinyoubiatelier.com',
+  email: 'ankit@kinyoubiatelier.com',
   // Public-facing location string. Used in the footer and About panel.
   // The full registered address (Jeypore, Koraput District, Odisha, India)
   // is disclosed on the Contact page and in legal/copyright — kept off

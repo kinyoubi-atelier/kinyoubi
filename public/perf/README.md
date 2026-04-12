@@ -8,7 +8,7 @@ pages show real numbers.
 ## One-time capture (takes 3 minutes)
 
 1. Open https://pagespeed.web.dev/ in Chrome.
-2. Paste the production URL: `https://kinyoubi-atelier.github.io/`
+2. Paste the production URL: `https://kinyoubiatelier.com/`
    (update this to your custom domain once it ships).
 3. Click **Analyze**. Wait for both Mobile and Desktop tabs to finish.
 4. Stay on the **Mobile** tab (PSI defaults to mobile and Google ranks

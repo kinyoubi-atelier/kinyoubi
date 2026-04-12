@@ -95,7 +95,7 @@ Covers:
 
 ## Contact
 
-For a copy of the current version of any of these templates, email [kinyoubi.atelier@outlook.com](mailto:kinyoubi.atelier@outlook.com) with your inquiry.
+For a copy of the current version of any of these templates, email [ankit@kinyoubiatelier.com](mailto:ankit@kinyoubiatelier.com) with your inquiry.
 
 All templates are governed by Indian law and disputes are resolved in the competent courts of Koraput District, Odisha, India, or (for enterprise counterparties) via SIAC Singapore arbitration.
 

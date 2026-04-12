@@ -1,6 +1,6 @@
 # Web Development Playbook — Kinyoubi Atelier & Co.
 
-*A distilled reference from building kinyoubi-atelier.github.io. Not a rigid template — a set of patterns that worked, meant to be adapted per client.*
+*A distilled reference from building kinyoubiatelier.com. Not a rigid template — a set of patterns that worked, meant to be adapted per client.*
 
 ---
 

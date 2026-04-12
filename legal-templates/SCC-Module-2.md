@@ -23,7 +23,7 @@ The SCCs are incorporated **by reference into the Data Processing Addendum (DPA)
 | Element | Details |
 |---------|---------|
 | **Party A (Controller)** | [TBD — Full legal name, address, contact] |
-| **Party B (Processor)** | Kinyoubi Atelier & Co., Jeypore, Koraput District, Odisha, India. Contact: kinyoubi.atelier@outlook.com |
+| **Party B (Processor)** | Kinyoubi Atelier & Co., Jeypore, Koraput District, Odisha, India. Contact: ankit@kinyoubiatelier.com |
 | **Authority of Parties** | Party A is a controller of personal data. Party B is a processor acting on Party A's instructions. |
 | **EU Contact (if applicable)** | [TBD — Representative in the EU, if required by GDPR Article 27] |
 | **UK Contact (if applicable)** | [TBD — Representative in the UK, if required by UK GDPR Article 27] |

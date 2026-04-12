@@ -20,16 +20,15 @@ import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
    Source of truth for this page — every claim here maps to a
    verifiable fact in the repo, not aspiration:
 
-   • Hosting: GitHub Pages (current) → Vercel (phase 2).
-     See DEPLOY.md and .github/workflows/deploy.yml.
+   • Hosting: Vercel, custom domain kinyoubiatelier.com.
+     See DEPLOY.md and vercel.json.
    • Build type: Next.js static export (output: 'export' in
      next.config.mjs). No runtime backend on this site.
    • Data collection: optional contact form routed through
      Formspree or Web3Forms, plus optional Google Sheets log.
      See .env.local.example for the full sub-processor list.
-   • Security headers: defined in vercel.json — applied when
-     the site moves to Vercel. On GitHub Pages, headers are
-     set by GitHub.
+   • Security headers: defined in vercel.json and applied by
+     Vercel on every response.
    • Regulated client work (BFSI-MIS case study) uses AWS
      ap-south-1, PostgreSQL with RLS + FLE, Cognito MFA, and
      Bedrock in a private subnet. Those controls are described
@@ -44,19 +43,19 @@ const thisSite = [
     icon: Server,
     title: 'Static site, no server-side data store',
     body:
-      'kinyoubi-atelier.github.io is a Next.js static export. There is no application database, no login system, and no server-side session storage on this domain. The attack surface is HTML, CSS, JavaScript, and static assets delivered by the hosting provider\'s CDN.',
+      'kinyoubiatelier.com is a Next.js static export hosted on Vercel. There is no application database, no login system, and no server-side session storage on this domain. The attack surface is HTML, CSS, JavaScript, and static assets delivered by Vercel\'s CDN.',
   },
   {
     icon: Lock,
     title: 'Transport encryption',
     body:
-      'All traffic is served over HTTPS with TLS terminated at the hosting edge (GitHub Pages today, Vercel when the custom domain ships). HSTS is enforced upstream. We do not serve any content over plain HTTP.',
+      'All traffic is served over HTTPS with TLS terminated at Vercel\'s edge. HSTS is enforced upstream. We do not serve any content over plain HTTP.',
   },
   {
     icon: ShieldCheck,
     title: 'Security headers',
     body:
-      'X-Content-Type-Options: nosniff, X-Frame-Options: DENY, X-XSS-Protection, Referrer-Policy: strict-origin-when-cross-origin, and a Permissions-Policy that disables camera, microphone, and geolocation are declared in vercel.json and applied when the site is served from Vercel.',
+      'X-Content-Type-Options: nosniff, X-Frame-Options: DENY, X-XSS-Protection, Referrer-Policy: strict-origin-when-cross-origin, and a Permissions-Policy that disables camera, microphone, and geolocation are declared in vercel.json and applied on every response.',
   },
   {
     icon: Globe2,
@@ -169,7 +168,7 @@ export default function SecurityContent() {
                   Two distinct scopes on this page
                 </p>
                 <p className="text-sm text-text-secondary leading-relaxed">
-                  &ldquo;This site&rdquo; refers to <span className="font-mono text-xs">kinyoubi-atelier.github.io</span>:
+                  &ldquo;This site&rdquo; refers to <span className="font-mono text-xs">kinyoubiatelier.com</span>:
                   the marketing surface you&rsquo;re reading now. It stores no customer data. &ldquo;Client
                   engagements&rdquo; refers to the systems we build <em>for</em> clients, which have their own
                   security posture documented per-project in the engagement&rsquo;s own security memo. Do not
@@ -195,10 +194,9 @@ export default function SecurityContent() {
               This marketing site
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed mb-10">
-              A Next.js static export, hosted on GitHub Pages today and routing to Vercel once the custom
-              domain ships. No backend, no database, no login, no customer data at rest on our
-              infrastructure. The only third parties that receive any inbound data are the sub-processors
-              on the optional contact form.
+              A Next.js static export hosted on Vercel at kinyoubiatelier.com. No backend, no database,
+              no login, no customer data at rest on our infrastructure. The only third parties that
+              receive any inbound data are the sub-processors on the optional contact form.
             </p>
           </motion.div>
 
@@ -334,7 +332,7 @@ export default function SecurityContent() {
               Email us and we&rsquo;ll send the current version.
             </p>
             <a
-              href="mailto:kinyoubi.atelier@outlook.com?subject=DPA%20request"
+              href="mailto:ankit@kinyoubiatelier.com?subject=DPA%20request"
               className="inline-flex items-center gap-2 text-sm font-medium text-gold hover:text-gold-bright transition-colors"
             >
               Request a DPA
@@ -369,7 +367,7 @@ export default function SecurityContent() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 text-sm">
                 <div>
                   <div className="text-text-tertiary uppercase tracking-widest text-[11px] mb-1">URL tested</div>
-                  <div className="text-text-primary font-mono text-xs break-all">https://kinyoubi-atelier.github.io/</div>
+                  <div className="text-text-primary font-mono text-xs break-all">https://kinyoubiatelier.com</div>
                 </div>
                 <div>
                   <div className="text-text-tertiary uppercase tracking-widest text-[11px] mb-1">Device strategy</div>
@@ -391,7 +389,7 @@ export default function SecurityContent() {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src="/perf/psi-mobile.png"
-                  alt="PageSpeed Insights: mobile run for kinyoubi-atelier.github.io"
+                  alt="PageSpeed Insights: mobile run for kinyoubiatelier.com"
                   className="w-full rounded border border-text-primary/10"
                   onError={() => setImgError(true)}
                 />
@@ -435,10 +433,10 @@ export default function SecurityContent() {
             Questions not answered here: questionnaires, audit attestations, a pre-existing vendor
             template you need us to fill. Email{' '}
             <a
-              href="mailto:kinyoubi.atelier@outlook.com?subject=Security%20question"
+              href="mailto:ankit@kinyoubiatelier.com?subject=Security%20question"
               className="text-gold hover:underline"
             >
-              kinyoubi.atelier@outlook.com
+              ankit@kinyoubiatelier.com
             </a>
             . We respond within 48 business hours.
           </p>

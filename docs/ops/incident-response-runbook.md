@@ -2,7 +2,7 @@
 
 ## Scope
 
-Two distinct environments: the marketing site (kinyoubi-atelier.github.io / custom domain) and client engagements (may hold personal data under DPDP Act 2023 / GDPR).
+Two distinct environments: the marketing site (kinyoubiatelier.com) and client engagements (may hold personal data under DPDP Act 2023 / GDPR).
 
 ### Marketing Site
 - **What it is:** Static Next.js 14 export on GitHub Pages. No database, no user accounts, no PII stored.

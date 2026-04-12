@@ -603,10 +603,10 @@ export default function BfsiMisContent() {
               <p className="text-sm text-text-tertiary pt-4 border-t border-text-primary/5">
                 Contact:{' '}
                 <a
-                  href="mailto:kinyoubi.atelier@outlook.com"
+                  href="mailto:ankit@kinyoubiatelier.com"
                   className="text-gold hover:underline"
                 >
-                  kinyoubi.atelier@outlook.com
+                  ankit@kinyoubiatelier.com
                 </a>
               </p>
             </div>

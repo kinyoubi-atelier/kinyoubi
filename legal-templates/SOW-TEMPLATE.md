@@ -27,7 +27,7 @@ Representative: [TBD — authorized signatory]
 **Service Provider ("Kinyoubi"):**  
 Name: Kinyoubi Atelier & Co.  
 Address: Jeypore, Koraput District, Odisha 764001, India  
-Email: kinyoubi.atelier@outlook.com  
+Email: ankit@kinyoubiatelier.com  
 Contact: Ankit Sahu, Founder
 
 **Governing Agreement:**  

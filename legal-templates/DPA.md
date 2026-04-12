@@ -311,7 +311,7 @@ Any dispute arising out of or relating to this DPA will be resolved as follows:
 | Role | Name | Address | Contact |
 |------|------|---------|---------|
 | **Data Controller** | [TBD — Name of Client] | [TBD — Address] | [TBD — Email] |
-| **Data Processor** | Kinyoubi Atelier & Co. | Jeypore, Koraput District, Odisha, India | kinyoubi.atelier@outlook.com |
+| **Data Processor** | Kinyoubi Atelier & Co. | Jeypore, Koraput District, Odisha, India | ankit@kinyoubiatelier.com |
 
 ### I.2 Subject Matter of Processing
 

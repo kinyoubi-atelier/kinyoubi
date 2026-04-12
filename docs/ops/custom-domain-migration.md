@@ -1,6 +1,6 @@
 # Custom Domain Migration
 
-Move from `kinyoubi-atelier.github.io` (GitHub Pages) to a custom domain.
+Move from `kinyoubiatelier.com` (GitHub Pages) to a custom domain.
 
 ---
 
@@ -61,7 +61,7 @@ Move from `kinyoubi-atelier.github.io` (GitHub Pages) to a custom domain.
    your-domain.com
    ```
 2. In GitHub repo Settings → Pages → Custom domain: enter domain name.
-3. In registrar: Point DNS CNAME to `kinyoubi-atelier.github.io`.
+3. In registrar: Point DNS CNAME to `kinyoubiatelier.com`.
 4. GitHub auto-generates SSL cert (takes 5–15 minutes).
 
 ---
@@ -80,15 +80,15 @@ Move from `kinyoubi-atelier.github.io` (GitHub Pages) to a custom domain.
 **Current file:** `/Users/ankitsahu/Desktop/KINYOUBI ATELIER & CO./KINYOUBI WEBSITE CODE/next.config.mjs`
 
 **Change log:**
-- If currently using `basePath: '/kinyoubi-atelier.github.io'`, **remove it** (custom domain is root).
+- If currently using `basePath: '/kinyoubiatelier.com'`, **remove it** (custom domain is root).
 - If using `assetPrefix`, update to new domain or remove if static export handles it.
 
 **Example:**
 ```javascript
 // Before (GitHub Pages):
 const nextConfig = {
-  basePath: '/kinyoubi-atelier.github.io',
-  assetPrefix: '/kinyoubi-atelier.github.io',
+  basePath: '/kinyoubiatelier.com',
+  assetPrefix: '/kinyoubiatelier.com',
   output: 'export',
   reactStrictMode: true,
 };
@@ -117,7 +117,7 @@ npm run build
 ```typescript
 // Before:
 export const SITE = {
-  url: 'https://kinyoubi-atelier.github.io',
+  url: 'https://kinyoubiatelier.com',
   // ...
 };
 
@@ -137,7 +137,7 @@ export const SITE = {
 **Find & update URL references:**
 
 Search file for:
-- `https://kinyoubi-atelier.github.io`
+- `https://kinyoubiatelier.com`
 - `basePath` references
 
 Replace with `https://your-domain.com` (or reference SITE.url from constants if not already).
@@ -148,7 +148,7 @@ Replace with `https://your-domain.com` (or reference SITE.url from constants if 
 const schema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "url": "https://kinyoubi-atelier.github.io",
+  "url": "https://kinyoubiatelier.com",
   // ...
 };
 
@@ -166,7 +166,7 @@ const schema = {
 ### Step 8: Grep for Hardcoded Refs (Do Once Before Migration)
 
 ```bash
-grep -r "kinyoubi-atelier.github.io" /Users/ankitsahu/Desktop/KINYOUBI\ ATELIER\ \&\ CO./KINYOUBI\ WEBSITE\ CODE/ --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" --include="*.json"
+grep -r "kinyoubiatelier.com" /Users/ankitsahu/Desktop/KINYOUBI\ ATELIER\ \&\ CO./KINYOUBI\ WEBSITE\ CODE/ --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" --include="*.json"
 ```
 
 **Fix all results** (likely in constants, structured-data, next.config, robots.txt, sitemap generation).
@@ -275,7 +275,7 @@ Before going live on custom domain:
 **If something breaks after migration:**
 
 1. **DNS issue:** Revert CNAME in registrar to point back to GitHub Pages within 1 hour.
-   - Site resumes at old URL (`kinyoubi-atelier.github.io`) within 5 minutes.
+   - Site resumes at old URL (`kinyoubiatelier.com`) within 5 minutes.
 
 2. **Vercel down:** Same as above; DNS revert.
 
@@ -297,7 +297,7 @@ Before going live on custom domain:
 - [ ] Monitor error logs for 1 week (Search Console, Vercel analytics).
 - [ ] Set up uptime monitoring (Vercel has built-in; or use free tier Uptime Robot).
 - [ ] Update all internal documentation & runbooks to reference custom domain.
-- [ ] Deprecate `kinyoubi-atelier.github.io` from all public channels.
+- [ ] Deprecate `kinyoubiatelier.com` from all public channels.
 - [ ] Archive any DNS records pointing to old GitHub Pages (keep for 1 month in case).
 
 ---
