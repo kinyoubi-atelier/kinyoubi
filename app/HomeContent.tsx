@@ -28,7 +28,7 @@ const services = [
   {
     icon: Code2,
     title: 'Software Development',
-    description: 'Next.js for server-rendered React with automatic code-splitting. TypeScript for compile-time safety across the stack. PostgreSQL for relational integrity where your data demands it. We ship to Vercel and AWS with CI/CD baked in; not bolted on.',
+    description: 'Next.js for server-rendered React with automatic code-splitting. TypeScript for compile-time safety across the stack. PostgreSQL for relational integrity where your data demands it. We ship to Cloudflare Pages and AWS with CI/CD baked in; not bolted on.',
     href: '/services#software-development',
   },
   {

@@ -20,15 +20,15 @@ import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
    Source of truth for this page — every claim here maps to a
    verifiable fact in the repo, not aspiration:
 
-   • Hosting: Vercel, custom domain kinyoubiatelier.com.
-     See DEPLOY.md and vercel.json.
+   • Hosting: Cloudflare Pages, custom domain kinyoubiatelier.com.
+     See DEPLOY.md and public/_headers.
    • Build type: Next.js static export (output: 'export' in
      next.config.mjs). No runtime backend on this site.
    • Data collection: optional contact form routed through
      Formspree or Web3Forms, plus optional Google Sheets log.
      See .env.local.example for the full sub-processor list.
-   • Security headers: defined in vercel.json and applied by
-     Vercel on every response.
+   • Security headers: defined in public/_headers and applied
+     by Cloudflare on every response.
    • Regulated client work (BFSI-MIS case study) uses AWS
      ap-south-1, PostgreSQL with RLS + FLE, Cognito MFA, and
      Bedrock in a private subnet. Those controls are described
@@ -43,19 +43,19 @@ const thisSite = [
     icon: Server,
     title: 'Static site, no server-side data store',
     body:
-      'kinyoubiatelier.com is a Next.js static export hosted on Vercel. There is no application database, no login system, and no server-side session storage on this domain. The attack surface is HTML, CSS, JavaScript, and static assets delivered by Vercel\'s CDN.',
+      'kinyoubiatelier.com is a Next.js static export hosted on Cloudflare Pages. There is no application database, no login system, and no server-side session storage on this domain. The attack surface is HTML, CSS, JavaScript, and static assets delivered by Cloudflare\'s CDN.',
   },
   {
     icon: Lock,
     title: 'Transport encryption',
     body:
-      'All traffic is served over HTTPS with TLS terminated at Vercel\'s edge. HSTS is enforced upstream. We do not serve any content over plain HTTP.',
+      'All traffic is served over HTTPS with TLS terminated at Cloudflare\'s edge. HSTS is enforced upstream. We do not serve any content over plain HTTP.',
   },
   {
     icon: ShieldCheck,
     title: 'Security headers',
     body:
-      'X-Content-Type-Options: nosniff, X-Frame-Options: DENY, X-XSS-Protection, Referrer-Policy: strict-origin-when-cross-origin, and a Permissions-Policy that disables camera, microphone, and geolocation are declared in vercel.json and applied on every response.',
+      'X-Content-Type-Options: nosniff, X-Frame-Options: DENY, X-XSS-Protection, Referrer-Policy: strict-origin-when-cross-origin, and a Permissions-Policy that disables camera, microphone, and geolocation are declared in public/_headers and applied by Cloudflare on every response.',
   },
   {
     icon: Globe2,
@@ -194,7 +194,7 @@ export default function SecurityContent() {
               This marketing site
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed mb-10">
-              A Next.js static export hosted on Vercel at kinyoubiatelier.com. No backend, no database,
+              A Next.js static export hosted on Cloudflare Pages at kinyoubiatelier.com. No backend, no database,
               no login, no customer data at rest on our infrastructure. The only third parties that
               receive any inbound data are the sub-processors on the optional contact form.
             </p>
