@@ -29,4 +29,5 @@ export const LEGAL_LINKS = [
   { label: 'DPA', href: '/legal/dpa' },
   { label: 'MSA', href: '/legal/msa' },
   { label: 'Copyright', href: '/legal/copyright' },
+  { label: 'Email Compliance', href: '/compliance' },
 ] as const
