@@ -90,11 +90,22 @@ function TechIcon({ path }: { path: string }) {
 
 export function TechStack() {
   return (
-    <section className="py-16 border-y border-text-primary/5 bg-background-alt overflow-hidden">
+    <section className="py-24 md:py-32 border-y border-text-primary/5 bg-background-alt overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
-        <p className="text-xs font-medium text-text-tertiary uppercase tracking-widest text-center mb-10">
-          Stack we build on
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: '-80px' }}
+          className="text-center mb-14 md:mb-16"
+        >
+          <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
+            Stack we build on
+          </p>
+          <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-2xl mx-auto">
+            What we build
+          </h2>
+        </motion.div>
         <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-3 md:gap-4">
           {techStack.map((tech, i) => (
             <motion.a

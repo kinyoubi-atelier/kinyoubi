@@ -187,7 +187,7 @@ export default function HomeContent() {
       {/* ──────────────────────────────────────────────
           SECTION 1: Hero
       ────────────────────────────────────────────── */}
-      <section className="relative min-h-[92vh] w-full flex flex-col items-center justify-center px-6 md:px-12 overflow-hidden">
+      <section className="relative min-h-[92vh] w-full flex flex-col items-center justify-center px-6 md:px-12 overflow-hidden pb-40 md:pb-48">
         <HeroPattern />
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
@@ -210,28 +210,26 @@ export default function HomeContent() {
 
             {/* Subtext */}
             <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
-              A software development studio that moves fast on hard problems: from backend architecture to regulatory compliance.
+              A software development studio that moves fast on hard problems, from backend architecture to regulatory compliance.
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            {/* CTA */}
+            <div className="flex items-center justify-center">
               <Button href="/contact" variant="primary" size="lg">
                 Start a conversation
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button href="/services" variant="ghost" size="lg">
-                What we build
               </Button>
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator — anchored to the bottom of the hero viewport */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.8 }}
-          className="absolute bottom-10 flex flex-col items-center gap-2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 pointer-events-none"
+          aria-hidden="true"
         >
           <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-text-tertiary select-none">
             Scroll to explore
