@@ -4,10 +4,27 @@ import Link from 'next/link'
 import { AlertTriangle, Scale, DollarSign, Shield, Copyright, Lock, MapPin } from 'lucide-react'
 import { SITE } from '@/lib/constants'
 
+/**
+ * Wave 5 surface rhythm
+ *
+ * A 1 px sumi hairline sits flush to the left of every section heading
+ * on legal and compliance surfaces, giving these pages a quiet thread
+ * back to the house vocabulary without changing their copy.
+ */
+const LEGAL_HEADING_STYLE: React.CSSProperties = {
+  borderLeft: '1px solid color-mix(in srgb, var(--ink-sumi) 30%, transparent)',
+  paddingLeft: '12px',
+}
+
 function LegalSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold text-text-primary">{title}</h2>
+      <h2
+        className="text-xl font-semibold text-text-primary"
+        style={LEGAL_HEADING_STYLE}
+      >
+        {title}
+      </h2>
       {children}
     </div>
   )

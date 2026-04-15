@@ -1,11 +1,65 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { SITE } from '@/lib/constants'
+import {
+  DURATION_SETTLE,
+  EASE_SETTLE,
+} from '@/design/tokens/motion'
+
+/* ─── Founder portrait ─── */
+/**
+ * Wave 5 surface rhythm
+ *
+ * The founder portrait sits desaturated by default, which reads as quiet.
+ * On hover or keyboard focus it crossfades to colour over DURATION_SETTLE
+ * on EASE_SETTLE, so the move looks placed rather than thrown. The portrait
+ * is wrapped as a native button so keyboard users can trigger the reveal
+ * with Tab and carry the focus state visibly. Reduced motion locks the
+ * portrait in its quiet desaturated state and the toggle switches state
+ * instantaneously without a crossfade.
+ */
+function FounderPortrait({ alt }: { alt: string }) {
+  const prefersReducedMotion = useReducedMotion()
+  const [isActive, setIsActive] = useState(false)
+
+  const cssDuration = prefersReducedMotion
+    ? '0ms'
+    : `${DURATION_SETTLE}ms`
+  const cssEase = EASE_SETTLE
+
+  return (
+    <button
+      type="button"
+      aria-pressed={isActive}
+      aria-label={`${alt}. Toggle colour.`}
+      onMouseEnter={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
+      onFocus={() => setIsActive(true)}
+      onBlur={() => setIsActive(false)}
+      onClick={() => setIsActive((v) => !v)}
+      className="relative rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-surface-dark"
+      style={{ background: 'transparent', padding: 0, border: 0, cursor: 'pointer' }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/founder-ankit.jpg"
+        alt={alt}
+        className="w-48 h-48 md:w-56 md:h-56 rounded-2xl object-cover object-center"
+        style={{
+          filter: isActive ? 'grayscale(0) brightness(1)' : 'grayscale(1) brightness(0.98)',
+          transition: `filter ${cssDuration} ${cssEase}`,
+        }}
+      />
+      <span className="absolute -inset-1 rounded-2xl border border-gold/20 pointer-events-none" />
+    </button>
+  )
+}
 
 /* ─── SVG: Discipline Intersection Diagram ─── */
 
@@ -45,7 +99,7 @@ const disciplines = [
   {
     name: 'Engineering',
     years: '10+ years',
-    description: 'Systems thinking, software architecture, aerospace engineering fundamentals. We build things that work under load.',
+    description: 'Systems thinking, software architecture, constraint based optimization, aerospace engineering fundamentals. We build things that work under load and ship them end to end, from solver core to front end.',
   },
   {
     name: 'Quantitative Analysis',
@@ -207,15 +261,7 @@ export default function AboutContent() {
               viewport={{ once: true }}
               className="md:col-span-2 flex justify-center"
             >
-              <div className="relative">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/founder-ankit.jpg"
-                  alt={SITE.founder}
-                  className="w-48 h-48 md:w-56 md:h-56 rounded-2xl object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 shadow-lg"
-                />
-                <div className="absolute -inset-1 rounded-2xl border border-gold/20 pointer-events-none" />
-              </div>
+              <FounderPortrait alt={SITE.founder} />
             </motion.div>
 
             {/* Bio */}

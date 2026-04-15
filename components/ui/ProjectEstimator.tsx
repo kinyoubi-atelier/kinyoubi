@@ -143,6 +143,7 @@ export function ProjectEstimator() {
         </div>
         {step > 1 && (
           <button
+            type="button"
             onClick={reset}
             className="text-xs text-text-tertiary hover:text-gold flex items-center gap-1 transition-colors"
           >
@@ -176,7 +177,7 @@ export function ProjectEstimator() {
           >
             <p className="text-sm text-text-secondary mb-4">What type of engagement are you considering?</p>
             {(Object.entries(serviceLabels) as [ServiceType, string][]).map(([key, label]) => (
-              <button key={key} onClick={() => setService(key)} className={optionClass(false)}>
+              <button type="button" key={key} onClick={() => setService(key)} className={optionClass(false)}>
                 {label}
               </button>
             ))}
@@ -197,7 +198,7 @@ export function ProjectEstimator() {
               <span className="text-gold font-medium">{serviceLabels[service!]}</span> — what's the scope?
             </p>
             {(Object.entries(scopeLabels) as [Scope, string][]).map(([key, label]) => (
-              <button key={key} onClick={() => setScope(key)} className={optionClass(false)}>
+              <button type="button" key={key} onClick={() => setScope(key)} className={optionClass(false)}>
                 {label}
               </button>
             ))}
@@ -216,7 +217,7 @@ export function ProjectEstimator() {
           >
             <p className="text-sm text-text-secondary mb-4">Timeline preference?</p>
             {(Object.entries(timelineLabels) as [Timeline, string][]).map(([key, label]) => (
-              <button key={key} onClick={() => handleTimeline(key)} className={optionClass(false)}>
+              <button type="button" key={key} onClick={() => handleTimeline(key)} className={optionClass(false)}>
                 {label}
               </button>
             ))}

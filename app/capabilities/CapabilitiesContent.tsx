@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { IPNotice } from '@/components/ui/IPNotice'
+import { InkStroke } from '@/design/primitives/InkStroke'
 
 /* ─── SVG Diagrams ─── */
 
@@ -283,6 +284,18 @@ export default function CapabilitiesContent() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true, margin: '-80px' }}
             >
+              {/* Wave 5 surface rhythm: a faint hairline that draws itself
+                  as the capability section enters view. DURATION_SETTLE on
+                  EASE_INK so the line finishes like a brush leaving paper. */}
+              <div className="mb-5 w-16 h-[2px]" aria-hidden="true">
+                <InkStroke
+                  d="M 0 1 L 100 1"
+                  viewBox="0 0 100 2"
+                  strokeWidth={1}
+                  color="var(--ink-sumi)"
+                  className="w-full h-full opacity-40"
+                />
+              </div>
               <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
                 {section.label}
               </p>
@@ -303,6 +316,94 @@ export default function CapabilitiesContent() {
           </div>
         </section>
       ))}
+
+      {/* ──────────────────────────────────────────────
+          What we build with these frameworks
+          Each product shape below is in at least one
+          published case study. This section translates
+          methodology into concrete output.
+      ────────────────────────────────────────────── */}
+      <section className="py-20 md:py-28 px-6 md:px-12 bg-background-alt">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-14"
+          >
+            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">
+              What we build with these frameworks
+            </p>
+            <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-2xl">
+              Five product shapes, every one in a published case study
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                title: 'Constraint based engines',
+                description:
+                  'Engines that search over a structured state space with explainable failure when no valid solution exists.',
+                href: '/work/timetable-engine',
+                hrefLabel: 'Timetable engine',
+              },
+              {
+                title: 'Multi tenant platforms',
+                description:
+                  'Tenant scoped isolation enforced at the database layer. Two independent builds under this pattern.',
+                href: '/work/timetable-engine',
+                hrefLabel: 'Timetable engine',
+              },
+              {
+                title: 'Offline first field capture',
+                description:
+                  'Mobile apps that work without a signal, with deferred sync and conflict handling designed in from the first wireframe.',
+                href: '/work/bfsi-mis',
+                hrefLabel: 'BFSI MIS',
+              },
+              {
+                title: 'Idempotent pipelines',
+                description:
+                  'Batch reconciliation that runs in under a minute and is safe to re execute without drift. A spreadsheet problem converted into a system.',
+                href: '/work/archive-automation',
+                hrefLabel: 'Archive automation',
+              },
+              {
+                title: 'Compliance first data captures',
+                description:
+                  'Client side field level encryption before the database, row level security for tenant isolation, DPDP and RBI controls mapped in week one.',
+                href: '/work/bfsi-mis',
+                hrefLabel: 'BFSI MIS',
+              },
+            ].map((shape, index) => (
+              <motion.a
+                key={shape.title}
+                href={shape.href}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.06, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="block group"
+              >
+                <div className="p-6 md:p-7 rounded-card border border-text-primary/10 hover:border-gold/40 transition-colors h-full bg-surface-card">
+                  <h3 className="font-heading text-xl text-text-primary tracking-tight mb-3">
+                    {shape.title}
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed mb-4">
+                    {shape.description}
+                  </p>
+                  <span className="text-xs font-medium text-gold uppercase tracking-widest inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                    Proof: {shape.hrefLabel}
+                    <ArrowRight className="h-3 w-3" />
+                  </span>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Brush stroke */}
       <div className="py-8">

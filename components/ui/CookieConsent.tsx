@@ -76,12 +76,14 @@ export function CookieConsent() {
               </div>
               <div className="flex items-center gap-3 flex-shrink-0">
                 <button
+                  type="button"
                   onClick={() => accept('necessary')}
                   className="text-xs font-medium text-text-secondary hover:text-text-primary px-4 py-2 rounded-lg border border-text-primary/10 hover:border-text-primary/20 transition-colors"
                 >
                   Necessary only
                 </button>
                 <button
+                  type="button"
                   onClick={() => accept('all')}
                   className="text-xs font-medium text-white bg-gold hover:bg-gold/90 px-4 py-2 rounded-lg transition-colors"
                 >

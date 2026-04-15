@@ -1,15 +1,28 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+
+import {
+  DURATION_CONSIDER,
+  EASE_INK_ARRAY,
+  msToSec,
+} from '@/design/tokens/motion'
 
 /**
  * FAQ Accordion
  *
- * Progressive enhancement: uses semantic HTML (details/summary)
- * as the base, enhanced with Framer Motion for smooth animations.
+ * Progressive enhancement: uses semantic HTML via a native button and
+ * aria-expanded, enhanced with Framer Motion for the ink bleed open.
  * Each question is an SEO entry point via FAQ structured data.
+ *
+ * Wave 5 surface rhythm
+ * The panel opens as an ink bleed rather than a height snap. Both height
+ * and opacity ease over DURATION_CONSIDER on EASE_INK; the revealed copy
+ * settles through a soft top mask so the text looks like it is arriving
+ * on paper rather than unfurling from a drawer. Reduced motion returns
+ * the final composition from the first frame.
  */
 
 export interface FAQItem {
@@ -23,9 +36,12 @@ interface FAQAccordionProps {
 }
 
 function FAQRow({ item, isOpen, toggle }: { item: FAQItem; isOpen: boolean; toggle: () => void }) {
+  const prefersReducedMotion = useReducedMotion()
+
   return (
     <div className="border-b border-text-primary/5 last:border-b-0">
       <button
+        type="button"
         onClick={toggle}
         className="w-full flex items-center justify-between py-5 text-left group"
         aria-expanded={isOpen}
@@ -35,7 +51,11 @@ function FAQRow({ item, isOpen, toggle }: { item: FAQItem; isOpen: boolean; togg
         </span>
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
+          transition={
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { duration: msToSec(DURATION_CONSIDER), ease: EASE_INK_ARRAY as unknown as number[] }
+          }
           className="flex-shrink-0"
         >
           <ChevronDown className="h-4 w-4 text-text-tertiary" />
@@ -44,15 +64,48 @@ function FAQRow({ item, isOpen, toggle }: { item: FAQItem; isOpen: boolean; togg
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
+            initial={prefersReducedMotion ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            exit={prefersReducedMotion ? { height: 0, opacity: 0 } : { height: 0, opacity: 0 }}
+            transition={
+              prefersReducedMotion
+                ? { duration: 0 }
+                : {
+                    duration: msToSec(DURATION_CONSIDER),
+                    ease: EASE_INK_ARRAY as unknown as number[],
+                  }
+            }
             className="overflow-hidden"
           >
-            <p className="pb-5 text-sm text-text-secondary leading-relaxed pr-8">
+            {/* Ink bleed mask: the revealed copy rises into focus through
+                a short fade from the top edge so the text reads as settling
+                onto paper rather than sliding down from a drawer. */}
+            <motion.p
+              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
+              transition={
+                prefersReducedMotion
+                  ? { duration: 0 }
+                  : {
+                      duration: msToSec(DURATION_CONSIDER),
+                      ease: EASE_INK_ARRAY as unknown as number[],
+                    }
+              }
+              className="pb-5 text-sm text-text-secondary leading-relaxed pr-8"
+              style={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      WebkitMaskImage:
+                        'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 28%, rgba(0,0,0,1) 100%)',
+                      maskImage:
+                        'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 28%, rgba(0,0,0,1) 100%)',
+                    }
+              }
+            >
               {item.answer}
-            </p>
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import {
   ArrowLeft,
@@ -15,6 +15,108 @@ import {
   CheckCircle2,
 } from 'lucide-react'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import {
+  DURATION_CONSIDER,
+  EASE_INK_ARRAY,
+  msToSec,
+} from '@/design/tokens/motion'
+
+/**
+ * Wave 5 surface rhythm
+ *
+ * Compliance posture cards receive a tiny seal stamp on the first reveal
+ * of a session only. A sessionStorage flag tracks whether the seals have
+ * been stamped. On subsequent navigations within the same session the
+ * cards render without the seal. On session end the flag clears with the
+ * tab, so a returning visitor next time sees the stamp once again.
+ *
+ * The seal is a small crimson disc with a hairline inner ring, using
+ * var(--seal-red) from the texture tokens. It is aria-hidden because it
+ * is ornamental; the framework name itself carries the information.
+ *
+ * Under reduced motion the seal renders at full opacity from the first
+ * frame on first reveal. With motion allowed the seal arrives over
+ * DURATION_CONSIDER on EASE_INK, so it reads like a press rather than a
+ * fade.
+ */
+const SEAL_SESSION_KEY = 'kinyoubi.security.sealsShown'
+
+function useFirstSessionStamp(): boolean {
+  // Default to false so the server render never includes the seal; the
+  // client flips this to true on first mount of a fresh session. This
+  // avoids hydration mismatches and ensures SSR stays deterministic.
+  const [shouldStamp, setShouldStamp] = useState(false)
+
+  useEffect(() => {
+    try {
+      if (typeof window === 'undefined') return
+      const already = window.sessionStorage.getItem(SEAL_SESSION_KEY)
+      if (!already) {
+        setShouldStamp(true)
+        window.sessionStorage.setItem(SEAL_SESSION_KEY, '1')
+      }
+    } catch {
+      // sessionStorage unavailable (private mode on some browsers, or
+      // a storage quota error). Graceful fallback: skip the seal.
+      setShouldStamp(false)
+    }
+  }, [])
+
+  return shouldStamp
+}
+
+function ComplianceSeal({ shouldStamp }: { shouldStamp: boolean }) {
+  const prefersReducedMotion = useReducedMotion()
+  if (!shouldStamp) return null
+
+  const sizePx = 24
+
+  return (
+    <motion.span
+      aria-hidden="true"
+      initial={prefersReducedMotion ? { opacity: 0.85 } : { opacity: 0 }}
+      animate={{ opacity: prefersReducedMotion ? 0.85 : 0.85 }}
+      transition={
+        prefersReducedMotion
+          ? { duration: 0 }
+          : {
+              duration: msToSec(DURATION_CONSIDER),
+              ease: EASE_INK_ARRAY as unknown as number[],
+            }
+      }
+      style={{
+        display: 'inline-flex',
+        width: sizePx,
+        height: sizePx,
+        flexShrink: 0,
+      }}
+    >
+      <svg
+        width={sizePx}
+        height={sizePx}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          fill="var(--seal-red)"
+          opacity="0.92"
+        />
+        <circle
+          cx="12"
+          cy="12"
+          r="7.5"
+          fill="none"
+          stroke="rgba(255,255,255,0.55)"
+          strokeWidth="0.75"
+        />
+      </svg>
+    </motion.span>
+  )
+}
 
 /* ─────────────────────────────────────────────────────────────
    Source of truth for this page — every claim here maps to a
@@ -29,10 +131,10 @@ import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
      See .env.local.example for the full sub-processor list.
    • Security headers: defined in public/_headers and applied
      by Cloudflare on every response.
-   • Regulated client work (BFSI-MIS case study) uses AWS
-     ap-south-1, PostgreSQL with RLS + FLE, Cognito MFA, and
-     Bedrock in a private subnet. Those controls are described
-     on /work/bfsi-mis, not claimed as controls of THIS site.
+   • Regulated client work is described at the capability
+     level here. Specific vendors, regions, and configurations
+     are matched to the engagement and stay between the studio
+     and the client.
 
    Every control below is scoped explicitly — "this site" vs
    "client engagements" — so buyers can't conflate the two.
@@ -68,27 +170,27 @@ const thisSite = [
 const clientEngagements = [
   {
     icon: Lock,
-    title: 'Encryption at rest, client-side field-level where it matters',
+    title: 'Encryption at rest, client side field level where it matters',
     body:
-      'For client builds that store customer data (like the regulated BFSI MIS platform on /work/bfsi-mis) we use client-side field-level encryption on sensitive free-text fields before they reach the database. The PostgreSQL instance itself is encrypted at rest via the managed database provider (AWS RDS KMS by default). Keys rotate on a schedule we document in the engagement.',
+      'For client builds that store customer data, we apply client side field level encryption on sensitive free text fields before they reach the database. The database itself is encrypted at rest through the managed provider chosen for the engagement. Keys rotate on a schedule we document in the engagement, and the cryptographic choices themselves stay in the architectural pack that ships to the client, not on this page.',
   },
   {
     icon: ShieldCheck,
-    title: 'Tenant isolation via row-level security',
+    title: 'Tenant isolation at the database layer',
     body:
-      'Multi-tenant client builds use PostgreSQL row-level security with scoped roles, so tenancy boundaries survive application bugs. We write a negative-path test suite that exercises every role × scope combination before the system goes live.',
+      'Multi tenant client builds enforce isolation at the database layer, not in application middleware, so tenancy boundaries survive application bugs. We write a negative path test suite that exercises every role and scope combination before the system goes live.',
   },
   {
     icon: Globe2,
-    title: 'Data residency: pinned to the client\'s jurisdiction',
+    title: 'Data residency pinned to the client&rsquo;s jurisdiction',
     body:
-      'For India-regulated engagements, primary storage, compute, and model inference are pinned to the AWS Mumbai region (ap-south-1) with no cross-border data movement. For clients in other jurisdictions, we pin to whichever region meets their regulatory constraints (EU for GDPR data controllers, US for HIPAA-in-scope workloads, etc.).',
+      'For India regulated engagements, primary storage, compute, and inference are pinned to an India region with no cross border data movement. For clients in other jurisdictions, we pin to whichever region meets their regulatory constraints (for example, EU for GDPR data controllers, US for HIPAA in scope workloads).',
   },
   {
     icon: Server,
-    title: 'Least-privilege identity',
+    title: 'Least privilege identity',
     body:
-      'Scoped IAM roles on every service; no wildcards on data-plane resources. Human access to production runs through MFA-enforced identity providers (Cognito, Workload Identity, or the client\'s existing IdP). Access grants are time-limited and auditable.',
+      'Scoped roles on every service; no wildcards on data plane resources. Human access to production runs through MFA enforced identity providers, using either the client&rsquo;s existing IdP or one we configure for the engagement. Access grants are time limited and auditable.',
   },
 ]
 
@@ -124,6 +226,7 @@ const dataWePublish = [
 
 export default function SecurityContent() {
   const [imgError, setImgError] = useState(false)
+  const shouldStampSeals = useFirstSessionStamp()
   return (
     <main className="min-h-screen">
       {/* Hero */}
@@ -274,12 +377,15 @@ export default function SecurityContent() {
             {compliance.map((c) => (
               <div
                 key={c.framework}
-                className="rounded-card border border-text-primary/5 bg-background p-6"
+                className="rounded-card border border-text-primary/5 bg-background p-6 relative"
               >
                 <div className="flex items-start gap-4">
                   <FileText className="h-5 w-5 text-gold flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <div>
-                    <h3 className="text-base font-semibold text-text-primary mb-2">{c.framework}</h3>
+                  <div className="flex-1">
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <h3 className="text-base font-semibold text-text-primary">{c.framework}</h3>
+                      <ComplianceSeal shouldStamp={shouldStampSeals} />
+                    </div>
                     <p className="text-sm text-text-secondary leading-relaxed">{c.posture}</p>
                   </div>
                 </div>

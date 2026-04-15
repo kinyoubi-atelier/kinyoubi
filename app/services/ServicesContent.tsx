@@ -1,17 +1,46 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Code2, Cpu, Lightbulb, FileSearch } from 'lucide-react'
+import { ArrowRight, Code2, Cpu, Lightbulb, FileSearch, Layers } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { Card } from '@/components/ui/Card'
 import { FAQAccordion, faqStructuredData } from '@/components/ui/FAQAccordion'
 import { ProjectEstimator } from '@/components/ui/ProjectEstimator'
+import { Reveal } from '@/design/primitives/Reveal'
+import { STAGGER_LONG } from '@/design/tokens/motion'
 
 /* ─── Mini diagrams for services ─── */
 
 function DevStackVisual() {
-  const items = ['Next.js', 'React', 'Node.js', 'Python', 'TypeScript', 'PostgreSQL', 'REST', 'GraphQL']
+  // Category level capability chips. Specific libraries, frameworks, and
+  // cloud configurations are matched to the engagement and stay between
+  // the studio and the client.
+  const items = [
+    'Web applications',
+    'Mobile capture',
+    'Backend services',
+    'Relational data',
+    'Batch pipelines',
+    'Cloud deployments',
+    'API design',
+  ]
+  return (
+    <div className="flex flex-wrap gap-2 mt-6">
+      {items.map((item) => (
+        <span key={item} className="text-xs px-3 py-1.5 rounded-full bg-gold/8 text-gold border border-gold/15 font-medium">
+          {item}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+function ProductPlatformVisual() {
+  // Abstract layering chips. The concrete stack for any given build
+  // lives inside its case study. This row signals end to end coverage
+  // without republishing architectural choices on a marketing surface.
+  const items = ['Engine core', 'Data platform', 'API', 'Front end', 'Monorepo']
   return (
     <div className="flex flex-wrap gap-2 mt-6">
       {items.map((item) => (
@@ -120,40 +149,32 @@ interface ServiceData {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Service headlines were rewritten around buyer outcomes instead
-// of technology categories. Every headline maps to a verifiable
-// claim we can defend:
-//
-//   Software Development   → "Field-capture apps that work without
-//     signal" cites /work/bfsi-mis (Flutter + offline sync). The
-//     specific number ("ship in weeks, not quarters") is the
-//     engagement cadence documented in the BFSI-MIS six-week
-//     work rhythm table.
-//
-//   Technical Consulting   → "Architecture review before the
-//     six-figure rewrite" - positions the service against the
-//     cost of the problem it prevents, not against hourly billing.
-//
-//   AI-Powered Workflows   → "Replace 14 hours of manual work
-//     with a one-minute script" is a direct quote from the
-//     archive-automation case study metrics (~14 hrs manual
-//     work replaced; pipeline re-runs in under a minute).
-//
-//   Regulatory & Contract  → "DPDP and RBI alignment built into
-//     the code, not bolted on" reflects the actual BFSI-MIS
-//     foundation posture (threat model in W1, RLS in W3, RBI
-//     control mapping in W5).
+// Service headlines are written around buyer outcomes, not
+// technology categories. Each one maps to a published case
+// study or engagement pattern the studio can defend in
+// conversation. Concrete architecture stays in the case study
+// page itself and under NDA beyond that.
 // ─────────────────────────────────────────────────────────────
 const services: ServiceData[] = [
   {
     icon: Code2,
     id: 'software-development',
     label: 'Software Development',
-    title: 'Field-capture apps that work without a signal. Pipelines that run in under a minute.',
+    title: 'Field capture apps that work without a signal. Pipelines that run in under a minute.',
     description:
-      'We build for the operating conditions your system actually sees: low-connectivity geographies, brittle legacy spreadsheets, audits that can\'t break production. The stack is modern (Next.js, TypeScript, PostgreSQL, Flutter where it earns its place). The commitment is that we ship in weeks, not quarters, and hand you something that runs without us.',
-    deliverables: ['Offline-first mobile capture', 'Idempotent batch pipelines', 'Backend services & APIs', 'Workflow automation', 'CI/CD with security headers baked in'],
+      'We build for the operating conditions your system actually sees: low connectivity geographies, brittle legacy spreadsheets, audits that cannot break production. The toolchain is modern and picked to fit the engagement rather than signalled on the marketing page. The commitment is that we ship in weeks, not quarters, and hand you something that runs without us.',
+    deliverables: ['Offline first mobile capture', 'Idempotent batch pipelines', 'Backend services & APIs', 'Workflow automation', 'CI/CD with security headers baked in'],
     visual: <DevStackVisual />,
+  },
+  {
+    icon: Layers,
+    id: 'product-platform-engineering',
+    label: 'Product & Platform Engineering',
+    title: 'From engine core to front end, built as one coherent system.',
+    description:
+      'Our in house timetable management engine is the worked example: an engine, a multi tenant data platform, an API, and a role aware front end, shipped end to end under one roof. We build products so the decisions at the core reach the decisions at the surface without a handoff seam. Architectural depth is in the case study, not in the marketing copy.',
+    deliverables: ['Engine and solver cores', 'Multi tenant platforms', 'APIs', 'Role aware front ends', 'Mobile scaffolds'],
+    visual: <ProductPlatformVisual />,
   },
   {
     icon: Lightbulb,
@@ -252,12 +273,10 @@ export default function ServicesContent() {
             className={`py-20 md:py-28 px-6 md:px-12 scroll-mt-20 ${isAlt ? 'bg-background-alt' : ''}`}
           >
             <div className="max-w-5xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true, margin: '-80px' }}
-              >
+              {/* Discipline cards cascade by row. Each card is its own
+                  section, so staggering becomes a per-row delay using
+                  STAGGER_LONG: each arrival gets its own beat. */}
+              <Reveal delay={index * STAGGER_LONG}>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16">
                   {/* Content (3/5) */}
                   <div className="md:col-span-3">
@@ -305,7 +324,7 @@ export default function ServicesContent() {
                     </Card>
                   </div>
                 </div>
-              </motion.div>
+              </Reveal>
             </div>
           </section>
         )

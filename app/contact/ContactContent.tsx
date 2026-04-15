@@ -1,10 +1,48 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, type ReactNode } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { CalEmbed } from '@/components/ui/CalEmbed'
 import { SITE } from '@/lib/constants'
+import { DURATION_CONSIDER, EASE_INK } from '@/design/tokens/motion'
+
+/**
+ * Wave 5 surface rhythm
+ *
+ * Contact form focus states feel like ink settling into paper: on focus a
+ * thin underline draws left to right over DURATION_CONSIDER on EASE_INK.
+ * The underline is a sibling span anchored to the bottom of the field,
+ * with transform-origin left and scaleX toggled via focus-within. Pure
+ * CSS on existing tokens; no new primitive. Reduced motion receivers land
+ * at the final scaleX 1 instantly because prefers-reduced-motion is read
+ * by the CSS transition engine, which honours a zero-duration transition.
+ */
+function InkFieldGroup({ children }: { children: ReactNode }) {
+  const [isFocused, setIsFocused] = useState(false)
+  const prefersReducedMotion = useReducedMotion()
+  return (
+    <div
+      className="relative"
+      onFocusCapture={() => setIsFocused(true)}
+      onBlurCapture={() => setIsFocused(false)}
+    >
+      {children}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 right-0 bottom-0 h-px"
+        style={{
+          transformOrigin: 'left center',
+          backgroundColor: 'var(--seal-red)',
+          transform: isFocused ? 'scaleX(1)' : 'scaleX(0)',
+          transition: prefersReducedMotion
+            ? 'none'
+            : `transform ${DURATION_CONSIDER}ms ${EASE_INK}`,
+        }}
+      />
+    </div>
+  )
+}
 
 /**
  * Contact Page — Smart Form + Cal.com Scheduling
@@ -138,7 +176,7 @@ export default function ContactContent() {
               viewport={{ once: true }}
             >
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
+                <InkFieldGroup>
                   <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-2">
                     Name *
                   </label>
@@ -150,9 +188,9 @@ export default function ContactContent() {
                     className={inputStyles}
                     placeholder="Your name"
                   />
-                </div>
+                </InkFieldGroup>
 
-                <div>
+                <InkFieldGroup>
                   <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-2">
                     Email *
                   </label>
@@ -164,10 +202,10 @@ export default function ContactContent() {
                     className={inputStyles}
                     placeholder="your@email.com"
                   />
-                </div>
+                </InkFieldGroup>
 
                 {/* Project Type — conditional field trigger */}
-                <div>
+                <InkFieldGroup>
                   <label htmlFor="project-type" className="block text-sm font-medium text-text-primary mb-2">
                     What do you need help with?
                   </label>
@@ -185,25 +223,27 @@ export default function ContactContent() {
                     <option value="research">Regulatory Research / Contract Analysis</option>
                     <option value="other">Something else</option>
                   </select>
-                </div>
+                </InkFieldGroup>
 
                 {/* Conditional: Budget range for software projects */}
                 {(projectType === 'software' || projectType === 'ai-workflow') && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: DURATION_CONSIDER / 1000, ease: 'easeInOut' }}
                   >
-                    <label htmlFor="budget" className="block text-sm font-medium text-text-primary mb-2">
-                      Approximate budget range
-                    </label>
-                    <select id="budget" name="budget" className={selectStyles}>
-                      <option value="">Prefer not to say</option>
-                      <option value="under-10k">Under $10,000</option>
-                      <option value="10k-25k">$10,000 – $25,000</option>
-                      <option value="25k-50k">$25,000 – $50,000</option>
-                      <option value="50k-plus">$50,000+</option>
-                    </select>
+                    <InkFieldGroup>
+                      <label htmlFor="budget" className="block text-sm font-medium text-text-primary mb-2">
+                        Approximate budget range
+                      </label>
+                      <select id="budget" name="budget" className={selectStyles}>
+                        <option value="">Prefer not to say</option>
+                        <option value="under-10k">Under $10,000</option>
+                        <option value="10k-25k">$10,000 – $25,000</option>
+                        <option value="25k-50k">$25,000 – $50,000</option>
+                        <option value="50k-plus">$50,000+</option>
+                      </select>
+                    </InkFieldGroup>
                   </motion.div>
                 )}
 
@@ -212,18 +252,20 @@ export default function ContactContent() {
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: DURATION_CONSIDER / 1000, ease: 'easeInOut' }}
                   >
-                    <label htmlFor="timeline" className="block text-sm font-medium text-text-primary mb-2">
-                      When do you need this?
-                    </label>
-                    <select id="timeline" name="timeline" className={selectStyles}>
-                      <option value="">No rush</option>
-                      <option value="asap">As soon as possible</option>
-                      <option value="2-weeks">Within 2 weeks</option>
-                      <option value="1-month">Within a month</option>
-                      <option value="flexible">Flexible</option>
-                    </select>
+                    <InkFieldGroup>
+                      <label htmlFor="timeline" className="block text-sm font-medium text-text-primary mb-2">
+                        When do you need this?
+                      </label>
+                      <select id="timeline" name="timeline" className={selectStyles}>
+                        <option value="">No rush</option>
+                        <option value="asap">As soon as possible</option>
+                        <option value="2-weeks">Within 2 weeks</option>
+                        <option value="1-month">Within a month</option>
+                        <option value="flexible">Flexible</option>
+                      </select>
+                    </InkFieldGroup>
                   </motion.div>
                 )}
 
@@ -232,22 +274,24 @@ export default function ContactContent() {
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: DURATION_CONSIDER / 1000, ease: 'easeInOut' }}
                   >
-                    <label htmlFor="jurisdiction" className="block text-sm font-medium text-text-primary mb-2">
-                      Primary jurisdiction
-                    </label>
-                    <input
-                      type="text"
-                      id="jurisdiction"
-                      name="jurisdiction"
-                      className={inputStyles}
-                      placeholder="e.g., India, United States, EU"
-                    />
+                    <InkFieldGroup>
+                      <label htmlFor="jurisdiction" className="block text-sm font-medium text-text-primary mb-2">
+                        Primary jurisdiction
+                      </label>
+                      <input
+                        type="text"
+                        id="jurisdiction"
+                        name="jurisdiction"
+                        className={inputStyles}
+                        placeholder="e.g., India, United States, EU"
+                      />
+                    </InkFieldGroup>
                   </motion.div>
                 )}
 
-                <div>
+                <InkFieldGroup>
                   <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">
                     Tell us about your project *
                   </label>
@@ -259,7 +303,7 @@ export default function ContactContent() {
                     className={`${inputStyles} resize-none`}
                     placeholder="What are you building? What problem are you solving? Any constraints we should know about?"
                   />
-                </div>
+                </InkFieldGroup>
 
                 <div className="pt-2">
                   <Button
