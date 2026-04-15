@@ -708,6 +708,64 @@ export default function HomeContent() {
             </a>
           </motion.div>
 
+          {/*
+            Timetable engine case study: in house R&D product.
+            End to end build across solver, platform, and surface.
+            All metrics measured directly from the repository and the
+            stress benchmark harness that ships with it.
+          */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            viewport={{ once: true }}
+            className="mb-10"
+          >
+            <a href="/work/timetable-engine" className="group block">
+              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="h-10 w-10 rounded-lg bg-navy flex items-center justify-center flex-shrink-0">
+                    <span className="text-gold-bright font-heading text-sm font-semibold">T</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-6 mb-3">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1.5">In house R&amp;D · End to end product build</p>
+                        <h3 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight font-semibold leading-snug">
+                          Building a timetable management engine from the solver up
+                        </h3>
+                      </div>
+                      <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0 self-start mt-4 md:mt-1">
+                        Read case study
+                        <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
+                    </div>
+                    <p className="text-sm md:text-base text-text-secondary leading-relaxed">
+                      A pnpm monorepo spanning a pure TypeScript CSP solver, a multi tenant Postgres platform under Row Level Security, a Fastify REST API, and a role aware React surface. Solver, database, API, exporters, frontend, and mobile packaging, all built under one roof.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Metric strip: all numbers measured from the codebase and stress harness */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-text-primary/5">
+                  {[
+                    { num: '~30.8k', label: 'Lines of TypeScript' },
+                    { num: '68+', label: 'REST endpoints shipped' },
+                    { num: '3.6s', label: '5,000 variables solved' },
+                    { num: '94%', label: 'Allotment across scales' },
+                  ].map((m) => (
+                    <div key={m.label}>
+                      <div className="font-heading text-2xl text-gold mb-1 tracking-tight">{m.num}</div>
+                      <div className="text-[11px] text-text-tertiary uppercase tracking-widest leading-tight">{m.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </a>
+          </motion.div>
+
           {/* ── This site's measured Core Web Vitals ──
               We only publish numbers we've measured. The PageSpeed Insights
               run screenshot lives at /public/perf/psi-mobile.png; see
