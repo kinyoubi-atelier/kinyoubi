@@ -29,10 +29,10 @@ import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
      See .env.local.example for the full sub-processor list.
    • Security headers: defined in public/_headers and applied
      by Cloudflare on every response.
-   • Regulated client work (BFSI-MIS case study) uses AWS
-     ap-south-1, PostgreSQL with RLS + FLE, Cognito MFA, and
-     Bedrock in a private subnet. Those controls are described
-     on /work/bfsi-mis, not claimed as controls of THIS site.
+   • Regulated client work is described at the capability
+     level here. Specific vendors, regions, and configurations
+     are matched to the engagement and stay between the studio
+     and the client.
 
    Every control below is scoped explicitly — "this site" vs
    "client engagements" — so buyers can't conflate the two.
@@ -68,27 +68,27 @@ const thisSite = [
 const clientEngagements = [
   {
     icon: Lock,
-    title: 'Encryption at rest, client-side field-level where it matters',
+    title: 'Encryption at rest, client side field level where it matters',
     body:
-      'For client builds that store customer data (like the regulated BFSI MIS platform on /work/bfsi-mis) we use client-side field-level encryption on sensitive free-text fields before they reach the database. The PostgreSQL instance itself is encrypted at rest via the managed database provider (AWS RDS KMS by default). Keys rotate on a schedule we document in the engagement.',
+      'For client builds that store customer data, we apply client side field level encryption on sensitive free text fields before they reach the database. The database itself is encrypted at rest through the managed provider chosen for the engagement. Keys rotate on a schedule we document in the engagement, and the cryptographic choices themselves stay in the architectural pack that ships to the client, not on this page.',
   },
   {
     icon: ShieldCheck,
-    title: 'Tenant isolation via row-level security',
+    title: 'Tenant isolation at the database layer',
     body:
-      'Multi-tenant client builds use PostgreSQL row-level security with scoped roles, so tenancy boundaries survive application bugs. We write a negative-path test suite that exercises every role × scope combination before the system goes live.',
+      'Multi tenant client builds enforce isolation at the database layer, not in application middleware, so tenancy boundaries survive application bugs. We write a negative path test suite that exercises every role and scope combination before the system goes live.',
   },
   {
     icon: Globe2,
-    title: 'Data residency: pinned to the client\'s jurisdiction',
+    title: 'Data residency pinned to the client&rsquo;s jurisdiction',
     body:
-      'For India-regulated engagements, primary storage, compute, and model inference are pinned to the AWS Mumbai region (ap-south-1) with no cross-border data movement. For clients in other jurisdictions, we pin to whichever region meets their regulatory constraints (EU for GDPR data controllers, US for HIPAA-in-scope workloads, etc.).',
+      'For India regulated engagements, primary storage, compute, and inference are pinned to an India region with no cross border data movement. For clients in other jurisdictions, we pin to whichever region meets their regulatory constraints (for example, EU for GDPR data controllers, US for HIPAA in scope workloads).',
   },
   {
     icon: Server,
-    title: 'Least-privilege identity',
+    title: 'Least privilege identity',
     body:
-      'Scoped IAM roles on every service; no wildcards on data-plane resources. Human access to production runs through MFA-enforced identity providers (Cognito, Workload Identity, or the client\'s existing IdP). Access grants are time-limited and auditable.',
+      'Scoped roles on every service; no wildcards on data plane resources. Human access to production runs through MFA enforced identity providers, using either the client&rsquo;s existing IdP or one we configure for the engagement. Access grants are time limited and auditable.',
   },
 ]
 

@@ -45,7 +45,7 @@ const disciplines = [
   {
     name: 'Engineering',
     years: '10+ years',
-    description: 'Systems thinking, software architecture, aerospace engineering fundamentals. We build things that work under load.',
+    description: 'Systems thinking, software architecture, constraint based optimization, aerospace engineering fundamentals. We build things that work under load and ship them end to end, from solver core to front end.',
   },
   {
     name: 'Quantitative Analysis',

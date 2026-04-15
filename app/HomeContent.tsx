@@ -4,9 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import {
   ArrowRight,
-  Code2,
-  Lightbulb,
-  FileSearch,
+  Cpu,
   Layers,
   Zap,
   Shield,
@@ -24,23 +22,27 @@ import { SITE } from '@/lib/constants'
 
 /* ─── Data ─── */
 
+// The three cards below mirror the three engagement shapes we have
+// published case studies for. Consulting is a real service line, kept
+// on /services, but the home surfaces only the shapes we can prove with
+// an artefact the reader can click into.
 const services = [
   {
-    icon: Code2,
-    title: 'Software Development',
-    description: 'Next.js for server-rendered React with automatic code-splitting. TypeScript for compile-time safety across the stack. PostgreSQL for relational integrity where your data demands it. We ship to Cloudflare Pages and AWS with CI/CD baked in; not bolted on.',
-    href: '/services#software-development',
+    icon: Layers,
+    title: 'Product & Platform Engineering',
+    description: 'End to end product builds, shipped as one coherent system from engine core to front end. Evidenced by our in house timetable management engine.',
+    href: '/services#product-platform-engineering',
   },
   {
-    icon: Lightbulb,
-    title: 'Technical Consulting',
-    description: 'Node.js event loops vs. Python concurrency models. Monolith-first or microservices from day one. PostgreSQL vs. a document store for your access patterns. We help teams make architecture decisions grounded in how the technology actually behaves under load.',
-    href: '/services#technical-consulting',
+    icon: Cpu,
+    title: 'AI Powered Workflow Automation',
+    description: 'Idempotent pipelines that replace manual triage. Orchestrators that decompose problems into verifiable stages, each with its own retry logic. Evidenced by a reconciliation that merged 116 fuzzy duplicates and now runs in under a minute.',
+    href: '/services#ai-workflows',
   },
   {
-    icon: FileSearch,
-    title: 'Regulatory & Contract Research',
-    description: 'Structured research methodology: identify applicable frameworks, organize findings by jurisdiction and severity, and deliver actionable briefs. We parse regulatory language and contract clauses into summaries your team can act on. Alongside legal counsel, never in place of them.',
+    icon: Shield,
+    title: 'Regulated Systems & Research',
+    description: 'DPDP and RBI aligned builds. Encryption and tenant isolation designed in, controls mapped to frameworks from week one. Research and platform work, integrated.',
     href: '/services#regulatory-research',
   },
 ]
@@ -261,8 +263,8 @@ export default function HomeContent() {
             className="mb-14"
           >
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">What we do</p>
-            <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-xl">
-              Three ways we help teams ship faster
+            <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-2xl">
+              Three engagement shapes, three published case studies
             </h2>
           </motion.div>
 
@@ -687,14 +689,14 @@ export default function HomeContent() {
                   </div>
                 </div>
 
-                {/* Stack chips in place of metrics: this phase is foundation work, no KPIs published */}
+                {/* Category chips in place of metrics: foundation phase, no KPIs published and no stack enumeration on this surface by design */}
                 <div className="flex flex-wrap gap-2 pt-6 border-t border-text-primary/5">
                   {[
-                    'Flutter',
-                    'AWS ap-south-1 · Mumbai',
-                    'PostgreSQL (FLE + RLS)',
-                    'Amazon Bedrock',
-                    'Cognito + MFA',
+                    'Regulated sector',
+                    'Offline first capture',
+                    'India data residency',
+                    'Compliance first',
+                    'Tenant scoped isolation',
                   ].map((chip) => (
                     <span
                       key={chip}
@@ -743,7 +745,7 @@ export default function HomeContent() {
                       </span>
                     </div>
                     <p className="text-sm md:text-base text-text-secondary leading-relaxed">
-                      A pnpm monorepo spanning a pure TypeScript CSP solver, a multi tenant Postgres platform under Row Level Security, a Fastify REST API, and a role aware React surface. Solver, database, API, exporters, frontend, and mobile packaging, all built under one roof.
+                      An in house R&amp;D build: a constraint engine, a multi tenant data platform, an API, and a role aware surface. Engine, platform, API, exporters, front end, and mobile packaging, all shipped end to end under one roof.
                     </p>
                   </div>
                 </div>
@@ -751,9 +753,9 @@ export default function HomeContent() {
                 {/* Metric strip: all numbers measured from the codebase and stress harness */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-text-primary/5">
                   {[
-                    { num: '~30.8k', label: 'Lines of TypeScript' },
+                    { num: '~30.8k', label: 'Lines of code' },
                     { num: '68+', label: 'REST endpoints shipped' },
-                    { num: '3.6s', label: '5,000 variables solved' },
+                    { num: '3.6s', label: 'Solve time at 5k variables' },
                     { num: '94%', label: 'Allotment across scales' },
                   ].map((m) => (
                     <div key={m.label}>
