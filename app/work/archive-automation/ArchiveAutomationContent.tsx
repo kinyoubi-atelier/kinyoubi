@@ -5,6 +5,14 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { RiverMotif } from '@/components/motifs/RiverMotif'
+
+/* ─── Wave 3 motif: river, warmer paper accent ───
+   Accent hue: #a08535 (gold) is shifted toward warmer paper at
+   #B59557 for this study only. The override is scoped by a local
+   CSS variable on the page wrapper. The enso signature lives at
+   lower right of the viewport, so the river takes the left edge. */
+const ARCHIVE_ACCENT_WARM = '#B59557'
 
 /* ─── Data (all facts and metrics supplied directly by the founder) ─── */
 
@@ -176,7 +184,18 @@ function Tag({ children }: { children: React.ReactNode }) {
 
 export default function ArchiveAutomationContent() {
   return (
-    <>
+    <div
+      style={{
+        ['--study-accent' as string]: ARCHIVE_ACCENT_WARM,
+      }}
+    >
+      {/* Wave 3 · river motif, page-level. The horizontal current
+          line sits fixed at the left viewport margin, outside the
+          reading column, and follows the reader at 0.2x scroll
+          speed. Left side chosen so the signature enso at lower
+          right is left unchallenged. */}
+      <RiverMotif side="left" color={ARCHIVE_ACCENT_WARM} />
+
       {/* Hero */}
       <section className="pt-24 md:pt-36 pb-16 md:pb-20 px-6 md:px-12">
         <div className="max-w-3xl mx-auto">
@@ -499,6 +518,6 @@ export default function ArchiveAutomationContent() {
           </motion.div>
         </div>
       </section>
-    </>
+    </div>
   )
 }

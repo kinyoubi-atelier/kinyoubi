@@ -1,7 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import {
   ArrowRight,
   Cpu,
@@ -10,15 +9,24 @@ import {
   Shield,
   GitBranch,
   CheckCircle2,
-  ArrowDown,
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { BrandLockup } from '@/components/ui/BrandLockup'
+import { ScrollCue } from '@/components/ui/ScrollCue'
 import { Testimonials } from '@/components/ui/Testimonials'
 import { TechStack } from '@/components/ui/TechStack'
 import { SITE } from '@/lib/constants'
+import { BreathingGroup } from '@/design/primitives/BreathingGroup'
+import { InkStroke } from '@/design/primitives/InkStroke'
+import { Reveal } from '@/design/primitives/Reveal'
+import {
+  DURATION_LINGER,
+  EASE_SUMI_ARRAY,
+  STAGGER_LONG,
+  msToSec,
+} from '@/design/tokens/motion'
 
 /* ─── Data ─── */
 
@@ -182,8 +190,6 @@ function PipelineDiagram() {
 /* ─── Page Component ─── */
 
 export default function HomeContent() {
-  const scrollRef = useRef(null)
-
   return (
     <>
       {/* ──────────────────────────────────────────────
@@ -194,21 +200,40 @@ export default function HomeContent() {
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
+            transition={{ duration: msToSec(DURATION_LINGER), ease: EASE_SUMI_ARRAY as unknown as number[] }}
           >
             {/* Design mark + word mark */}
             <div className="mb-10">
               <BrandLockup variant="hero" size="xl" />
             </div>
 
-            {/* Headline */}
-            <h1 className="font-heading text-hero-sm md:text-hero text-text-primary mb-6 text-balance leading-tight">
-              We build software that ships.
-              <br />
-              <span className="text-gold">Complexity, handled.</span>
-            </h1>
+            {/* Headline — wrapped in BreathingGroup so the hero respires on a
+                DURATION_BREATH cycle. Replaces the previous decorative y bob
+                flagged by Wave 0. The div wrapper is unadorned and does not
+                displace the h1's semantic position. */}
+            <BreathingGroup intensity="faint">
+              <h1 className="font-heading text-hero-sm md:text-hero text-text-primary mb-6 text-balance leading-tight">
+                We build software that ships.
+                <br />
+                <span className="text-gold">Complexity, handled.</span>
+              </h1>
+            </BreathingGroup>
+
+            {/* Hero underline — a single brush stroke drawn once beneath the
+                heading, left aligned under it at roughly one third of the
+                heading width. Decoration only; aria-hidden via InkStroke's
+                default. Under reduced motion it is drawn in full on first
+                frame. */}
+            <div className="mb-6 flex">
+              <InkStroke
+                d="M 2 5 C 20 3, 45 7, 98 4"
+                color="var(--ink-sumi)"
+                strokeWidth={2}
+                className="h-2 w-[min(22rem,33%)] mx-auto md:mx-0"
+              />
+            </div>
 
             {/* Subtext */}
             <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -225,24 +250,13 @@ export default function HomeContent() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator — anchored to the bottom of the hero viewport */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 pointer-events-none"
-          aria-hidden="true"
-        >
-          <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-text-tertiary select-none">
-            Scroll to explore
-          </span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <ArrowDown className="h-4 w-4 text-gold/40" />
-          </motion.div>
-        </motion.div>
+        {/* Scroll cue — Wave 6 supersedes the earlier "Scroll to explore"
+            label and arrow with a single faint vertical stroke that grows,
+            holds, and fades over a one-shot ~2 s arc. Session-flagged so
+            the gesture fires once per tab; the lingerer sees it draw, the
+            hurried visitor scrolls past it before it lands. Decoration
+            only, aria-hidden, pointer-events disabled. */}
+        <ScrollCue />
       </section>
 
       {/* ──────────────────────────────────────────────
@@ -255,28 +269,20 @@ export default function HomeContent() {
       ────────────────────────────────────────────── */}
       <section className="py-24 md:py-32 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true, margin: '-80px' }}
-            className="mb-14"
-          >
+          <Reveal className="mb-14">
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">What we do</p>
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-2xl">
               Three engagement shapes, three published case studies
             </h2>
-          </motion.div>
+          </Reveal>
 
+          {/* Cards cascade with STAGGER_LONG between them. Each card fades up
+              8 px over DURATION_LINGER with EASE_SUMI, via the Reveal
+              primitive. Previous inline 0.5 s fade-up with delay multipliers
+              is replaced with tokens. */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                viewport={{ once: true, margin: '-50px' }}
-              >
+              <Reveal key={service.title} delay={index * STAGGER_LONG}>
                 <a href={service.href} className="block h-full">
                   <Card hoverable className="h-full group cursor-pointer">
                     <div className="h-10 w-10 rounded-lg bg-gold/10 flex items-center justify-center mb-5">
@@ -293,7 +299,7 @@ export default function HomeContent() {
                     </span>
                   </Card>
                 </a>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -304,27 +310,21 @@ export default function HomeContent() {
       ────────────────────────────────────────────── */}
       <section className="py-24 md:py-32 px-6 md:px-12 bg-surface-dark">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
+          {/* Wave 7 reduced motion pass: replaced raw motion.div with Reveal so
+              the section heading honours the house still composition (opacity
+              one, no translate from frame one) under prefers reduced motion. */}
+          <Reveal className="mb-16">
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">Process</p>
             <h2 className="font-heading text-display-sm md:text-display text-text-on-dark tracking-tight max-w-lg">
               How every engagement works
             </h2>
-          </motion.div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
             {processSteps.map((step, index) => (
-              <motion.div
+              <Reveal
                 key={step.number}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
+                delay={index * STAGGER_LONG}
                 className="relative"
               >
                 {/* Connector line (desktop only) */}
@@ -334,20 +334,18 @@ export default function HomeContent() {
                 <div className="text-4xl font-heading text-gold/30 mb-4">{step.number}</div>
                 <h3 className="text-lg font-semibold text-text-on-dark mb-2">{step.title}</h3>
                 <p className="text-sm text-text-on-dark/60 leading-relaxed">{step.description}</p>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
 
-          {/* Pipeline diagram */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            viewport={{ once: true }}
+          {/* Pipeline diagram — Reveal with a longer delay so the structural
+              illustration arrives after the four step cards have settled. */}
+          <Reveal
+            delay={STAGGER_LONG * 4}
             className="mt-16 pt-12 border-t border-text-on-dark/10"
           >
             <PipelineDiagram />
-          </motion.div>
+          </Reveal>
         </div>
       </section>
 
@@ -356,51 +354,33 @@ export default function HomeContent() {
       ────────────────────────────────────────────── */}
       <section className="py-24 md:py-32 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="mb-14"
-          >
+          <Reveal className="mb-14">
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">Capabilities</p>
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-lg">
               What sets us apart
             </h2>
-          </motion.div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
             {capabilities.map((cap, index) => (
-              <motion.div
-                key={cap.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.08, duration: 0.5 }}
-                viewport={{ once: true }}
-              >
+              <Reveal key={cap.title} delay={index * STAGGER_LONG}>
                 <div className="p-6 md:p-8 rounded-card border border-text-primary/5 hover:border-gold/20 transition-colors h-full">
                   <cap.icon className="h-6 w-6 text-gold mb-4" strokeWidth={1.5} />
                   <h3 className="text-lg font-semibold text-text-primary mb-2">{cap.title}</h3>
                   <p className="text-text-secondary leading-relaxed">{cap.description}</p>
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
 
           {/* Orchestrator diagram */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="bg-background-alt rounded-card p-8 md:p-12"
-          >
+          <Reveal className="bg-background-alt rounded-card p-8 md:p-12">
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-6 text-center">Multi-Agent Architecture</p>
             <OrchestratorDiagram />
             <p className="text-xs text-text-tertiary text-center mt-6">
               Proprietary framework. © 2026 Kinyoubi Atelier & Co.
             </p>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
 
@@ -427,13 +407,7 @@ export default function HomeContent() {
       ────────────────────────────────────────────── */}
       <section className="py-24 md:py-32 px-6 md:px-12">
         <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="flex flex-col items-center"
-          >
+          <Reveal className="flex flex-col items-center">
             {/* Founder photo */}
             <div className="relative mb-8">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -452,7 +426,7 @@ export default function HomeContent() {
             <p className="text-text-secondary mt-6">
               {SITE.founder}, Founder
             </p>
-          </motion.div>
+          </Reveal>
           <BrushStrokeDivider variant={1} className="mt-14" />
         </div>
       </section>
@@ -463,12 +437,11 @@ export default function HomeContent() {
       <section className="py-24 md:py-32 px-6 md:px-12 bg-background-alt">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
+            {/* Wave 7: replaced the horizontal x slide with the house Reveal so
+                the heading column lands at its natural position from the first
+                frame in reduced motion. The previous x slide was decorative
+                only; the composition reads the same without it. */}
+            <Reveal>
               <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">Every engagement</p>
               <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight mb-4">
                 What you get
@@ -476,15 +449,9 @@ export default function HomeContent() {
               <p className="text-text-secondary text-lg leading-relaxed">
                 We don't just write code and disappear. Every engagement includes the structure, documentation, and thinking that makes your investment last.
               </p>
-            </motion.div>
+            </Reveal>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
+            <Reveal delay={STAGGER_LONG} className="space-y-4">
               {[
                 'Production-ready, tested code',
                 'Architecture documentation',
@@ -492,20 +459,13 @@ export default function HomeContent() {
                 'Knowledge transfer & handoff',
                 'Post-launch support window',
                 'Weekly progress demos',
-              ].map((item, i) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, x: 12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06, duration: 0.4 }}
-                  viewport={{ once: true }}
-                  className="flex items-start gap-3"
-                >
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3">
                   <CheckCircle2 className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" strokeWidth={1.5} />
                   <span className="text-text-primary">{item}</span>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -515,13 +475,7 @@ export default function HomeContent() {
       ────────────────────────────────────────────── */}
       <section id="built-with-care" className="scroll-mt-24 py-24 md:py-32 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="mb-14"
-          >
+          <Reveal className="mb-14">
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">Built with care</p>
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight">
               The proof is in the work
@@ -529,19 +483,13 @@ export default function HomeContent() {
             <p className="text-text-secondary mt-4 max-w-xl">
               A small, growing portfolio: from live client sites to the one you're reading now.
             </p>
-          </motion.div>
+          </Reveal>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="mb-14"
-          >
+          <Reveal className="mb-14">
             <p className="text-text-secondary leading-relaxed">
               Published case studies below were delivered for India-based clients; the methods, compliance posture, and SLA translate directly to North American and European engagements. DPDP-grade data handling and GDPR-aligned contracts are prepared for cross-border delivery from day one.
             </p>
-          </motion.div>
+          </Reveal>
 
           {/*
             ── Featured project: Roobaroo ──
@@ -553,13 +501,7 @@ export default function HomeContent() {
             restrained stub that only states verifiable facts: it's a
             live client project and here is the link.
           */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mb-6"
-          >
+          <Reveal className="mb-6">
             <a
               href="https://roobaroo.vercel.app"
               target="_blank"
@@ -586,7 +528,7 @@ export default function HomeContent() {
                 </div>
               </div>
             </a>
-          </motion.div>
+          </Reveal>
 
           {/*
             ── Featured project: Archive automation ──
@@ -597,13 +539,7 @@ export default function HomeContent() {
             Client name omitted under DPDPA 2023 confidentiality; all
             metrics and stack details come from Ankit's own write-up.
           */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.05 }}
-            viewport={{ once: true }}
-            className="mb-10"
-          >
+          <Reveal delay={STAGGER_LONG / 2} className="mb-10">
             <a href="/work/archive-automation" className="group block">
               <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
@@ -647,7 +583,7 @@ export default function HomeContent() {
                 </div>
               </div>
             </a>
-          </motion.div>
+          </Reveal>
 
           {/*
             BFSI MIS case study: regulated financial institution engagement.
@@ -655,13 +591,7 @@ export default function HomeContent() {
             obligations. Content is load-bearing on Ankit's signed founder
             attestation on the case study page itself.
           */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="mb-10"
-          >
+          <Reveal delay={STAGGER_LONG} className="mb-10">
             <a href="/work/bfsi-mis" className="group block">
               <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
@@ -708,7 +638,7 @@ export default function HomeContent() {
                 </div>
               </div>
             </a>
-          </motion.div>
+          </Reveal>
 
           {/*
             Timetable engine case study: in house R&D product.
@@ -716,13 +646,7 @@ export default function HomeContent() {
             All metrics measured directly from the repository and the
             stress benchmark harness that ships with it.
           */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            viewport={{ once: true }}
-            className="mb-10"
-          >
+          <Reveal delay={STAGGER_LONG * 1.5} className="mb-10">
             <a href="/work/timetable-engine" className="group block">
               <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
@@ -766,7 +690,7 @@ export default function HomeContent() {
                 </div>
               </div>
             </a>
-          </motion.div>
+          </Reveal>
 
           {/* ── This site's measured Core Web Vitals ──
               We only publish numbers we've measured. The PageSpeed Insights
@@ -775,12 +699,7 @@ export default function HomeContent() {
               drop-in slot. Until the file exists, this card surfaces a
               link to /security#performance where the screenshot is hosted
               alongside the measurement date. */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
+          <Reveal>
             <Card bordered className="p-8 md:p-10">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
@@ -801,7 +720,7 @@ export default function HomeContent() {
                 </a>
               </div>
             </Card>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
 
@@ -818,12 +737,7 @@ export default function HomeContent() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
 
         <div className="max-w-2xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
+          <Reveal>
             <h2 className="font-heading text-display-sm md:text-display text-text-on-dark mb-4 tracking-tight">
               Ready to build something?
             </h2>
@@ -834,7 +748,7 @@ export default function HomeContent() {
               Start a conversation
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
     </>

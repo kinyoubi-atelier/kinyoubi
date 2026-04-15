@@ -4,6 +4,13 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, CheckCircle2, Clock3, CalendarClock } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { VaultMotif, VaultSealMark } from '@/components/motifs/VaultMotif'
+
+/* ─── Wave 3 motif: vault, sumi-shifted accent ───
+   Accent hue: #a08535 (gold) is shifted toward deeper sumi at
+   #6B5A28 for this study only. The override is scoped by a local
+   CSS variable on the page wrapper; it does not leak. */
+const BFSI_ACCENT_SUMI = '#6B5A28'
 
 /* ─────────────────────────────────────────────────────────────
    IP protective version. Vendor names, service choices, schemas,
@@ -168,10 +175,18 @@ function ArchitectureDiagram() {
 
 export default function BfsiMisContent() {
   return (
-    <>
+    <div
+      style={{
+        ['--study-accent' as string]: BFSI_ACCENT_SUMI,
+      }}
+    >
       {/* Hero */}
-      <section className="pt-24 md:pt-36 pb-14 md:pb-16 px-6 md:px-12">
-        <div className="max-w-3xl mx-auto">
+      <section className="relative pt-24 md:pt-36 pb-14 md:pb-16 px-6 md:px-12 overflow-hidden">
+        {/* Wave 3 · vault motif, mounted once inside the hero as a
+            landmark. Centred concentric hairlines sit behind the
+            heading; the respiration is slow and low contrast. */}
+        <VaultMotif color={BFSI_ACCENT_SUMI} rings={6} />
+        <div className="relative max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <Link
               href="/work"
@@ -509,6 +524,15 @@ export default function BfsiMisContent() {
         </div>
       </section>
 
+      {/* Wave 3 · vault seal, stamped once above the compliance
+          footer area. The seal is the single crimson on this page;
+          it sits above the IP protective language, never inside it. */}
+      <section className="pt-8 px-6 md:px-12" aria-hidden="true">
+        <div className="max-w-3xl mx-auto flex justify-center">
+          <VaultSealMark size={56} />
+        </div>
+      </section>
+
       {/* Footer disclosure */}
       <section className="py-10 px-6 md:px-12 border-t border-text-primary/5">
         <div className="max-w-3xl mx-auto space-y-3">
@@ -538,6 +562,6 @@ export default function BfsiMisContent() {
           </motion.div>
         </div>
       </section>
-    </>
+    </div>
   )
 }

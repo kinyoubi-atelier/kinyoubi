@@ -7,6 +7,8 @@ import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { Card } from '@/components/ui/Card'
 import { FAQAccordion, faqStructuredData } from '@/components/ui/FAQAccordion'
 import { ProjectEstimator } from '@/components/ui/ProjectEstimator'
+import { Reveal } from '@/design/primitives/Reveal'
+import { STAGGER_LONG } from '@/design/tokens/motion'
 
 /* ─── Mini diagrams for services ─── */
 
@@ -271,12 +273,10 @@ export default function ServicesContent() {
             className={`py-20 md:py-28 px-6 md:px-12 scroll-mt-20 ${isAlt ? 'bg-background-alt' : ''}`}
           >
             <div className="max-w-5xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true, margin: '-80px' }}
-              >
+              {/* Discipline cards cascade by row. Each card is its own
+                  section, so staggering becomes a per-row delay using
+                  STAGGER_LONG: each arrival gets its own beat. */}
+              <Reveal delay={index * STAGGER_LONG}>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16">
                   {/* Content (3/5) */}
                   <div className="md:col-span-3">
@@ -324,7 +324,7 @@ export default function ServicesContent() {
                     </Card>
                   </div>
                 </div>
-              </motion.div>
+              </Reveal>
             </div>
           </section>
         )

@@ -5,6 +5,14 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { LatticeMotif } from '@/components/motifs/LatticeMotif'
+
+/* ─── Wave 3 motif: lattice, cool-shifted accent ───
+   Accent hue: #a08535 (gold) is shifted a quarter step toward cool
+   at #7D8E6A (a muted sage-gold) for this study only. The override
+   is scoped by a local CSS variable set on the page wrapper; it
+   does not leak into the global theme. */
+const TIMETABLE_ACCENT_COOL = '#7D8E6A'
 
 /* ─── Data (category level only; implementation specifics held back by design) ─── */
 
@@ -92,10 +100,21 @@ function Tag({ children }: { children: React.ReactNode }) {
 
 export default function TimetableEngineContent() {
   return (
-    <>
+    <div
+      style={{
+        // Local scoped accent override. The lattice motif colour is
+        // exposed so divider wrappers and accent chips can pick it
+        // up without redrawing the SVG assets themselves.
+        ['--study-accent' as string]: TIMETABLE_ACCENT_COOL,
+      }}
+    >
       {/* Hero */}
-      <section className="pt-24 md:pt-36 pb-16 md:pb-20 px-6 md:px-12">
-        <div className="max-w-3xl mx-auto">
+      <section className="relative pt-24 md:pt-36 pb-16 md:pb-20 px-6 md:px-12 overflow-hidden">
+        {/* Wave 3 · lattice motif, mounted once inside the hero as a
+            landmark element. Absolutely positioned behind the heading
+            so it frames rather than crowds. */}
+        <LatticeMotif color={TIMETABLE_ACCENT_COOL} spacing={28} />
+        <div className="relative max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -232,7 +251,18 @@ export default function TimetableEngineContent() {
             ))}
           </div>
 
-          <BrushStrokeDivider variant={0} className="mt-16 opacity-50" />
+          {/* Divider treatment for the lattice motif: the existing
+              brush stroke is wrapped with a cool-shifted tint so the
+              accent palette stays coherent without redrawing the
+              asset. */}
+          <div
+            style={{
+              filter:
+                'sepia(0.25) hue-rotate(55deg) saturate(0.75) brightness(0.95)',
+            }}
+          >
+            <BrushStrokeDivider variant={0} className="mt-16 opacity-50" />
+          </div>
         </div>
       </section>
 
@@ -424,6 +454,6 @@ export default function TimetableEngineContent() {
           </motion.div>
         </div>
       </section>
-    </>
+    </div>
   )
 }

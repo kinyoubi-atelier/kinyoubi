@@ -1,11 +1,25 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState, type ComponentType } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { LatticeMotif } from '@/components/motifs/LatticeMotif'
+import { VaultMotif } from '@/components/motifs/VaultMotif'
+// RiverMotif is the page level signature for the Archive Automation
+// case study and stays viewport fixed there. RiverCurrent is the card
+// local sibling, used here so the Archive card carries the same
+// watermark silhouette inside the card bounds.
+import { RiverCurrent } from '@/components/motifs/RiverCurrent'
+import {
+  DURATION_CONSIDER,
+  EASE_SUMI,
+} from '@/design/tokens/motion'
 
 /* ─── Data ─── */
+
+type MotifKey = 'lattice' | 'vault' | 'river'
 
 interface CaseStudy {
   eyebrow: string
@@ -14,6 +28,35 @@ interface CaseStudy {
   metrics: { value: string; label: string }[]
   href: string
   tags: string[]
+  motif: MotifKey
+}
+
+function CardMotif({ motif }: { motif: MotifKey }) {
+  // Wave 3 motifs are rendered at a soft watermark opacity inside the
+  // card bounds. The wrapping div is absolute and pointer-events none so
+  // it never interferes with link behaviour; the motifs themselves are
+  // aria-hidden.
+  const MotifNode: ComponentType | null =
+    motif === 'lattice'
+      ? () => <LatticeMotif />
+      : motif === 'vault'
+      ? () => <VaultMotif />
+      : null
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        pointerEvents: 'none',
+        opacity: 0.08,
+        overflow: 'hidden',
+        borderRadius: 'inherit',
+      }}
+    >
+      {MotifNode ? <MotifNode /> : <RiverCurrent />}
+    </div>
+  )
 }
 
 // Case study order reflects the three engagement shapes the studio publishes
@@ -34,6 +77,7 @@ const caseStudies: CaseStudy[] = [
     ],
     href: '/work/timetable-engine',
     tags: ['In house R&D', 'Constraint engine', 'Multi tenant platform', 'End to end build'],
+    motif: 'lattice',
   },
   {
     eyebrow: 'Regulated platform · Financial services',
@@ -48,6 +92,7 @@ const caseStudies: CaseStudy[] = [
     ],
     href: '/work/bfsi-mis',
     tags: ['Regulated sector', 'Offline first capture', 'Compliance first', 'India data residency'],
+    motif: 'vault',
   },
   {
     eyebrow: 'Workflow automation · Consumer archive',
@@ -62,8 +107,107 @@ const caseStudies: CaseStudy[] = [
     ],
     href: '/work/archive-automation',
     tags: ['Python', 'Fuzzy matching', 'Idempotent pipelines', 'Batch reconciliation'],
+    motif: 'river',
   },
 ]
+
+/**
+ * CaseStudyCard
+ *
+ * Wave 5 surface rhythm. On hover or focus the card lifts 4 px over
+ * DURATION_CONSIDER on EASE_SUMI. Translate only: no shadow, no glow,
+ * no scale, per charter rule 6. A watermark motif from Wave 3 sits
+ * behind the card content at 0.08 opacity, clipped to the card bounds,
+ * aria-hidden. Under reduced motion the lift is suppressed; the motif
+ * renders still at its default composition.
+ */
+function CaseStudyCard({
+  cs,
+  index,
+}: {
+  cs: CaseStudy
+  index: number
+}) {
+  const prefersReducedMotion = useReducedMotion()
+  const [isActive, setIsActive] = useState(false)
+
+  const lift = !prefersReducedMotion && isActive ? 'translateY(-4px)' : 'translateY(0)'
+
+  return (
+    <motion.a
+      href={cs.href}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.08, duration: 0.5 }}
+      viewport={{ once: true, margin: '-60px' }}
+      className="block group"
+      onMouseEnter={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
+      onFocus={() => setIsActive(true)}
+      onBlur={() => setIsActive(false)}
+      style={{
+        transform: lift,
+        transition: prefersReducedMotion
+          ? 'none'
+          : `transform ${DURATION_CONSIDER}ms ${EASE_SUMI}`,
+      }}
+    >
+      <article className="relative p-8 md:p-10 rounded-card border border-text-primary/10 hover:border-gold/40 transition-colors bg-surface-card overflow-hidden">
+        <CardMotif motif={cs.motif} />
+
+        {/* Content wrapper keeps text above the watermark */}
+        <div className="relative">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-gold uppercase tracking-widest mb-2">
+                {cs.eyebrow}
+              </p>
+              <h2 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight leading-tight">
+                {cs.title}
+              </h2>
+            </div>
+            <span className="text-sm font-medium text-gold inline-flex items-center gap-1 shrink-0 group-hover:gap-2 transition-all">
+              Read case study
+              <ArrowRight className="h-3.5 w-3.5" />
+            </span>
+          </div>
+
+          {/* Summary */}
+          <p className="text-text-secondary leading-relaxed mb-6 max-w-3xl">
+            {cs.summary}
+          </p>
+
+          {/* Metrics grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 pt-6 border-t border-text-primary/5">
+            {cs.metrics.map((m) => (
+              <div key={m.label}>
+                <div className="font-heading text-2xl text-gold tracking-tight mb-1">
+                  {m.value}
+                </div>
+                <div className="text-xs text-text-tertiary leading-snug">
+                  {m.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2">
+            {cs.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs px-3 py-1.5 rounded-lg bg-background-alt text-text-secondary border border-text-primary/5"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </article>
+    </motion.a>
+  )
+}
 
 /* ─── Page ─── */
 
@@ -93,64 +237,7 @@ export default function WorkContent() {
       <section className="pb-24 md:pb-32 px-6 md:px-12">
         <div className="max-w-6xl mx-auto space-y-6 md:space-y-8">
           {caseStudies.map((cs, index) => (
-            <motion.a
-              key={cs.href}
-              href={cs.href}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.08, duration: 0.5 }}
-              viewport={{ once: true, margin: '-60px' }}
-              className="block group"
-            >
-              <article className="p-8 md:p-10 rounded-card border border-text-primary/10 hover:border-gold/40 transition-colors bg-surface-card">
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-gold uppercase tracking-widest mb-2">
-                      {cs.eyebrow}
-                    </p>
-                    <h2 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight leading-tight">
-                      {cs.title}
-                    </h2>
-                  </div>
-                  <span className="text-sm font-medium text-gold inline-flex items-center gap-1 shrink-0 group-hover:gap-2 transition-all">
-                    Read case study
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                </div>
-
-                {/* Summary */}
-                <p className="text-text-secondary leading-relaxed mb-6 max-w-3xl">
-                  {cs.summary}
-                </p>
-
-                {/* Metrics grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 pt-6 border-t border-text-primary/5">
-                  {cs.metrics.map((m) => (
-                    <div key={m.label}>
-                      <div className="font-heading text-2xl text-gold tracking-tight mb-1">
-                        {m.value}
-                      </div>
-                      <div className="text-xs text-text-tertiary leading-snug">
-                        {m.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {cs.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-3 py-1.5 rounded-lg bg-background-alt text-text-secondary border border-text-primary/5"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            </motion.a>
+            <CaseStudyCard key={cs.href} cs={cs} index={index} />
           ))}
 
           {/* Roobaroo external reference */}

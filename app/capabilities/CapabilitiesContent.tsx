@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { IPNotice } from '@/components/ui/IPNotice'
+import { InkStroke } from '@/design/primitives/InkStroke'
 
 /* ─── SVG Diagrams ─── */
 
@@ -283,6 +284,18 @@ export default function CapabilitiesContent() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true, margin: '-80px' }}
             >
+              {/* Wave 5 surface rhythm: a faint hairline that draws itself
+                  as the capability section enters view. DURATION_SETTLE on
+                  EASE_INK so the line finishes like a brush leaving paper. */}
+              <div className="mb-5 w-16 h-[2px]" aria-hidden="true">
+                <InkStroke
+                  d="M 0 1 L 100 1"
+                  viewBox="0 0 100 2"
+                  strokeWidth={1}
+                  color="var(--ink-sumi)"
+                  className="w-full h-full opacity-40"
+                />
+              </div>
               <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
                 {section.label}
               </p>
