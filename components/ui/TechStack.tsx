@@ -135,11 +135,14 @@ export function TechStack() {
           className="text-center mb-14 md:mb-16"
         >
           <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
-            Stack we build on
+            Under the hood
           </p>
           <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-2xl mx-auto">
-            What we build
+            What we build with
           </h2>
+          <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto mt-5">
+            Every tool on this grid is in at least one of the case studies below. No marketing logos, no aspirational additions.
+          </p>
         </motion.div>
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
           {techStack.map((tech, i) => (
