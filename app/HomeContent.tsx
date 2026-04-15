@@ -564,21 +564,23 @@ export default function HomeContent() {
               rel="noopener noreferrer"
               className="group block"
             >
-              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-8 md:p-12">
-                <div className="flex items-center gap-4">
+              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
+                <div className="flex items-start gap-4">
                   <div className="h-10 w-10 rounded-lg bg-navy flex items-center justify-center flex-shrink-0">
                     <span className="text-gold-bright font-heading text-sm font-semibold">R</span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs text-text-tertiary uppercase tracking-widest mb-0.5">Client project</p>
-                    <h3 className="text-xl font-semibold text-text-primary">Roobaroo</h3>
+                  <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-4 gap-3">
+                    <div className="min-w-0">
+                      <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1">Client project</p>
+                      <h3 className="text-xl font-semibold text-text-primary">Roobaroo</h3>
+                    </div>
+                    <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0 self-start sm:self-auto">
+                      View live site
+                      <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </span>
                   </div>
-                  <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0">
-                    View live site
-                    <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </span>
                 </div>
               </div>
             </a>
@@ -601,28 +603,34 @@ export default function HomeContent() {
             className="mb-10"
           >
             <a href="/work/archive-automation" className="group block">
-              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-8 md:p-12">
+              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
                   <div className="h-10 w-10 rounded-lg bg-navy flex items-center justify-center flex-shrink-0">
                     <span className="text-gold-bright font-heading text-sm font-semibold">A</span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-text-tertiary uppercase tracking-widest mb-0.5">Client project · Operations automation</p>
-                    <h3 className="text-xl font-semibold text-text-primary mb-2">Rebuilding a 4,000-record consumer archive</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      A Python pipeline for an LPG distributorship: reconcile a decade of scanned KYC records against a fragmented spreadsheet, normalise fuzzy-duplicate locality names, and hand back an archive staff could actually navigate.
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-6 mb-3">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1.5">Client project · Operations automation</p>
+                        <h3 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight font-semibold leading-snug">
+                          Rebuilding a 4,000 record consumer archive
+                        </h3>
+                      </div>
+                      <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0 self-start mt-4 md:mt-1">
+                        Read case study
+                        <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
+                    </div>
+                    <p className="text-sm md:text-base text-text-secondary leading-relaxed">
+                      A Python pipeline for an LPG distributorship: reconcile a decade of scanned KYC records against a fragmented spreadsheet, normalise fuzzy duplicate locality names, and hand back an archive staff could actually navigate.
                     </p>
                   </div>
-                  <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0">
-                    Read case study
-                    <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </span>
                 </div>
 
                 {/* Metric strip: all numbers from Ankit's verified write-up */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-text-primary/5">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-text-primary/5">
                   {[
                     { num: '3,905', label: 'Records reconciled' },
                     { num: '796', label: 'Folders generated' },
@@ -653,24 +661,30 @@ export default function HomeContent() {
             className="mb-10"
           >
             <a href="/work/bfsi-mis" className="group block">
-              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-8 md:p-12">
+              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
                   <div className="h-10 w-10 rounded-lg bg-navy flex items-center justify-center flex-shrink-0">
                     <span className="text-gold-bright font-heading text-sm font-semibold">M</span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-text-tertiary uppercase tracking-widest mb-0.5">Client project · BFSI · Regulated SaaS</p>
-                    <h3 className="text-xl font-semibold text-text-primary mb-2">Compliance-first MIS platform for a regulated financial institution</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      A multi-site Management Information System engineered from day one for RBI alignment and DPDP Act readiness: secure data foundation, offline-first capture, and an AI-assisted insight layer, all hosted in-region.
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-6 mb-3">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1.5">Client project · BFSI · Regulated SaaS</p>
+                        <h3 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight font-semibold leading-snug">
+                          Compliance first MIS platform for a regulated financial institution
+                        </h3>
+                      </div>
+                      <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0 self-start mt-4 md:mt-1">
+                        Read case study
+                        <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
+                    </div>
+                    <p className="text-sm md:text-base text-text-secondary leading-relaxed">
+                      A multi-site Management Information System engineered from day one for RBI alignment and DPDP Act readiness: secure data foundation, offline first capture, and an AI assisted insight layer, all hosted in region.
                     </p>
                   </div>
-                  <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0">
-                    Read case study
-                    <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </span>
                 </div>
 
                 {/* Stack chips in place of metrics: this phase is foundation work, no KPIs published */}
