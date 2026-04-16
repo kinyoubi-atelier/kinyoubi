@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 const variants = [
@@ -17,18 +18,18 @@ interface BrushStrokeDividerProps {
 
 export function BrushStrokeDivider({
   className,
-  variant,
+  variant = 0,
   opacity = 0.85,
   width = 'w-3/5 md:w-2/5',
 }: BrushStrokeDividerProps) {
-  // Use deterministic variant based on position if not specified
-  const index = variant ?? Math.floor(Math.random() * 3)
-
   return (
     <div className={cn('flex justify-center py-8', className)} role="separator" aria-hidden="true">
-      <img
-        src={variants[index]}
+      <Image
+        src={variants[variant]}
         alt=""
+        width={400}
+        height={24}
+        unoptimized
         className={cn('h-auto', width)}
         style={{ opacity }}
         loading="lazy"
