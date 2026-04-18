@@ -279,10 +279,10 @@ export default function AboutContent() {
 
               <div className="space-y-6 mb-8">
                 <p className="text-text-on-dark/80 text-lg leading-relaxed">
-                  Our founder brings a rare convergence of experience: aerospace engineering, seven years reading derivatives markets, software systems architecture, and deep regulatory research methodology. The result is a practice that treats every project as a system with clear constraints, defined risk boundaries, and measurable outcomes.
+                  I came to software sideways, through aerospace, through seven years reading derivatives markets, through the slow work of reading contracts that sit underneath both.
                 </p>
                 <p className="text-text-on-dark/80 text-lg leading-relaxed">
-                  This multidisciplinary background isn't decorative. It's the reason we can architect a backend, analyze a contract, and design the compliance workflow in the same engagement.
+                  What I learned across those years was one lesson, told in different vocabulary: every system that breaks was left unfinished somewhere earlier, by someone who thought they could come back to it. The studio is where I try not to do that again.
                 </p>
               </div>
 
