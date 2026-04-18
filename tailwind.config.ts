@@ -11,6 +11,7 @@ const config: Config = {
         /* Brand accents — from design mark */
         navy: '#142850',
         gold: '#a08535',
+        'gold-ink': '#7A6528',
         'gold-bright': '#D4AF61',
         burgundy: '#6B3E2E',
 
@@ -23,8 +24,8 @@ const config: Config = {
 
         /* Text hierarchy */
         'text-primary': '#1A1A1A',
-        'text-secondary': '#6B7280',
-        'text-tertiary': '#9CA3AF',
+        'text-secondary': '#4B5563',
+        'text-tertiary': '#5D6674',
         'text-on-dark': '#F0EEEA',
 
         /* Semantic */

@@ -31,7 +31,7 @@ interface ButtonProps {
  * focus border in --ink-sumi over DURATION_GLANCE. One focus language site-wide.
  */
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'btn-press bg-gold text-white hover:bg-gold-bright',
+  primary: 'btn-press bg-gold-ink text-white hover:bg-gold',
   secondary: 'btn-press bg-surface-dark text-text-on-dark hover:bg-navy',
   ghost: 'btn-press bg-transparent text-text-primary border border-text-primary/20 hover:border-gold hover:text-gold',
 }

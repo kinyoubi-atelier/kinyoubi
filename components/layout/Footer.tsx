@@ -20,9 +20,9 @@ export function Footer() {
 
           {/* Navigation */}
           <nav aria-label="Footer navigation">
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-text-on-dark/40 mb-4">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-text-on-dark/60 mb-4">
               Navigate
-            </h4>
+            </h2>
             <ul className="flex flex-col gap-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -40,9 +40,9 @@ export function Footer() {
           {/* Legal & Contact */}
           <div className="flex flex-col gap-6">
             <nav aria-label="Legal links">
-              <h4 className="text-xs font-semibold uppercase tracking-widest text-text-on-dark/40 mb-4">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-text-on-dark/60 mb-4">
                 Legal
-              </h4>
+              </h2>
               <ul className="flex flex-col gap-3">
                 {LEGAL_LINKS.map((link) => (
                   <li key={link.href}>

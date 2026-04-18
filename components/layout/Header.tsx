@@ -47,7 +47,7 @@ export function Header() {
       <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-text-primary/5">
         <div className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
           {/* Design mark */}
-          <Link href="/" className="flex-shrink-0" aria-label="Kinyoubi Atelier & Co. Home">
+          <Link href="/" className="flex-shrink-0">
             <BrandLockup variant="light" size="md" hideOnMobile />
             <BrandLockup variant="light" size="sm" hideOnDesktop />
           </Link>

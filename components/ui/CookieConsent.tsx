@@ -68,7 +68,7 @@ export function CookieConsent() {
                 <p className="text-xs text-text-secondary leading-relaxed">
                   We use essential cookies for site functionality and optional analytics to improve your experience.
                   Your data is processed in accordance with the{' '}
-                  <Link href="/legal/privacy" className="text-gold hover:underline">
+                  <Link href="/legal/privacy" className="text-gold-ink hover:underline">
                     DPDP Act 2023
                   </Link>
                   .
@@ -85,7 +85,7 @@ export function CookieConsent() {
                 <button
                   type="button"
                   onClick={() => accept('all')}
-                  className="text-xs font-medium text-white bg-gold hover:bg-gold/90 px-4 py-2 rounded-lg transition-colors"
+                  className="text-xs font-medium text-white bg-gold-ink hover:bg-gold px-4 py-2 rounded-lg transition-colors"
                 >
                   Accept all
                 </button>

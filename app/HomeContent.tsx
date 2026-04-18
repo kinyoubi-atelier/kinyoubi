@@ -329,7 +329,7 @@ export default function HomeContent() {
               >
                 {/* Connector line (desktop only) */}
                 {index < processSteps.length - 1 && (
-                  <div className="hidden md:block absolute top-6 left-[calc(100%_-_8px)] w-[calc(100%_-_40px)] h-px bg-gold/20" />
+                  <div className="hidden md:block absolute -top-4 left-[calc(100%_-_8px)] w-[calc(100%_-_40px)] h-px bg-gold/20" />
                 )}
                 <div className="text-4xl font-heading text-gold/30 mb-4">{step.number}</div>
                 <h3 className="text-lg font-semibold text-text-on-dark mb-2">{step.title}</h3>
@@ -420,8 +420,7 @@ export default function HomeContent() {
             </div>
 
             <p className="font-heading italic text-2xl md:text-3xl lg:text-4xl text-text-primary leading-relaxed tracking-tight">
-              Backgrounds in aerospace engineering, quantitative analysis, and systems architecture.
-              We bring structure to complexity.
+              I used to think complexity was the problem. It isn&rsquo;t. Complexity is the signal that someone, earlier, stopped paying attention.
             </p>
             <p className="text-text-secondary mt-6">
               {SITE.founder}, Founder

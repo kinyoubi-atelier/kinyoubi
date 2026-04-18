@@ -72,7 +72,8 @@ export function BrandLockup({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={asset(logoFile[variant])}
-        alt="Kinyoubi Atelier & Co."
+        alt=""
+        aria-hidden="true"
         className={cn(
           config.logoClass,
           variant === 'hero' && 'opacity-70',
@@ -84,7 +85,6 @@ export function BrandLockup({
           gradientClass,
           config.textClass,
         )}
-        aria-label="Kinyoubi Atelier & Co."
       >
         Kinyoubi Atelier & Co.
       </span>

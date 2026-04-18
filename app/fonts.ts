@@ -9,7 +9,7 @@ export const inter = Inter({
 
 export const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400'],
   style: ['normal', 'italic'],
   variable: '--font-playfair',
   display: 'swap',
@@ -20,6 +20,7 @@ export const notoSerifJP = Noto_Serif_JP({
   weight: ['500'],
   variable: '--font-noto-serif-jp',
   display: 'swap',
+  preload: false,
 })
 
 export const jetbrainsMono = JetBrains_Mono({
@@ -27,4 +28,5 @@ export const jetbrainsMono = JetBrains_Mono({
   weight: ['400', '500'],
   variable: '--font-jetbrains',
   display: 'swap',
+  preload: false,
 })
