@@ -187,6 +187,63 @@ function PipelineDiagram() {
   )
 }
 
+/*
+  Project glyphs. Each is a 44x44 inline SVG that sits where the
+  navy-box-with-initial used to live. Style matches OrchestratorDiagram
+  and PipelineDiagram: stroke-only, 1.5 weight, gold (#a08535), no fill.
+  Each glyph wordlessly hints at what the project did before the reader
+  gets to the title, and all four share enough visual DNA (stroke weight,
+  bounding shape, gold hue) to read as one sequenced set.
+*/
+
+function ProjectGlyph({ kind }: { kind: 'plate' | 'records' | 'pillars' | 'grid' }) {
+  const common = 'h-10 w-10 md:h-11 md:w-11 flex-shrink-0'
+  if (kind === 'plate') {
+    return (
+      <svg viewBox="0 0 44 44" className={common} fill="none" stroke="#a08535" strokeWidth="1.5" aria-hidden="true">
+        <circle cx="22" cy="25" r="13" />
+        <circle cx="22" cy="25" r="7.5" />
+        <circle cx="16.5" cy="9" r="1.25" fill="#a08535" stroke="none" />
+        <circle cx="27.5" cy="9" r="1.25" fill="#a08535" stroke="none" />
+      </svg>
+    )
+  }
+  if (kind === 'records') {
+    return (
+      <svg viewBox="0 0 44 44" className={common} fill="none" stroke="#a08535" strokeWidth="1.5" aria-hidden="true">
+        <line x1="8" y1="13" x2="26" y2="13" strokeDasharray="2 2.5" />
+        <line x1="8" y1="22" x2="28" y2="22" />
+        <line x1="8" y1="31" x2="30" y2="31" />
+        <line x1="30" y1="22" x2="37" y2="22" />
+        <polyline points="33,19 37,22 33,25" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    )
+  }
+  if (kind === 'pillars') {
+    return (
+      <svg viewBox="0 0 44 44" className={common} fill="none" stroke="#a08535" strokeWidth="1.5" aria-hidden="true">
+        <line x1="12" y1="11" x2="12" y2="28" />
+        <line x1="22" y1="11" x2="22" y2="28" />
+        <line x1="32" y1="11" x2="32" y2="28" />
+        <line x1="8" y1="28" x2="36" y2="28" />
+        <line x1="8" y1="34" x2="36" y2="34" strokeDasharray="2 2.5" />
+      </svg>
+    )
+  }
+  // grid
+  return (
+    <svg viewBox="0 0 44 44" className={common} fill="none" stroke="#a08535" strokeWidth="1.5" aria-hidden="true">
+      <rect x="8" y="10" width="28" height="24" rx="1.5" />
+      <line x1="17" y1="10" x2="17" y2="34" />
+      <line x1="27" y1="10" x2="27" y2="34" />
+      <line x1="8" y1="18" x2="36" y2="18" />
+      <line x1="8" y1="26" x2="36" y2="26" />
+      <rect x="17" y="18" width="10" height="8" fill="#a08535" opacity="0.2" stroke="none" />
+      <rect x="27" y="10" width="9" height="8" fill="#a08535" opacity="0.2" stroke="none" />
+    </svg>
+  )
+}
+
 /* ─── Page Component ─── */
 
 export default function HomeContent() {
@@ -509,9 +566,7 @@ export default function HomeContent() {
             >
               <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
                 <div className="flex items-start gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-navy flex items-center justify-center flex-shrink-0">
-                    <span className="text-gold-bright font-heading text-sm font-semibold">R</span>
-                  </div>
+                  <ProjectGlyph kind="plate" />
                   <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-4 gap-3">
                     <div className="min-w-0">
                       <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1">Client project</p>
@@ -542,9 +597,7 @@ export default function HomeContent() {
             <a href="/work/archive-automation" className="group block">
               <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="h-10 w-10 rounded-lg bg-navy flex items-center justify-center flex-shrink-0">
-                    <span className="text-gold-bright font-heading text-sm font-semibold">A</span>
-                  </div>
+                  <ProjectGlyph kind="records" />
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-6 mb-3">
                       <div className="min-w-0 flex-1">
@@ -594,9 +647,7 @@ export default function HomeContent() {
             <a href="/work/bfsi-mis" className="group block">
               <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="h-10 w-10 rounded-lg bg-navy flex items-center justify-center flex-shrink-0">
-                    <span className="text-gold-bright font-heading text-sm font-semibold">M</span>
-                  </div>
+                  <ProjectGlyph kind="pillars" />
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-6 mb-3">
                       <div className="min-w-0 flex-1">
@@ -649,9 +700,7 @@ export default function HomeContent() {
             <a href="/work/timetable-engine" className="group block">
               <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="h-10 w-10 rounded-lg bg-navy flex items-center justify-center flex-shrink-0">
-                    <span className="text-gold-bright font-heading text-sm font-semibold">T</span>
-                  </div>
+                  <ProjectGlyph kind="grid" />
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-6 mb-3">
                       <div className="min-w-0 flex-1">
