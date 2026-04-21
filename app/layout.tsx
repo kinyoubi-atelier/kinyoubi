@@ -3,6 +3,7 @@ import { inter, playfair, notoSerifJP, jetbrainsMono } from './fonts'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { AtmosphereLayer } from '@/components/atmosphere/AtmosphereLayer'
+import { AtmosphereClock } from '@/components/atmosphere/AtmosphereClock'
 import { Signature } from '@/components/signature/Signature'
 import { StructuredData } from './structured-data'
 import { UmamiAnalytics, CrispChat } from '@/components/scripts/Analytics'
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body className="flex flex-col min-h-screen">
         <AtmosphereLayer />
+        <AtmosphereClock />
         <Signature />
         <a
           href="#main-content"

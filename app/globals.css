@@ -94,6 +94,16 @@
 
   /* Single disable hook for the ambient layer. Default on. */
   --atmosphere-opacity: 1;
+
+  /* Atmosphere clock defaults. Written by components/atmosphere/
+   * AtmosphereClock on mount. The defaults match the static midday mark
+   * the site shipped before the clock landed; if the JS never runs, the
+   * atmosphere reads exactly as it did under Wave 1. */
+  --light-x: 78%;
+  --light-y: 22%;
+  --light-wash-color: var(--paper-warmth);
+  --atmosphere-time-dim: 1;
+  --signature-tilt: 0deg;
 }
 
 /* Move the page fill onto html so the atmosphere layers can sit
@@ -114,7 +124,12 @@ body {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: var(--atmosphere-opacity);
+  /* Two factor composition. --atmosphere-opacity is owned by the
+   * accessibility media queries below and by the one off disable hook.
+   * --atmosphere-time-dim is owned by the AtmosphereClock component and
+   * rides on top of it. Reduced motion and reduced data therefore still
+   * win without fighting the clock. */
+  opacity: calc(var(--atmosphere-opacity) * var(--atmosphere-time-dim, 1));
   contain: strict;
 }
 
@@ -137,15 +152,18 @@ body {
   mix-blend-mode: multiply;
 }
 
-/* 2. Directional light wash. A radial gradient whose centre sits
- *    along LIGHT_DIRECTION from the viewport midpoint, in the
- *    upper right. Delta from brightest to darkest is under 4
- *    percent luminance so the visitor reads it as a room, not a
- *    spotlight. */
+/* 2. Directional light wash. A radial gradient whose centre and fill
+ *    colour are owned by the AtmosphereClock component. The centre
+ *    rotates across the day: upper left in the morning, upper right at
+ *    midday, lower right in the evening, low at night. The fill warmth
+ *    shifts by hue across the day. Delta from brightest to darkest stays
+ *    under four percent luminance so the visitor reads it as a room, not
+ *    a spotlight. Defaults to the Wave 1 static composition when the
+ *    clock has not yet written. */
 .atmosphere-light {
   background-image: radial-gradient(
-    circle at 78% 22%,
-    var(--paper-warmth) 0%,
+    circle at var(--light-x, 78%) var(--light-y, 22%),
+    var(--light-wash-color, var(--paper-warmth)) 0%,
     rgba(255, 255, 255, 0) 62%
   );
   opacity: 0.55;

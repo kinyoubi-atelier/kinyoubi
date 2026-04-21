@@ -156,6 +156,18 @@ export function Signature() {
         fill="none"
         role="presentation"
         focusable="false"
+        // Seasonal tilt. The AtmosphereClock writes --signature-tilt in
+        // degrees (−1, 0, or +1) based on the visitor's local season.
+        // Applied at the SVG layer so framer-motion's transform management
+        // on the parent motion.div is not touched. A returning visitor
+        // over the course of a year will catch the enso rotate by a
+        // single degree and back.
+        style={{
+          transform: 'rotate(var(--signature-tilt, 0deg))',
+          transformOrigin: 'center',
+          transformBox: 'fill-box',
+          transition: 'transform 1200ms cubic-bezier(0.25, 0.1, 0.25, 1)',
+        }}
       >
         <motion.path
           d={ENSO_PATH}
