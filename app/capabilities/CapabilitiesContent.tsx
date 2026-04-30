@@ -14,40 +14,40 @@ function OrchestratorDiagram() {
     <div className="w-full overflow-x-auto -mx-4 px-4">
       <svg viewBox="0 0 460 240" className="w-full min-w-[320px] max-w-xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* Planning phase */}
-        <rect x="160" y="6" width="140" height="46" rx="23" fill="#142850" />
-        <text x="230" y="34" textAnchor="middle" fill="#F8F7F4" fontSize="14" fontFamily="system-ui" fontWeight="500">Orchestrator</text>
-        <text x="230" y="64" textAnchor="middle" fill="#6B7280" fontSize="12" fontFamily="system-ui">Planning &amp; Decomposition</text>
+        <rect x="160" y="6" width="140" height="46" rx="23" style={{ fill: 'rgb(var(--ink))' }} />
+        <text x="230" y="34" textAnchor="middle" style={{ fill: 'rgb(var(--bg))' }} fontSize="14" fontFamily="system-ui" fontWeight="500">Orchestrator</text>
+        <text x="230" y="64" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="12" fontFamily="system-ui">Planning &amp; Decomposition</text>
 
         {/* Arrows down */}
-        <path d="M175 72 L80 100" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" markerEnd="url(#arrowGold)" />
-        <path d="M230 72 L230 100" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-        <path d="M285 72 L380 100" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <path d="M175 72 L80 100" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="4 3" markerEnd="url(#arrowGold)" />
+        <path d="M230 72 L230 100" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="4 3" />
+        <path d="M285 72 L380 100" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="4 3" />
 
         {/* Workers */}
-        <rect x="10" y="100" width="140" height="50" rx="12" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
-        <text x="80" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui" fontWeight="500">Worker A</text>
-        <text x="80" y="139" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Isolated context</text>
+        <rect x="10" y="100" width="140" height="50" rx="12" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }} strokeWidth="1.5" />
+        <text x="80" y="122" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="13" fontFamily="system-ui" fontWeight="500">Worker A</text>
+        <text x="80" y="139" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="system-ui">Isolated context</text>
 
-        <rect x="160" y="100" width="140" height="50" rx="12" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
-        <text x="230" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui" fontWeight="500">Worker B</text>
-        <text x="230" y="139" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Parallel execution</text>
+        <rect x="160" y="100" width="140" height="50" rx="12" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }} strokeWidth="1.5" />
+        <text x="230" y="122" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="13" fontFamily="system-ui" fontWeight="500">Worker B</text>
+        <text x="230" y="139" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="system-ui">Parallel execution</text>
 
-        <rect x="310" y="100" width="140" height="50" rx="12" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
-        <text x="380" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui" fontWeight="500">Worker C</text>
-        <text x="380" y="139" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">Verification loops</text>
+        <rect x="310" y="100" width="140" height="50" rx="12" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }} strokeWidth="1.5" />
+        <text x="380" y="122" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="13" fontFamily="system-ui" fontWeight="500">Worker C</text>
+        <text x="380" y="139" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="system-ui">Verification loops</text>
 
         {/* Arrows to synthesis */}
-        <path d="M80 150 L180 184" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-        <path d="M230 150 L230 184" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-        <path d="M380 150 L280 184" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <path d="M80 150 L180 184" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="4 3" />
+        <path d="M230 150 L230 184" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="4 3" />
+        <path d="M380 150 L280 184" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="4 3" />
 
         {/* Synthesis */}
-        <rect x="140" y="184" width="180" height="46" rx="23" fill="#142850" />
-        <text x="230" y="212" textAnchor="middle" fill="#D4AF61" fontSize="13" fontFamily="system-ui" fontWeight="500">Synthesis &amp; Delivery</text>
+        <rect x="140" y="184" width="180" height="46" rx="23" style={{ fill: 'rgb(var(--ink))' }} />
+        <text x="230" y="212" textAnchor="middle" style={{ fill: 'rgb(var(--gold))' }} fontSize="13" fontFamily="system-ui" fontWeight="500">Synthesis &amp; Delivery</text>
 
         <defs>
           <marker id="arrowGold" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-            <path d="M0 0 L6 3 L0 6" fill="none" stroke="#a08535" strokeWidth="1" />
+            <path d="M0 0 L6 3 L0 6" fill="none" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1" />
           </marker>
         </defs>
       </svg>
@@ -72,34 +72,33 @@ function BuildPipelineDiagram() {
           return (
             <g key={step.label}>
               <rect x={x} y="14" width="126" height="60" rx="12"
-                fill={isLast ? '#142850' : '#FFFFFF'}
-                stroke={isLast ? '#142850' : '#E5E7EB'}
+                style={isLast ? { fill: 'rgb(var(--ink))', stroke: 'rgb(var(--ink))' } : { fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }}
                 strokeWidth="1.5"
               />
               <text x={x + 63} y="40" textAnchor="middle"
-                fill={isLast ? '#F8F7F4' : '#1A1A1A'}
+                style={isLast ? { fill: 'rgb(var(--bg))' } : { fill: 'rgb(var(--ink))' }}
                 fontSize="13" fontFamily="system-ui" fontWeight="600"
               >{step.label}</text>
               <text x={x + 63} y="58" textAnchor="middle"
-                fill={isLast ? '#D4AF61' : '#9CA3AF'}
+                style={isLast ? { fill: 'rgb(var(--gold))' } : { fill: 'rgb(var(--ink-3))' }}
                 fontSize="11" fontFamily="system-ui"
               >{step.sub}</text>
               {!isLast && (
-                <path d={`M${x + 129} 44 L${x + 137} 44`} stroke="#a08535" strokeWidth="1.5" markerEnd="url(#arrowPipe)" />
+                <path d={`M${x + 129} 44 L${x + 137} 44`} style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" markerEnd="url(#arrowPipe)" />
               )}
             </g>
           )
         })}
         {/* Progress line underneath */}
-        <rect x="0" y="90" width="700" height="4" rx="2" fill="#F0EEEA" />
+        <rect x="0" y="90" width="700" height="4" rx="2" style={{ fill: 'rgb(var(--surface))' }} />
         <rect x="0" y="90" width="700" height="4" rx="2" fill="url(#progressGrad)" />
         <defs>
           <linearGradient id="progressGrad" x1="0" y1="0" x2="700" y2="0">
-            <stop offset="0%" stopColor="#a08535" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="#a08535" stopOpacity="0.6" />
+            <stop offset="0%" style={{ stopColor: 'rgb(var(--gold))' }} stopOpacity="0.1" />
+            <stop offset="100%" style={{ stopColor: 'rgb(var(--gold))' }} stopOpacity="0.6" />
           </linearGradient>
           <marker id="arrowPipe" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-            <path d="M0 0 L6 3 L0 6" fill="none" stroke="#a08535" strokeWidth="1" />
+            <path d="M0 0 L6 3 L0 6" fill="none" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1" />
           </marker>
         </defs>
       </svg>
@@ -109,10 +108,10 @@ function BuildPipelineDiagram() {
 
 function ResearchDiagram() {
   const tiers = [
-    { label: 'Tier 1', title: 'Landscape Scan', desc: 'What exists, what applies', color: '#F0EEEA' },
-    { label: 'Tier 2', title: 'Deep Research', desc: 'Statute & contract analysis', color: '#F0EEEA' },
-    { label: 'Tier 3', title: 'Compliance Map', desc: 'Requirements & gaps', color: '#F0EEEA' },
-    { label: 'Tier 4', title: 'Research Brief', desc: 'Structured deliverable', color: '#142850' },
+    { label: 'Tier 1', title: 'Landscape Scan', desc: 'What exists, what applies', color: 'rgb(var(--surface))' },
+    { label: 'Tier 2', title: 'Deep Research', desc: 'Statute & contract analysis', color: 'rgb(var(--surface))' },
+    { label: 'Tier 3', title: 'Compliance Map', desc: 'Requirements & gaps', color: 'rgb(var(--surface))' },
+    { label: 'Tier 4', title: 'Research Brief', desc: 'Structured deliverable', color: 'rgb(var(--ink))' },
   ]
   return (
     <div className="w-full overflow-x-auto -mx-4 px-4 pb-2">
@@ -124,39 +123,38 @@ function ResearchDiagram() {
           return (
             <g key={tier.label}>
               {/* Tier badge */}
-              <rect x={cx - 30} y="4" width="60" height="24" rx="12" fill={isLast ? '#142850' : '#a08535'} opacity={isLast ? 1 : 0.15} />
-              <text x={cx} y="20" textAnchor="middle" fill={isLast ? '#D4AF61' : '#a08535'} fontSize="11" fontFamily="system-ui" fontWeight="600">{tier.label}</text>
+              <rect x={cx - 30} y="4" width="60" height="24" rx="12" style={isLast ? { fill: 'rgb(var(--ink))' } : { fill: 'rgb(var(--gold))' }} opacity={isLast ? 1 : 0.15} />
+              <text x={cx} y="20" textAnchor="middle" style={isLast ? { fill: 'rgb(var(--gold))' } : { fill: 'rgb(var(--gold))' }} fontSize="11" fontFamily="system-ui" fontWeight="600">{tier.label}</text>
 
               {/* Main card */}
               <rect x={x} y="38" width="180" height="78" rx="14"
-                fill={isLast ? '#142850' : '#FFFFFF'}
-                stroke={isLast ? '#142850' : '#E5E7EB'}
+                style={isLast ? { fill: 'rgb(var(--ink))', stroke: 'rgb(var(--ink))' } : { fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }}
                 strokeWidth="1.5"
               />
               <text x={cx} y="68" textAnchor="middle"
-                fill={isLast ? '#F8F7F4' : '#1A1A1A'}
+                style={isLast ? { fill: 'rgb(var(--bg))' } : { fill: 'rgb(var(--ink))' }}
                 fontSize="15" fontFamily="system-ui" fontWeight="600"
               >{tier.title}</text>
               <text x={cx} y="90" textAnchor="middle"
-                fill={isLast ? '#D4AF61' : '#9CA3AF'}
+                style={isLast ? { fill: 'rgb(var(--gold))' } : { fill: 'rgb(var(--ink-3))' }}
                 fontSize="12" fontFamily="system-ui"
               >{tier.desc}</text>
 
               {/* Arrow */}
               {i < tiers.length - 1 && (
-                <path d={`M${x + 184} 77 L${x + 192} 77`} stroke="#a08535" strokeWidth="1.5" markerEnd="url(#arrowGold2)" />
+                <path d={`M${x + 184} 77 L${x + 192} 77`} style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" markerEnd="url(#arrowGold2)" />
               )}
             </g>
           )
         })}
         {/* Bottom annotation */}
-        <text x="390" y="148" textAnchor="middle" fill="#9CA3AF" fontSize="12" fontFamily="system-ui">
+        <text x="390" y="148" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="12" fontFamily="system-ui">
           Each tier is documented, cited, and calibrated to complexity
         </text>
 
         <defs>
           <marker id="arrowGold2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-            <path d="M0 0 L6 3 L0 6" fill="none" stroke="#a08535" strokeWidth="1" />
+            <path d="M0 0 L6 3 L0 6" fill="none" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1" />
           </marker>
         </defs>
       </svg>
@@ -170,38 +168,38 @@ function BarbellDiagram() {
       <svg viewBox="0 0 460 170" className="w-full min-w-[320px] max-w-lg mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* Conservative core: layered rings */}
         <circle cx="110" cy="68" r="56" fill="url(#navyRadial)" />
-        <circle cx="110" cy="68" r="56" fill="none" stroke="#142850" strokeWidth="1" opacity="0.15" />
-        <circle cx="110" cy="68" r="42" fill="#142850" opacity="0.08" />
-        <circle cx="110" cy="68" r="42" fill="none" stroke="#142850" strokeWidth="1.5" opacity="0.25" />
-        <text x="110" y="62" textAnchor="middle" fill="#142850" fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Conservative</text>
-        <text x="110" y="80" textAnchor="middle" fill="#142850" fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Core</text>
-        <text x="110" y="140" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="system-ui">Predictable outcomes</text>
+        <circle cx="110" cy="68" r="56" fill="none" style={{ stroke: 'rgb(var(--ink))' }} strokeWidth="1" opacity="0.15" />
+        <circle cx="110" cy="68" r="42" style={{ fill: 'rgb(var(--ink))' }} opacity="0.08" />
+        <circle cx="110" cy="68" r="42" fill="none" style={{ stroke: 'rgb(var(--ink))' }} strokeWidth="1.5" opacity="0.25" />
+        <text x="110" y="62" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Conservative</text>
+        <text x="110" y="80" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Core</text>
+        <text x="110" y="140" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="system-ui">Predictable outcomes</text>
 
         {/* Connection: dashed line with label */}
-        <line x1="168" y1="68" x2="292" y2="68" stroke="#9CA3AF" strokeWidth="1.5" strokeDasharray="6 4" />
-        <circle cx="230" cy="68" r="3" fill="#9CA3AF" />
-        <rect x="195" y="42" width="70" height="20" rx="10" fill="#F0EEEA" />
-        <text x="230" y="56" textAnchor="middle" fill="#9CA3AF" fontSize="10" fontFamily="system-ui" fontWeight="500">Boundary</text>
+        <line x1="168" y1="68" x2="292" y2="68" style={{ stroke: 'rgb(var(--ink-3))' }} strokeWidth="1.5" strokeDasharray="6 4" />
+        <circle cx="230" cy="68" r="3" style={{ fill: 'rgb(var(--ink-3))' }} />
+        <rect x="195" y="42" width="70" height="20" rx="10" style={{ fill: 'rgb(var(--surface))' }} />
+        <text x="230" y="56" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="10" fontFamily="system-ui" fontWeight="500">Boundary</text>
 
         {/* Active position: layered rings */}
         <circle cx="350" cy="68" r="56" fill="url(#goldRadial)" />
-        <circle cx="350" cy="68" r="56" fill="none" stroke="#a08535" strokeWidth="1" opacity="0.15" />
-        <circle cx="350" cy="68" r="42" fill="#a08535" opacity="0.06" />
-        <circle cx="350" cy="68" r="42" fill="none" stroke="#a08535" strokeWidth="1.5" opacity="0.25" />
-        <text x="350" y="62" textAnchor="middle" fill="#a08535" fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Active</text>
-        <text x="350" y="80" textAnchor="middle" fill="#a08535" fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Position</text>
-        <text x="350" y="140" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="system-ui">Calculated variance</text>
+        <circle cx="350" cy="68" r="56" fill="none" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1" opacity="0.15" />
+        <circle cx="350" cy="68" r="42" style={{ fill: 'rgb(var(--gold))' }} opacity="0.06" />
+        <circle cx="350" cy="68" r="42" fill="none" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" opacity="0.25" />
+        <text x="350" y="62" textAnchor="middle" style={{ fill: 'rgb(var(--gold))' }} fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Active</text>
+        <text x="350" y="80" textAnchor="middle" style={{ fill: 'rgb(var(--gold))' }} fontSize="13" fontFamily="system-ui" fontWeight="700" letterSpacing="0.3">Position</text>
+        <text x="350" y="140" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="system-ui">Calculated variance</text>
 
-        <text x="230" y="162" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui" fontWeight="500" opacity="0.5">The two never mix.</text>
+        <text x="230" y="162" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="12" fontFamily="system-ui" fontWeight="500" opacity="0.5">The two never mix.</text>
 
         <defs>
           <radialGradient id="navyRadial" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#142850" stopOpacity="0.12" />
-            <stop offset="100%" stopColor="#142850" stopOpacity="0.03" />
+            <stop offset="0%" style={{ stopColor: 'rgb(var(--ink))' }} stopOpacity="0.12" />
+            <stop offset="100%" style={{ stopColor: 'rgb(var(--ink))' }} stopOpacity="0.03" />
           </radialGradient>
           <radialGradient id="goldRadial" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#a08535" stopOpacity="0.10" />
-            <stop offset="100%" stopColor="#a08535" stopOpacity="0.02" />
+            <stop offset="0%" style={{ stopColor: 'rgb(var(--gold))' }} stopOpacity="0.10" />
+            <stop offset="100%" style={{ stopColor: 'rgb(var(--gold))' }} stopOpacity="0.02" />
           </radialGradient>
         </defs>
       </svg>

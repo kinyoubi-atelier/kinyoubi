@@ -65,8 +65,13 @@ const config: Config = {
         'gold-ink': themed('--gold'),
         'gold-bright': themed('--gold'),
 
-        /* Retained for accidents that haven't been swept yet. */
-        navy: '#111111',
+        /* Legacy "navy" used to be the dirty-denim contrast colour
+           (#142850). Retired by user direction. The token now flips
+           with the theme: in light mode it resolves to ink, in dark
+           mode it resolves to paper. Existing call sites read as a
+           dark-on-light or light-on-dark accent that no longer
+           depends on the offending denim shade. */
+        navy: themed('--ink'),
         burgundy: themed('--gold'),
         cream: themed('--bg'),
         linen: themed('--bg'),

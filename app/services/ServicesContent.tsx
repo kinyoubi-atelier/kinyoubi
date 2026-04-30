@@ -56,25 +56,25 @@ function ArchitectureVisual() {
   return (
     <div className="w-full overflow-x-auto mt-6">
       <svg viewBox="0 0 380 80" className="w-full min-w-[280px] max-w-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="8" width="80" height="38" rx="8" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
-        <text x="40" y="32" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui" fontWeight="500">Audit</text>
+        <rect x="0" y="8" width="80" height="38" rx="8" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }} strokeWidth="1.5" />
+        <text x="40" y="32" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="12" fontFamily="system-ui" fontWeight="500">Audit</text>
 
-        <path d="M82 27 L96 27" stroke="#a08535" strokeWidth="1.5" />
+        <path d="M82 27 L96 27" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" />
 
-        <rect x="98" y="8" width="80" height="38" rx="8" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
-        <text x="138" y="32" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui" fontWeight="500">Design</text>
+        <rect x="98" y="8" width="80" height="38" rx="8" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }} strokeWidth="1.5" />
+        <text x="138" y="32" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="12" fontFamily="system-ui" fontWeight="500">Design</text>
 
-        <path d="M180 27 L194 27" stroke="#a08535" strokeWidth="1.5" />
+        <path d="M180 27 L194 27" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" />
 
-        <rect x="196" y="8" width="86" height="38" rx="8" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1.5" />
-        <text x="239" y="32" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontFamily="system-ui" fontWeight="500">Roadmap</text>
+        <rect x="196" y="8" width="86" height="38" rx="8" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }} strokeWidth="1.5" />
+        <text x="239" y="32" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="12" fontFamily="system-ui" fontWeight="500">Roadmap</text>
 
-        <path d="M284 27 L298 27" stroke="#a08535" strokeWidth="1.5" />
+        <path d="M284 27 L298 27" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" />
 
-        <rect x="300" y="8" width="76" height="38" rx="8" fill="#142850" />
-        <text x="338" y="32" textAnchor="middle" fill="#D4AF61" fontSize="12" fontFamily="system-ui" fontWeight="500">Deliver</text>
+        <rect x="300" y="8" width="76" height="38" rx="8" style={{ fill: 'rgb(var(--ink))' }} />
+        <text x="338" y="32" textAnchor="middle" style={{ fill: 'rgb(var(--gold))' }} fontSize="12" fontFamily="system-ui" fontWeight="500">Deliver</text>
 
-        <text x="190" y="68" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontFamily="system-ui">
+        <text x="190" y="68" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="system-ui">
           Typical consulting engagement flow
         </text>
       </svg>
@@ -87,31 +87,31 @@ function AgentWorkflowVisual() {
     <div className="w-full overflow-x-auto mt-6">
       <svg viewBox="0 0 380 140" className="w-full min-w-[280px] max-w-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* Orchestrator */}
-        <rect x="120" y="4" width="140" height="38" rx="19" fill="#142850" />
-        <text x="190" y="28" textAnchor="middle" fill="#F8F7F4" fontSize="13" fontFamily="system-ui" fontWeight="500">Orchestrator</text>
+        <rect x="120" y="4" width="140" height="38" rx="19" style={{ fill: 'rgb(var(--ink))' }} />
+        <text x="190" y="28" textAnchor="middle" style={{ fill: 'rgb(var(--bg))' }} fontSize="13" fontFamily="system-ui" fontWeight="500">Orchestrator</text>
 
         {/* Lines */}
-        <line x1="150" y1="42" x2="70" y2="64" stroke="#a08535" strokeWidth="1.5" strokeDasharray="3 2" />
-        <line x1="190" y1="42" x2="190" y2="64" stroke="#a08535" strokeWidth="1.5" strokeDasharray="3 2" />
-        <line x1="230" y1="42" x2="310" y2="64" stroke="#a08535" strokeWidth="1.5" strokeDasharray="3 2" />
+        <line x1="150" y1="42" x2="70" y2="64" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="3 2" />
+        <line x1="190" y1="42" x2="190" y2="64" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="3 2" />
+        <line x1="230" y1="42" x2="310" y2="64" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="3 2" />
 
         {/* Workers */}
-        <rect x="20" y="64" width="100" height="34" rx="17" fill="#F0EEEA" stroke="#E5E7EB" strokeWidth="1" />
-        <text x="70" y="86" textAnchor="middle" fill="#6B7280" fontSize="12" fontFamily="system-ui">Agent A</text>
+        <rect x="20" y="64" width="100" height="34" rx="17" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }} strokeWidth="1" />
+        <text x="70" y="86" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="12" fontFamily="system-ui">Agent A</text>
 
-        <rect x="140" y="64" width="100" height="34" rx="17" fill="#F0EEEA" stroke="#E5E7EB" strokeWidth="1" />
-        <text x="190" y="86" textAnchor="middle" fill="#6B7280" fontSize="12" fontFamily="system-ui">Agent B</text>
+        <rect x="140" y="64" width="100" height="34" rx="17" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }} strokeWidth="1" />
+        <text x="190" y="86" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="12" fontFamily="system-ui">Agent B</text>
 
-        <rect x="260" y="64" width="100" height="34" rx="17" fill="#F0EEEA" stroke="#E5E7EB" strokeWidth="1" />
-        <text x="310" y="86" textAnchor="middle" fill="#6B7280" fontSize="12" fontFamily="system-ui">Agent C</text>
+        <rect x="260" y="64" width="100" height="34" rx="17" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--hairline))' }} strokeWidth="1" />
+        <text x="310" y="86" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="12" fontFamily="system-ui">Agent C</text>
 
         {/* Synthesis */}
-        <line x1="70" y1="98" x2="155" y2="116" stroke="#a08535" strokeWidth="1.5" strokeDasharray="3 2" />
-        <line x1="190" y1="98" x2="190" y2="116" stroke="#a08535" strokeWidth="1.5" strokeDasharray="3 2" />
-        <line x1="310" y1="98" x2="225" y2="116" stroke="#a08535" strokeWidth="1.5" strokeDasharray="3 2" />
+        <line x1="70" y1="98" x2="155" y2="116" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="3 2" />
+        <line x1="190" y1="98" x2="190" y2="116" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="3 2" />
+        <line x1="310" y1="98" x2="225" y2="116" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" strokeDasharray="3 2" />
 
-        <rect x="130" y="116" width="120" height="28" rx="14" fill="#142850" />
-        <text x="190" y="134" textAnchor="middle" fill="#D4AF61" fontSize="12" fontFamily="system-ui" fontWeight="500">Synthesis</text>
+        <rect x="130" y="116" width="120" height="28" rx="14" style={{ fill: 'rgb(var(--ink))' }} />
+        <text x="190" y="134" textAnchor="middle" style={{ fill: 'rgb(var(--gold))' }} fontSize="12" fontFamily="system-ui" fontWeight="500">Synthesis</text>
       </svg>
     </div>
   )

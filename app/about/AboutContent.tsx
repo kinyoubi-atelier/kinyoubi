@@ -68,24 +68,24 @@ function IntersectionDiagram() {
     <div className="w-full overflow-x-auto -mx-4 px-4">
       <svg viewBox="0 0 360 320" className="w-full min-w-[280px] max-w-sm mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* Outer circles */}
-        <circle cx="140" cy="120" r="85" fill="#142850" opacity="0.06" />
-        <circle cx="220" cy="120" r="85" fill="#a08535" opacity="0.06" />
-        <circle cx="140" cy="195" r="85" fill="#142850" opacity="0.04" />
-        <circle cx="220" cy="195" r="85" fill="#a08535" opacity="0.04" />
+        <circle cx="140" cy="120" r="85" style={{ fill: 'rgb(var(--ink))' }} opacity="0.06" />
+        <circle cx="220" cy="120" r="85" style={{ fill: 'rgb(var(--gold))' }} opacity="0.06" />
+        <circle cx="140" cy="195" r="85" style={{ fill: 'rgb(var(--ink))' }} opacity="0.04" />
+        <circle cx="220" cy="195" r="85" style={{ fill: 'rgb(var(--gold))' }} opacity="0.04" />
 
         {/* Labels */}
-        <text x="95" y="78" textAnchor="middle" fill="#142850" fontSize="13" fontFamily="system-ui" fontWeight="600">Engineering</text>
-        <text x="265" y="78" textAnchor="middle" fill="#a08535" fontSize="13" fontFamily="system-ui" fontWeight="600">Finance</text>
-        <text x="95" y="258" textAnchor="middle" fill="#142850" fontSize="13" fontFamily="system-ui" fontWeight="600">Regulatory</text>
-        <text x="265" y="258" textAnchor="middle" fill="#a08535" fontSize="13" fontFamily="system-ui" fontWeight="600">Design</text>
+        <text x="95" y="78" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="13" fontFamily="system-ui" fontWeight="600">Engineering</text>
+        <text x="265" y="78" textAnchor="middle" style={{ fill: 'rgb(var(--gold))' }} fontSize="13" fontFamily="system-ui" fontWeight="600">Finance</text>
+        <text x="95" y="258" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="13" fontFamily="system-ui" fontWeight="600">Regulatory</text>
+        <text x="265" y="258" textAnchor="middle" style={{ fill: 'rgb(var(--gold))' }} fontSize="13" fontFamily="system-ui" fontWeight="600">Design</text>
 
         {/* Center node */}
-        <circle cx="180" cy="157" r="38" fill="#142850" />
-        <text x="180" y="153" textAnchor="middle" fill="#D4AF61" fontSize="12" fontFamily="system-ui" fontWeight="600">Kinyoubi</text>
-        <text x="180" y="168" textAnchor="middle" fill="#F8F7F4" fontSize="11" fontFamily="system-ui">Atelier</text>
+        <circle cx="180" cy="157" r="38" style={{ fill: 'rgb(var(--ink))' }} />
+        <text x="180" y="153" textAnchor="middle" style={{ fill: 'rgb(var(--gold))' }} fontSize="12" fontFamily="system-ui" fontWeight="600">Kinyoubi</text>
+        <text x="180" y="168" textAnchor="middle" style={{ fill: 'rgb(var(--bg))' }} fontSize="11" fontFamily="system-ui">Atelier</text>
 
         {/* Subtitle */}
-        <text x="180" y="304" textAnchor="middle" fill="#9CA3AF" fontSize="12" fontFamily="system-ui">
+        <text x="180" y="304" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="12" fontFamily="system-ui">
           The intersection is rare. That&apos;s the point.
         </text>
       </svg>

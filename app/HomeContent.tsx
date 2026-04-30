@@ -241,8 +241,24 @@ function PipelineDiagram() {
   flips the stroke automatically with prefers-color-scheme.
 */
 
-function ProjectGlyph({ kind }: { kind: 'plate' | 'records' | 'pillars' | 'grid' }) {
+function ProjectGlyph({ kind }: { kind: 'plate' | 'records' | 'pillars' | 'grid' | 'scroll' }) {
   const common = 'h-10 w-10 md:h-11 md:w-11 flex-shrink-0 text-gold'
+  if (kind === 'scroll') {
+    return (
+      <svg viewBox="0 0 44 44" className={common} fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+        {/* Document body. */}
+        <rect x="11" y="9" width="22" height="28" rx="1.5" />
+        {/* Section rule (a thin gold line near the top of the doc). */}
+        <line x1="14" y1="14" x2="26" y2="14" />
+        {/* Body text lines. */}
+        <line x1="14" y1="20" x2="30" y2="20" />
+        <line x1="14" y1="25" x2="30" y2="25" />
+        <line x1="14" y1="30" x2="24" y2="30" />
+        {/* Seal in the bottom-right corner. */}
+        <circle cx="30" cy="32" r="2.5" fill="currentColor" stroke="none" opacity="0.85" />
+      </svg>
+    )
+  }
   if (kind === 'plate') {
     return (
       <svg viewBox="0 0 44 44" className={common} fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -592,16 +608,20 @@ export default function HomeContent() {
             </p>
           </Reveal>
 
-          {/*
-            ── Featured project: Roobaroo ──
-            Temporary minimal card. Previous copy on this block described
-            Roobaroo as a "multi-tenant school management system" with
-            fabricated portal roles, institutions and AWS Amplify tags.
-            That was wrong. Roobaroo is a restaurant website. Until the
-            real case study copy is written with the founder, we render a
-            restrained stub that only states verifiable facts: it's a
-            live client project and here is the link.
-          */}
+          {/* ──────────────────────────────────────────────
+              Group 1: Client work
+              Three redacted client engagements that are public on
+              this site. Roobaroo is a live link to the client's
+              own production site; Archive automation and BFSI MIS
+              are case-study sub-pages with redacted client
+              identities.
+          ────────────────────────────────────────────── */}
+          <Reveal className="mb-6 mt-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-text-tertiary border-t border-hairline pt-4">
+              Client work
+            </p>
+          </Reveal>
+
           <Reveal className="mb-6">
             <a
               href="https://roobaroo.vercel.app"
@@ -609,7 +629,7 @@ export default function HomeContent() {
               rel="noopener noreferrer"
               className="group block"
             >
-              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
+              <div className="card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-10">
                 <div className="flex items-start gap-4">
                   <ProjectGlyph kind="plate" />
                   <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-4 gap-3">
@@ -629,18 +649,9 @@ export default function HomeContent() {
             </a>
           </Reveal>
 
-          {/*
-            ── Featured project: Archive automation ──
-            Python pipeline for an LPG distributorship: reconciled ~4,000
-            scanned KYC records against an Excel master, normalised 116
-            fuzzy-duplicate locality names, and published the result to
-            Google Drive with clickable hyperlinks back into the sheet.
-            Client name omitted under DPDPA 2023 confidentiality; all
-            metrics and stack details come from Ankit's own write-up.
-          */}
-          <Reveal delay={STAGGER_LONG / 2} className="mb-10">
+          <Reveal delay={STAGGER_LONG / 2} className="mb-6">
             <a href="/work/archive-automation" className="group block">
-              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
+              <div className="card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
                   <ProjectGlyph kind="records" />
                   <div className="flex-1 min-w-0">
@@ -664,7 +675,6 @@ export default function HomeContent() {
                   </div>
                 </div>
 
-                {/* Metric strip: all numbers from Ankit's verified write-up */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-text-primary/5">
                   {[
                     { num: '3,905', label: 'Records reconciled' },
@@ -682,15 +692,9 @@ export default function HomeContent() {
             </a>
           </Reveal>
 
-          {/*
-            BFSI MIS case study: regulated financial institution engagement.
-            All specific client identifiers are redacted under confidentiality
-            obligations. Content is load-bearing on Ankit's signed founder
-            attestation on the case study page itself.
-          */}
-          <Reveal delay={STAGGER_LONG} className="mb-10">
+          <Reveal delay={STAGGER_LONG} className="mb-12">
             <a href="/work/bfsi-mis" className="group block">
-              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
+              <div className="card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
                   <ProjectGlyph kind="pillars" />
                   <div className="flex-1 min-w-0">
@@ -714,7 +718,6 @@ export default function HomeContent() {
                   </div>
                 </div>
 
-                {/* Category chips in place of metrics: foundation phase, no KPIs published and no stack enumeration on this surface by design */}
                 <div className="flex flex-wrap gap-2 pt-6 border-t border-text-primary/5">
                   {[
                     'Regulated sector',
@@ -725,7 +728,7 @@ export default function HomeContent() {
                   ].map((chip) => (
                     <span
                       key={chip}
-                      className="text-[11px] uppercase tracking-widest text-text-secondary bg-background border border-text-primary/10 rounded-full px-3 py-1.5"
+                      className="text-[11px] uppercase tracking-widest text-text-secondary bg-background border border-hairline rounded-full px-3 py-1.5"
                     >
                       {chip}
                     </span>
@@ -735,50 +738,118 @@ export default function HomeContent() {
             </a>
           </Reveal>
 
-          {/*
-            Timetable engine case study: in house R&D product.
-            End to end build across solver, platform, and surface.
-            All metrics measured directly from the repository and the
-            stress benchmark harness that ships with it.
-          */}
-          <Reveal delay={STAGGER_LONG * 1.5} className="mb-10">
-            <a href="/work/timetable-engine" className="group block">
-              <div className="rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt transition-colors duration-300 p-6 md:p-10">
+          {/* ──────────────────────────────────────────────
+              Group 2: Labs in flight
+              In-house product builds, public progress, link to
+              the labs site at /labs/. The Cloudflare Worker
+              proxies kinyoubiatelier.com/labs/* to a separate
+              Cloudflare Pages deployment that ships from the
+              kinyoubi-atelier/arka monorepo. The links below
+              are regular anchor tags; the proxy is transparent.
+          ────────────────────────────────────────────── */}
+          <Reveal className="mb-6 mt-4">
+            <div className="flex items-baseline justify-between gap-4 border-t border-hairline pt-4">
+              <p className="text-xs font-semibold uppercase tracking-widest text-text-tertiary">
+                Labs in flight
+              </p>
+              <a
+                href="/labs/"
+                className="text-xs font-medium text-gold hover:underline inline-flex items-center gap-1"
+              >
+                All labs
+                <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={STAGGER_LONG / 2} className="mb-6">
+            <a href="/labs/project-barnowl/" className="group block">
+              <div className="card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
                   <ProjectGlyph kind="grid" />
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-6 mb-3">
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1.5">In house R&amp;D · End to end product build</p>
+                        <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1.5">Lab · In private beta · Indian K&ndash;12</p>
                         <h3 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight font-semibold leading-snug">
-                          Building a timetable management engine from the solver up
+                          Project Barn Owl
                         </h3>
                       </div>
                       <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0 self-start mt-4 md:mt-1">
-                        Read case study
+                        See the project
                         <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                       </span>
                     </div>
                     <p className="text-sm md:text-base text-text-secondary leading-relaxed">
-                      An in house R&amp;D build: a constraint engine, a multi tenant data platform, an API, and a role aware surface. Engine, platform, API, exporters, front end, and mobile packaging, all shipped end to end under one roof.
+                      Operating software for Indian K&ndash;12 schools. Eighteen modules behind one login: admissions, academics, accounting, communications, transport, library, and the rest of a school day. Currently in private beta with a small founding cohort.
                     </p>
                   </div>
                 </div>
 
-                {/* Metric strip: all numbers measured from the codebase and stress harness */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-text-primary/5">
+                <div className="flex flex-wrap gap-2 pt-6 border-t border-text-primary/5">
                   {[
-                    { num: '~30.8k', label: 'Lines of code' },
-                    { num: '68+', label: 'REST endpoints shipped' },
-                    { num: '3.6s', label: 'Solve time at 5k variables' },
-                    { num: '94%', label: 'Allotment across scales' },
-                  ].map((m) => (
-                    <div key={m.label}>
-                      <div className="font-heading text-2xl text-gold mb-1 tracking-tight">{m.num}</div>
-                      <div className="text-[11px] text-text-tertiary uppercase tracking-widest leading-tight">{m.label}</div>
+                    '18 modules',
+                    'CSP scheduling',
+                    'Double-entry accounting',
+                    'GST · TDS · Form 16A',
+                    'Multi-tenant',
+                  ].map((chip) => (
+                    <span
+                      key={chip}
+                      className="text-[11px] uppercase tracking-widest text-text-secondary bg-background border border-hairline rounded-full px-3 py-1.5"
+                    >
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </a>
+          </Reveal>
+
+          <Reveal delay={STAGGER_LONG} className="mb-10">
+            <a href="/labs/project-dalmatian/" className="group block">
+              <div className="card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-10">
+                <div className="flex items-start gap-4 mb-6">
+                  <ProjectGlyph kind="scroll" />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-6 mb-3">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1.5">Lab · In knowledge bootstrap · Pilot 2026</p>
+                        <h3 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight font-semibold leading-snug">
+                          Project Dalmatian
+                        </h3>
+                      </div>
+                      <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0 self-start mt-4 md:mt-1">
+                        See the project
+                        <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
                     </div>
+                    <p className="text-sm md:text-base text-text-secondary leading-relaxed">
+                      AI-assisted legal drafting for Indian advocates, built corpus-first. Sixteen agents, six phases, one rule: no clause leaves the system until every citation in it resolves to a SHA256-verified primary source. Pilot opens in Bhubaneswar, Cuttack, Rourkela, and Koraput.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-6 border-t border-text-primary/5">
+                  {[
+                    '16-agent orchestration',
+                    'SHA256-verified corpus',
+                    'Postgres · pgvector',
+                    'DPDP · BCI compliant',
+                    'Odisha pilot',
+                  ].map((chip) => (
+                    <span
+                      key={chip}
+                      className="text-[11px] uppercase tracking-widest text-text-secondary bg-background border border-hairline rounded-full px-3 py-1.5"
+                    >
+                      {chip}
+                    </span>
                   ))}
                 </div>
               </div>

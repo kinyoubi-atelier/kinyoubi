@@ -112,55 +112,55 @@ function ArchitectureDiagram() {
       <svg viewBox="0 0 720 290" xmlns="http://www.w3.org/2000/svg" role="img" className="w-full h-auto max-w-[760px] mx-auto block" aria-label="End to end flow: mobile capture client to a hardened API edge to application services to a database with isolation and field level encryption, and from a de identified view layer to an inference layer inside the trust boundary.">
         <defs>
           <marker id="bfsiArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#a08535" />
+            <path d="M 0 0 L 10 5 L 0 10 z" style={{ fill: 'rgb(var(--gold))' }} />
           </marker>
         </defs>
 
         {/* Mobile client (outside the region box) */}
-        <rect x="10" y="95" width="110" height="70" rx="8" fill="#FFFFFF" stroke="#142850" strokeWidth="1.2" />
-        <text x="65" y="120" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontWeight="600" fontFamily="Inter, system-ui, sans-serif">Mobile capture</text>
-        <text x="65" y="138" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">encrypted</text>
-        <text x="65" y="152" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">local store</text>
+        <rect x="10" y="95" width="110" height="70" rx="8" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--ink))' }} strokeWidth="1.2" />
+        <text x="65" y="120" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="12" fontWeight="600" fontFamily="Inter, system-ui, sans-serif">Mobile capture</text>
+        <text x="65" y="138" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">encrypted</text>
+        <text x="65" y="152" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">local store</text>
 
         {/* Region dashed box */}
-        <rect x="150" y="30" width="560" height="230" rx="10" fill="none" stroke="#142850" strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
-        <text x="160" y="50" fill="#9CA3AF" fontSize="10" letterSpacing="1.4" fontFamily="Inter, system-ui, sans-serif">INDIA REGION · TRUST BOUNDARY</text>
+        <rect x="150" y="30" width="560" height="230" rx="10" fill="none" style={{ stroke: 'rgb(var(--ink))' }} strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
+        <text x="160" y="50" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="10" letterSpacing="1.4" fontFamily="Inter, system-ui, sans-serif">INDIA REGION · TRUST BOUNDARY</text>
 
         {/* API edge */}
-        <rect x="170" y="95" width="120" height="70" rx="8" fill="#F0EEEA" stroke="#142850" strokeWidth="1.2" />
-        <text x="230" y="120" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontWeight="600" fontFamily="Inter, system-ui, sans-serif">API edge</text>
-        <text x="230" y="138" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">TLS enforced</text>
-        <text x="230" y="152" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">role carried</text>
+        <rect x="170" y="95" width="120" height="70" rx="8" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--ink))' }} strokeWidth="1.2" />
+        <text x="230" y="120" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="12" fontWeight="600" fontFamily="Inter, system-ui, sans-serif">API edge</text>
+        <text x="230" y="138" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">TLS enforced</text>
+        <text x="230" y="152" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">role carried</text>
 
         {/* Services */}
-        <rect x="310" y="95" width="120" height="70" rx="8" fill="#F0EEEA" stroke="#142850" strokeWidth="1.2" />
-        <text x="370" y="120" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontWeight="600" fontFamily="Inter, system-ui, sans-serif">Services</text>
-        <text x="370" y="138" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">role to session</text>
-        <text x="370" y="152" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">audit log</text>
+        <rect x="310" y="95" width="120" height="70" rx="8" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--ink))' }} strokeWidth="1.2" />
+        <text x="370" y="120" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="12" fontWeight="600" fontFamily="Inter, system-ui, sans-serif">Services</text>
+        <text x="370" y="138" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">role to session</text>
+        <text x="370" y="152" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">audit log</text>
 
         {/* Data */}
-        <rect x="450" y="95" width="120" height="70" rx="8" fill="#F0EEEA" stroke="#142850" strokeWidth="1.2" />
-        <text x="510" y="120" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontWeight="600" fontFamily="Inter, system-ui, sans-serif">Data layer</text>
-        <text x="510" y="138" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">isolated by role</text>
-        <text x="510" y="152" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">field encryption</text>
+        <rect x="450" y="95" width="120" height="70" rx="8" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--ink))' }} strokeWidth="1.2" />
+        <text x="510" y="120" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="12" fontWeight="600" fontFamily="Inter, system-ui, sans-serif">Data layer</text>
+        <text x="510" y="138" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">isolated by role</text>
+        <text x="510" y="152" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">field encryption</text>
 
         {/* Inference */}
-        <rect x="590" y="95" width="110" height="70" rx="8" fill="#F0EEEA" stroke="#142850" strokeWidth="1.2" />
-        <text x="645" y="120" textAnchor="middle" fill="#1A1A1A" fontSize="12" fontWeight="600" fontFamily="Inter, system-ui, sans-serif">Inference</text>
-        <text x="645" y="138" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">inside boundary</text>
-        <text x="645" y="152" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">de id views only</text>
+        <rect x="590" y="95" width="110" height="70" rx="8" style={{ fill: 'rgb(var(--surface))', stroke: 'rgb(var(--ink))' }} strokeWidth="1.2" />
+        <text x="645" y="120" textAnchor="middle" style={{ fill: 'rgb(var(--ink))' }} fontSize="12" fontWeight="600" fontFamily="Inter, system-ui, sans-serif">Inference</text>
+        <text x="645" y="138" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">inside boundary</text>
+        <text x="645" y="152" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">de id views only</text>
 
         {/* Arrows */}
-        <line x1="122" y1="130" x2="168" y2="130" stroke="#a08535" strokeWidth="1.5" markerEnd="url(#bfsiArrow)" />
-        <line x1="292" y1="130" x2="308" y2="130" stroke="#a08535" strokeWidth="1.5" markerEnd="url(#bfsiArrow)" />
-        <line x1="432" y1="130" x2="448" y2="130" stroke="#a08535" strokeWidth="1.5" markerEnd="url(#bfsiArrow)" />
-        <line x1="572" y1="130" x2="588" y2="130" stroke="#a08535" strokeWidth="1.5" markerEnd="url(#bfsiArrow)" />
+        <line x1="122" y1="130" x2="168" y2="130" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" markerEnd="url(#bfsiArrow)" />
+        <line x1="292" y1="130" x2="308" y2="130" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" markerEnd="url(#bfsiArrow)" />
+        <line x1="432" y1="130" x2="448" y2="130" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" markerEnd="url(#bfsiArrow)" />
+        <line x1="572" y1="130" x2="588" y2="130" style={{ stroke: 'rgb(var(--gold))' }} strokeWidth="1.5" markerEnd="url(#bfsiArrow)" />
 
         {/* Footer text */}
-        <text x="365" y="210" textAnchor="middle" fill="#6B7280" fontSize="11" fontFamily="Inter, system-ui, sans-serif">
+        <text x="365" y="210" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontFamily="Inter, system-ui, sans-serif">
           Data, compute, and inference all pinned to region. No raw PII crosses the de identification boundary.
         </text>
-        <text x="365" y="226" textAnchor="middle" fill="#9CA3AF" fontSize="11" fontStyle="italic" fontFamily="Inter, system-ui, sans-serif">
+        <text x="365" y="226" textAnchor="middle" style={{ fill: 'rgb(var(--ink-3))' }} fontSize="11" fontStyle="italic" fontFamily="Inter, system-ui, sans-serif">
           Vendor agnostic view. Specific services are selected for the engagement and held under NDA.
         </text>
       </svg>
