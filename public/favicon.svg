@@ -1,10 +1,24 @@
 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#D4AF61"/>
-      <stop offset="100%" stop-color="#a08535"/>
-    </linearGradient>
-  </defs>
-  <rect width="32" height="32" rx="6" fill="#142850"/>
-  <text x="16" y="24" font-size="22" font-family="Georgia, serif" font-weight="bold" fill="url(#gold)" text-anchor="middle">金</text>
+  <!--
+    Kinyoubi-House favicon.
+
+    A serif K with a gold superscript bullet. Mirrors the wordmark's
+    typographic signature without using kanji. The K colour flips
+    with prefers-color-scheme so the mark stays legible on both light
+    and dark browser chrome.
+  -->
+  <style>
+    .ink { fill: #111111; }
+    @media (prefers-color-scheme: dark) {
+      .ink { fill: #ECEAE2; }
+    }
+  </style>
+  <text
+    x="6" y="25"
+    font-size="24"
+    font-family="'Iowan Old Style', Charter, Georgia, serif"
+    font-weight="600"
+    class="ink"
+  >K</text>
+  <circle cx="22" cy="9" r="2.4" fill="#B58A3A" />
 </svg>

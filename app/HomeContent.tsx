@@ -132,37 +132,51 @@ function HeroPattern() {
   )
 }
 
+/* Diagrams below are translated to the Kinyoubi-House language: a
+   monochrome ink figure on the page surface, with a single gold
+   accent for connectors and strokes. CSS custom properties drive
+   each fill so the figure flips with prefers-color-scheme. */
+const DIAGRAM_INK = { fill: 'rgb(var(--ink))' }
+const DIAGRAM_SURFACE = {
+  fill: 'rgb(var(--surface))',
+  stroke: 'rgb(var(--gold))',
+}
+const DIAGRAM_GOLD_STROKE = { stroke: 'rgb(var(--gold))' }
+const DIAGRAM_TEXT_ON_INK = { fill: 'rgb(var(--bg))' }
+const DIAGRAM_TEXT_ON_SURFACE = { fill: 'rgb(var(--ink))' }
+const DIAGRAM_GOLD_TEXT = { fill: 'rgb(var(--gold))' }
+
 function OrchestratorDiagram() {
   return (
     <div className="w-full overflow-x-auto -mx-4 px-4">
       <svg viewBox="0 0 420 190" className="w-full min-w-[320px] max-w-lg mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* Orchestrator node */}
-        <rect x="140" y="8" width="140" height="46" rx="23" fill="#142850" />
-        <text x="210" y="37" textAnchor="middle" fill="#F8F7F4" fontSize="14" fontFamily="system-ui" fontWeight="500">Orchestrator</text>
+        <rect x="140" y="8" width="140" height="46" rx="23" style={DIAGRAM_INK} />
+        <text x="210" y="37" textAnchor="middle" style={DIAGRAM_TEXT_ON_INK} fontSize="14" fontFamily="system-ui" fontWeight="500">Orchestrator</text>
 
         {/* Connection lines */}
-        <line x1="175" y1="54" x2="70" y2="96" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-        <line x1="210" y1="54" x2="210" y2="96" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-        <line x1="245" y1="54" x2="350" y2="96" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <line x1="175" y1="54" x2="70" y2="96" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
+        <line x1="210" y1="54" x2="210" y2="96" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
+        <line x1="245" y1="54" x2="350" y2="96" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
 
         {/* Worker nodes */}
-        <rect x="10" y="96" width="120" height="42" rx="21" fill="#F0EEEA" stroke="#a08535" strokeWidth="1.5" />
-        <text x="70" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui">Worker A</text>
+        <rect x="10" y="96" width="120" height="42" rx="21" style={DIAGRAM_SURFACE} strokeWidth="1.5" />
+        <text x="70" y="122" textAnchor="middle" style={DIAGRAM_TEXT_ON_SURFACE} fontSize="13" fontFamily="system-ui">Worker A</text>
 
-        <rect x="150" y="96" width="120" height="42" rx="21" fill="#F0EEEA" stroke="#a08535" strokeWidth="1.5" />
-        <text x="210" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui">Worker B</text>
+        <rect x="150" y="96" width="120" height="42" rx="21" style={DIAGRAM_SURFACE} strokeWidth="1.5" />
+        <text x="210" y="122" textAnchor="middle" style={DIAGRAM_TEXT_ON_SURFACE} fontSize="13" fontFamily="system-ui">Worker B</text>
 
-        <rect x="290" y="96" width="120" height="42" rx="21" fill="#F0EEEA" stroke="#a08535" strokeWidth="1.5" />
-        <text x="350" y="122" textAnchor="middle" fill="#1A1A1A" fontSize="13" fontFamily="system-ui">Worker C</text>
+        <rect x="290" y="96" width="120" height="42" rx="21" style={DIAGRAM_SURFACE} strokeWidth="1.5" />
+        <text x="350" y="122" textAnchor="middle" style={DIAGRAM_TEXT_ON_SURFACE} fontSize="13" fontFamily="system-ui">Worker C</text>
 
         {/* Synthesis lines */}
-        <line x1="70" y1="138" x2="170" y2="160" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-        <line x1="210" y1="138" x2="210" y2="160" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
-        <line x1="350" y1="138" x2="250" y2="160" stroke="#a08535" strokeWidth="1.5" strokeDasharray="4 3" />
+        <line x1="70" y1="138" x2="170" y2="160" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
+        <line x1="210" y1="138" x2="210" y2="160" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
+        <line x1="350" y1="138" x2="250" y2="160" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
 
         {/* Synthesis node */}
-        <rect x="150" y="156" width="120" height="32" rx="16" fill="#142850" />
-        <text x="210" y="177" textAnchor="middle" fill="#D4AF61" fontSize="13" fontFamily="system-ui" fontWeight="500">Synthesis</text>
+        <rect x="150" y="156" width="120" height="32" rx="16" style={DIAGRAM_INK} />
+        <text x="210" y="177" textAnchor="middle" style={DIAGRAM_GOLD_TEXT} fontSize="13" fontFamily="system-ui" fontWeight="500">Synthesis</text>
       </svg>
     </div>
   )
@@ -173,44 +187,75 @@ function PipelineDiagram() {
   return (
     <div className="w-full overflow-x-auto -mx-4 px-4">
       <svg viewBox="0 0 520 80" className="w-full min-w-[340px] max-w-xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {steps.map((step, i) => (
-          <g key={step}>
-            <rect x={i * 104} y="20" width="92" height="42" rx="21" fill={i === 4 ? '#142850' : '#F0EEEA'} stroke="#a08535" strokeWidth="1.5" />
-            <text x={i * 104 + 46} y="46" textAnchor="middle" fill={i === 4 ? '#F8F7F4' : '#1A1A1A'} fontSize="12" fontFamily="system-ui" fontWeight="500">{step}</text>
-            {i < steps.length - 1 && (
-              <line x1={i * 104 + 94} y1="41" x2={i * 104 + 102} y2="41" stroke="#a08535" strokeWidth="1.5" />
-            )}
-          </g>
-        ))}
+        {steps.map((step, i) => {
+          const isFinal = i === 4
+          return (
+            <g key={step}>
+              <rect
+                x={i * 104}
+                y="20"
+                width="92"
+                height="42"
+                rx="21"
+                style={isFinal ? { ...DIAGRAM_INK, stroke: 'rgb(var(--gold))' } : DIAGRAM_SURFACE}
+                strokeWidth="1.5"
+              />
+              <text
+                x={i * 104 + 46}
+                y="46"
+                textAnchor="middle"
+                style={isFinal ? DIAGRAM_TEXT_ON_INK : DIAGRAM_TEXT_ON_SURFACE}
+                fontSize="12"
+                fontFamily="system-ui"
+                fontWeight="500"
+              >
+                {step}
+              </text>
+              {!isFinal && (
+                <line
+                  x1={i * 104 + 94}
+                  y1="41"
+                  x2={i * 104 + 102}
+                  y2="41"
+                  style={DIAGRAM_GOLD_STROKE}
+                  strokeWidth="1.5"
+                />
+              )}
+            </g>
+          )
+        })}
       </svg>
     </div>
   )
 }
 
 /*
-  Project glyphs. Each is a 44x44 inline SVG that sits where the
-  navy-box-with-initial used to live. Style matches OrchestratorDiagram
-  and PipelineDiagram: stroke-only, 1.5 weight, gold (#a08535), no fill.
-  Each glyph wordlessly hints at what the project did before the reader
-  gets to the title, and all four share enough visual DNA (stroke weight,
-  bounding shape, gold hue) to read as one sequenced set.
+  Project glyphs.
+
+  Each is a 44x44 inline SVG that sits where the navy-box-with-initial
+  used to live. Style matches OrchestratorDiagram and PipelineDiagram:
+  stroke-only, 1.5 weight, no fill, with the single gold accent.
+
+  Theme handling: the SVG inherits its colour from the parent text
+  colour via `currentColor`, so wrapping each glyph in `text-gold`
+  flips the stroke automatically with prefers-color-scheme.
 */
 
 function ProjectGlyph({ kind }: { kind: 'plate' | 'records' | 'pillars' | 'grid' }) {
-  const common = 'h-10 w-10 md:h-11 md:w-11 flex-shrink-0'
+  const common = 'h-10 w-10 md:h-11 md:w-11 flex-shrink-0 text-gold'
   if (kind === 'plate') {
     return (
-      <svg viewBox="0 0 44 44" className={common} fill="none" stroke="#a08535" strokeWidth="1.5" aria-hidden="true">
+      <svg viewBox="0 0 44 44" className={common} fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <circle cx="22" cy="25" r="13" />
         <circle cx="22" cy="25" r="7.5" />
-        <circle cx="16.5" cy="9" r="1.25" fill="#a08535" stroke="none" />
-        <circle cx="27.5" cy="9" r="1.25" fill="#a08535" stroke="none" />
+        <circle cx="16.5" cy="9" r="1.25" fill="currentColor" stroke="none" />
+        <circle cx="27.5" cy="9" r="1.25" fill="currentColor" stroke="none" />
       </svg>
     )
   }
   if (kind === 'records') {
     return (
-      <svg viewBox="0 0 44 44" className={common} fill="none" stroke="#a08535" strokeWidth="1.5" aria-hidden="true">
+      <svg viewBox="0 0 44 44" className={common} fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <line x1="8" y1="13" x2="26" y2="13" strokeDasharray="2 2.5" />
         <line x1="8" y1="22" x2="28" y2="22" />
         <line x1="8" y1="31" x2="30" y2="31" />
@@ -221,7 +266,7 @@ function ProjectGlyph({ kind }: { kind: 'plate' | 'records' | 'pillars' | 'grid'
   }
   if (kind === 'pillars') {
     return (
-      <svg viewBox="0 0 44 44" className={common} fill="none" stroke="#a08535" strokeWidth="1.5" aria-hidden="true">
+      <svg viewBox="0 0 44 44" className={common} fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <line x1="12" y1="11" x2="12" y2="28" />
         <line x1="22" y1="11" x2="22" y2="28" />
         <line x1="32" y1="11" x2="32" y2="28" />
@@ -232,14 +277,14 @@ function ProjectGlyph({ kind }: { kind: 'plate' | 'records' | 'pillars' | 'grid'
   }
   // grid
   return (
-    <svg viewBox="0 0 44 44" className={common} fill="none" stroke="#a08535" strokeWidth="1.5" aria-hidden="true">
+    <svg viewBox="0 0 44 44" className={common} fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
       <rect x="8" y="10" width="28" height="24" rx="1.5" />
       <line x1="17" y1="10" x2="17" y2="34" />
       <line x1="27" y1="10" x2="27" y2="34" />
       <line x1="8" y1="18" x2="36" y2="18" />
       <line x1="8" y1="26" x2="36" y2="26" />
-      <rect x="17" y="18" width="10" height="8" fill="#a08535" opacity="0.2" stroke="none" />
-      <rect x="27" y="10" width="9" height="8" fill="#a08535" opacity="0.2" stroke="none" />
+      <rect x="17" y="18" width="10" height="8" fill="currentColor" opacity="0.2" stroke="none" />
+      <rect x="27" y="10" width="9" height="8" fill="currentColor" opacity="0.2" stroke="none" />
     </svg>
   )
 }

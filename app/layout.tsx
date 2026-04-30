@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { inter, playfair, notoSerifJP, jetbrainsMono } from './fonts'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { AtmosphereLayer } from '@/components/atmosphere/AtmosphereLayer'
@@ -56,15 +55,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        inter.variable,
-        playfair.variable,
-        notoSerifJP.variable,
-        jetbrainsMono.variable
-      )}
-    >
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -77,7 +68,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           href="#main-content"
           className={cn(
             'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4',
-            'focus:z-50 focus:px-4 focus:py-2 focus:bg-gold focus:text-white',
+            'focus:z-50 focus:px-4 focus:py-2 focus:bg-gold focus:text-ink',
             'focus:rounded-lg focus:text-sm'
           )}
         >

@@ -1,32 +1,12 @@
-import { Inter, Playfair_Display, Noto_Serif_JP, JetBrains_Mono } from 'next/font/google'
+/*
+  Kinyoubi-House web translation: system font stack only.
 
-export const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
-  display: 'swap',
-})
+  No web fonts, no @import, no CDN references. Type discipline comes
+  from the cascade declared in tailwind.config.ts. This file is kept
+  as a thin export surface so layout.tsx can stay structurally close
+  to its previous form during the migration; it returns an object
+  with no className contributions, which means the <html> element
+  no longer receives font CSS variables that nothing references.
+*/
 
-export const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400'],
-  style: ['normal', 'italic'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
-
-export const notoSerifJP = Noto_Serif_JP({
-  subsets: ['latin'],
-  weight: ['500'],
-  variable: '--font-noto-serif-jp',
-  display: 'swap',
-  preload: false,
-})
-
-export const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-jetbrains',
-  display: 'swap',
-  preload: false,
-})
+export const fontStackClassName = ''

@@ -85,7 +85,7 @@ export function CookieConsent() {
                 <button
                   type="button"
                   onClick={() => accept('all')}
-                  className="text-xs font-medium text-white bg-gold-ink hover:bg-gold px-4 py-2 rounded-lg transition-colors"
+                  className="text-xs font-medium text-ink bg-gold hover:bg-gold/90 px-4 py-2 rounded-lg transition-colors"
                 >
                   Accept all
                 </button>

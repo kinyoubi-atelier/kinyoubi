@@ -2,44 +2,119 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+ * Kinyoubi-House web translation.
+ *
+ * The print system is ink-light, typographically disciplined, and
+ * uses one strict palette: ink on paper with a single gold accent.
+ * The web translation honours that with two changes.
+ *
+ * 1. Background is held slightly off pure white so the surface
+ *    reads as paper rather than a screen. Cards step up to pure
+ *    white so they catch the eye against the page.
+ *
+ * 2. The full system flips with the OS theme. Both modes share
+ *    the same palette logic and the same ink discipline; only the
+ *    luminance pole reverses.
+ *
+ * Tokens are RGB triplets so Tailwind's <alpha-value> utilities
+ * (`text-text-primary/60`, `bg-surface/40`) work uniformly across
+ * themes. Hex values for reference are noted in comments.
+ * ============================================================ */
+
+:root {
+  /* Light mode — slightly off-white paper, ink type. */
+  --bg:           250 250 247;  /* #FAFAF7 */
+  --surface:      255 255 255;  /* #FFFFFF */
+  --ink:           17  17  17;  /* #111111  body, H1, H2 */
+  --ink-2:         68  68  68;  /* #444444  de-emphasised body */
+  --ink-3:        102 102 102;  /* #666666  metadata, captions */
+  --hairline:     207 207 207;  /* #CFCFCF  borders, dividers */
+  --gold:         181 138  58;  /* #B58A3A  accents, hairline rule */
+  --red:          185  28  28;  /* #B91C1C  classification, sparing */
+
+  /* Atmosphere tokens. The paper-warmth swatch is the warm wash
+     that sits over the page; the sumi ink is the focus indicator
+     colour and the vignette anchor. Both flip with theme. */
+  --paper-warmth:        hsl(40 22% 96%);
+  --paper-warmth-strong: hsl(40 22% 92%);
+  --ink-sumi:            hsl(220 12% 9%);
+  --ink-vignette-opacity: 0.06;
+  --seal-red:            #B91C1C;
+
+  /* Atmosphere on/off hook. */
+  --atmosphere-opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode — warm deep ink, paper-warm type. */
+    --bg:           22  21  18;  /* #161512  warm deep ink */
+    --surface:      31  30  26;  /* #1F1E1A  cards, inputs */
+    --ink:         236 234 226;  /* #ECEAE2  warm paper */
+    --ink-2:       176 174 164;  /* #B0AEA4  de-emphasised */
+    --ink-3:       130 128 120;  /* #828078  metadata */
+    --hairline:     58  58  51;  /* #3A3A33  borders, dividers */
+    --gold:        201 164  85;  /* #C9A455  brighter for AA contrast on dark */
+    --red:         220  72  72;  /* #DC4848  brighter red on dark */
+
+    --paper-warmth:        hsl(40 8% 16%);
+    --paper-warmth-strong: hsl(40 8% 13%);
+    --ink-sumi:            hsl(40 14% 92%);
+    --ink-vignette-opacity: 0.18;
+    --seal-red:            #DC4848;
+  }
+}
+
 @layer base {
-  body {
-    @apply bg-background text-text-primary antialiased font-sans;
+  /* The page surface fills the html element so atmosphere layers
+     can sit between the html paint and body content. */
+  html {
+    background-color: rgb(var(--bg));
+    color-scheme: light dark;
   }
 
-  /* Heading hierarchy */
-  h1, h2, h3 {
+  body {
+    background-color: transparent;
+    @apply text-text-primary antialiased font-sans;
+  }
+
+  /* Heading hierarchy.
+     H1, H2: serif primary, ink colour, tight letter spacing.
+     H3:     sans, uppercase letter-spaced. The print system uses
+             this to mark sub-sections without raising the H2 noise.
+     H4-H6:  sans, secondary ink. Quieter still. */
+  h1, h2 {
     @apply font-heading tracking-tight text-text-primary;
+  }
+
+  h3 {
+    @apply font-sans font-semibold text-text-primary;
   }
 
   h4, h5, h6 {
     @apply font-sans font-medium text-text-secondary;
   }
 
-  /* Body text uses sans-serif */
+  /* Body text uses the sans stack at a comfortable reading line
+     height. Print body is 10.5pt at 1.55; the web rests at 16px
+     and 1.625 which lands in the same visual register. */
   p, li, blockquote {
     @apply font-sans text-base leading-relaxed text-text-primary;
   }
 
-  /* Selection highlight — subtle gold tint */
+  /* Selection: a calm gold tint that survives both themes because
+     the alpha keeps the underlying ink readable. */
   ::selection {
-    background-color: rgba(160, 133, 53, 0.15);
+    background-color: rgb(var(--gold) / 0.18);
   }
 
-  /* Focus ring — base reset only.
-   * The expressive focus indicator (brush-stroke border drawn into place
-   * over DURATION_GLANCE) lives in the "Interaction Polish" block at the
-   * bottom of this file. We zero out the system outline here so the
-   * polish layer is the single source of truth for focus visuals. */
-  :focus {
-    outline: none;
-  }
+  /* Focus-ring base reset. The expressive indicator is drawn by
+     the Interaction Polish block at the bottom of this file. */
+  :focus { outline: none; }
 
-  /* Smooth scrolling */
   @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
   }
 }
 
@@ -48,66 +123,83 @@
     text-wrap: balance;
   }
 
-  /* Brand gradient text — gold → navy (for light backgrounds) */
-  .brand-gradient-light {
-    background-image: linear-gradient(
-      135deg,
-      #a08535 0%,
-      #D4AF61 35%,
-      #a08535 55%,
-      #142850 100%
-    );
+  /* Wordmark hairline. A thin gold rule sits beneath the firm
+     wordmark at the masthead and beneath any wordmark used inside
+     the page (cover-style sections). 0.6pt in the print spec; on
+     the web that reads as 1px at the standard density. */
+  .wordmark-rule {
+    height: 1px;
+    background-color: rgb(var(--gold));
+    width: 80mm;
+    max-width: 60%;
+    border: 0;
   }
 
-  /* Brand gradient text — gold → cream (for dark backgrounds) */
-  .brand-gradient-dark {
-    background-image: linear-gradient(
-      135deg,
-      #D4AF61 0%,
-      #a08535 40%,
-      #D4AF61 65%,
-      #F0EEEA 100%
-    );
+  /* Section rule. The print system uses a thin gold border above
+     each H2; on the web we expose it as a utility so any section
+     header can opt in. */
+  .section-rule {
+    border-top: 1px solid rgb(var(--gold));
+    padding-top: 0.75rem;
+  }
+
+  /* Hoverable card. Cards lift on pointer hover with a small
+     translateY and a deeper shadow. The motion respects the
+     reduced-motion preference. This is the principal web-native
+     affordance the print system does not have. */
+  .card-hover-lift {
+    transition:
+      transform var(--duration-glance) var(--ease-sumi),
+      box-shadow var(--duration-glance) var(--ease-sumi),
+      border-color var(--duration-glance) var(--ease-sumi);
+  }
+  @media (hover: hover) {
+    .card-hover-lift:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 4px rgb(17 17 17 / 0.06), 0 12px 28px rgb(17 17 17 / 0.07);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card-hover-lift,
+    .card-hover-lift:hover {
+      transform: none;
+      transition: box-shadow var(--duration-glance) var(--ease-sumi);
+    }
+  }
+}
+
+/* Dark-mode shadow override. On a dark page surface, ink-coloured
+   shadows disappear; we substitute a deeper shadow with higher
+   alpha so cards still read as elevated. */
+@media (prefers-color-scheme: dark) {
+  .shadow-card {
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 0.4),
+      0 6px 14px rgb(0 0 0 / 0.35);
+  }
+  .shadow-card-hover {
+    box-shadow:
+      0 2px 4px rgb(0 0 0 / 0.5),
+      0 12px 28px rgb(0 0 0 / 0.45);
+  }
+}
+@media (hover: hover) and (prefers-color-scheme: dark) {
+  .card-hover-lift:hover {
+    box-shadow:
+      0 2px 4px rgb(0 0 0 / 0.5),
+      0 12px 28px rgb(0 0 0 / 0.45);
   }
 }
 
 /* ============================================================
  * Atmosphere Layer
  *
- * Wave 1 ambient. Three materials, one disable hook. No JS.
- * Sourced from design/tokens/texture.ts — keep in sync.
- *
- * To dial the whole atmosphere off without changing markup, set
- *   --atmosphere-opacity: 0
- * on :root. Reduced motion attenuates the layer to 0.35 so the
- * still composition breathes; reduced data skips the grain fetch.
+ * Three quiet materials sit beneath body content and lift the
+ * paint from "screen" toward "paper". They are tuned to be
+ * imperceptible until you remove them: paper grain, a directional
+ * light wash from the upper right, and a faint ink vignette at
+ * the four edges. All three flip with the OS theme.
  * ============================================================ */
-
-:root {
-  /* Texture tokens, sourced from design/tokens/texture.ts */
-  --paper-grain-opacity: 0.06;
-  --paper-warmth: hsl(40, 22%, 96%);
-  --ink-sumi: hsl(220, 12%, 9%);
-  --ink-vignette-opacity: 0.08;
-  --seal-red: hsl(4, 68%, 42%);
-  --light-direction: 112deg;
-
-  /* Single disable hook for the ambient layer. Default on. */
-  --atmosphere-opacity: 1;
-}
-
-/* Move the page fill onto html so the atmosphere layers can sit
- * between the html paint and body content. The body background
- * rule in @layer base remains; we simply make it transparent
- * here so the fixed atmosphere layers at z-index: -1 are not
- * occluded by body. */
-html {
-  background-color: #F8F7F4;
-}
-
-body {
-  background-color: transparent;
-}
 
 .atmosphere {
   position: fixed;
@@ -126,188 +218,126 @@ body {
   pointer-events: none;
 }
 
-/* 1. Paper grain. Low frequency noise tile, pure greyscale. Sits
- *    under the light wash so the wash lands on the grain. */
 .atmosphere-grain {
   background-image: url('/textures/paper-grain.svg');
   background-repeat: repeat;
   background-size: 256px 256px;
-  /* 0.03 sits comfortably below the 0.06 token ceiling. */
   opacity: 0.03;
   mix-blend-mode: multiply;
 }
 
-/* 2. Directional light wash. A radial gradient whose centre sits
- *    along LIGHT_DIRECTION from the viewport midpoint, in the
- *    upper right. Delta from brightest to darkest is under 4
- *    percent luminance so the visitor reads it as a room, not a
- *    spotlight. */
+@media (prefers-color-scheme: dark) {
+  /* In dark mode the multiply blend swallows the grain because the
+     under-layer is already near-black. Switch to screen blend at a
+     lower opacity so the grain reads as a faint surface texture. */
+  .atmosphere-grain {
+    opacity: 0.04;
+    mix-blend-mode: screen;
+  }
+}
+
 .atmosphere-light {
   background-image: radial-gradient(
     circle at 78% 22%,
     var(--paper-warmth) 0%,
-    rgba(255, 255, 255, 0) 62%
+    rgb(255 255 255 / 0) 62%
   );
   opacity: 0.55;
 }
 
-/* 3. Ink vignette. A faint darkening at the four edges, drawn as
- *    a radial gradient layer. Falloff is outside the reading
- *    column at 1440 wide: the inner 68 percent of the viewport
- *    stays neutral so body copy is never darkened. */
+@media (prefers-color-scheme: dark) {
+  .atmosphere-light {
+    background-image: radial-gradient(
+      circle at 78% 22%,
+      var(--paper-warmth) 0%,
+      rgb(0 0 0 / 0) 62%
+    );
+    opacity: 0.45;
+  }
+}
+
 .atmosphere-vignette {
   background-image: radial-gradient(
     ellipse at center,
-    rgba(0, 0, 0, 0) 62%,
-    rgba(0, 0, 0, var(--ink-vignette-opacity)) 100%
+    rgb(0 0 0 / 0) 62%,
+    rgb(0 0 0 / var(--ink-vignette-opacity)) 100%
   );
 }
 
-/* Reduced motion: attenuate to 0.35 rather than vanish. A frozen
- * motion system paired with a full atmosphere would feel heavy. */
 @media (prefers-reduced-motion: reduce) {
-  :root {
-    --atmosphere-opacity: 0.35;
-  }
+  :root { --atmosphere-opacity: 0.35; }
 }
 
-/* Reduced data: skip the grain fetch cost entirely. Safe to ship
- * even if the UA ignores the query. */
 @media (prefers-reduced-data: reduce) {
-  :root {
-    --atmosphere-opacity: 0;
-  }
+  :root { --atmosphere-opacity: 0; }
 }
 
 /* ============================================================
  * Interaction Polish
  *
- * Wave 6. Six moves, one CSS block, no JS.
- * Tokens consumed (kept in sync with design/tokens/motion.ts):
- *   DURATION_GLANCE   = 300 ms   focus ring draw, link underline draw
- *   DURATION_PRESS    = 60 ms    button dip down
- *   DURATION_CONSIDER = 600 ms   button release recovery
- *   EASE_SUMI         = cubic-bezier(0.2, 0.6, 0.1, 1)
- *   EASE_INK          = cubic-bezier(0.16, 0.84, 0.3, 1)
- *
- * Local CSS variables mirror the token values so the rest of this
- * block reads against named curves rather than raw beziers.
+ * Quiet motion: a focus ring that draws into place, a button dip,
+ * a left-anchored link underline. Tokens mirror the motion module.
  * ============================================================ */
 
 :root {
-  --duration-glance: 300ms;
-  --duration-press: 60ms;
+  --duration-glance:   300ms;
+  --duration-press:     60ms;
   --duration-consider: 600ms;
   --ease-sumi: cubic-bezier(0.2, 0.6, 0.1, 1);
-  --ease-ink: cubic-bezier(0.16, 0.84, 0.3, 1);
+  --ease-ink:  cubic-bezier(0.16, 0.84, 0.3, 1);
 
-  /* Focus indicator. Sumi on light. Two pixel weight clears WCAG 2.2 AA
-   * for the indicator's own thickness; the colour delta against the
-   * background reaches 3:1 for every neutral surface the site uses. */
   --focus-ring-color: var(--ink-sumi);
-  --focus-ring-color-dark: hsl(40, 22%, 96%);
   --focus-ring-width: 2px;
   --focus-ring-offset: 3px;
 }
 
-/* 1. Focus ring — brush-stroke border drawn into place
- * ------------------------------------------------------------
- * Base move: a 2 px outline in --focus-ring-color, drawn as the
- * outline-offset eases in from 0 to its rest distance over
- * DURATION_GLANCE. Because outline animates from a tight border
- * to its offset position, the indicator reads as a stroke that
- * arrives, not a square that pops.
- *
- * Buttons and links living on dark surfaces are switched to the
- * paper-warmth variant by the data-on-dark hook (consumers may
- * opt in by adding data-on-dark to a wrapper, or by using
- * a dark-bg utility — see overrides further down).
- */
 :focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
   border-radius: 2px;
   transition:
     outline-offset var(--duration-glance) var(--ease-ink),
-    outline-color var(--duration-glance) var(--ease-ink);
+    outline-color  var(--duration-glance) var(--ease-ink);
 }
 
-/* On the first paint of focus, the ring sweeps in from the element's
- * own edge to its rest offset. The keyframe is fired once per focus
- * acquisition by the focus-visible state itself; CSS handles it. */
 @keyframes brush-focus-in {
-  from {
-    outline-offset: 0;
-    outline-color: transparent;
-  }
-  to {
-    outline-offset: var(--focus-ring-offset);
-    outline-color: var(--focus-ring-color);
-  }
+  from { outline-offset: 0; outline-color: transparent; }
+  to   { outline-offset: var(--focus-ring-offset); outline-color: var(--focus-ring-color); }
 }
+
 :focus-visible {
   animation: brush-focus-in var(--duration-glance) var(--ease-ink) both;
 }
 
-/* Dark surface variant — matches the surface-dark / navy / gold-bg
- * sections. The light token clears 3:1 against #0E0D22 (surface-dark)
- * and against #142850 (navy). */
-.bg-surface-dark :focus-visible,
-.bg-navy :focus-visible,
-.bg-gold :focus-visible,
-.bg-gold-bright :focus-visible,
-[data-on-dark] :focus-visible {
-  outline-color: var(--focus-ring-color-dark);
-}
-
-/* 2. Button press — DURATION_PRESS dip, DURATION_CONSIDER recovery
- * ------------------------------------------------------------
- * .btn-press is applied by components/ui/Button.tsx to every button
- * variant. The dip is a 1 px translateY on :active. Release recovers
- * over the longer DURATION_CONSIDER with EASE_SUMI so the button
- * settles like a hand leaving paper rather than snapping back.
- *
- * Colour transitions also run here so the variant hover swap shares
- * the same ease as the press.
- */
+/* Button press: a one-pixel dip on press, a slow recovery on
+   release. The colour shifts share the same ease so hover swaps
+   read as one motion language with the press. */
 .btn-press {
   transform: translateY(0);
   transition:
-    transform var(--duration-consider) var(--ease-sumi),
-    background-color var(--duration-glance) var(--ease-sumi),
-    border-color var(--duration-glance) var(--ease-sumi),
-    color var(--duration-glance) var(--ease-sumi);
+    transform        var(--duration-consider) var(--ease-sumi),
+    background-color var(--duration-glance)   var(--ease-sumi),
+    border-color     var(--duration-glance)   var(--ease-sumi),
+    color            var(--duration-glance)   var(--ease-sumi);
 }
+
 .btn-press:active:not(:disabled) {
   transform: translateY(1px);
   transition:
-    transform var(--duration-press) var(--ease-sumi),
+    transform        var(--duration-press) var(--ease-sumi),
     background-color var(--duration-glance) var(--ease-sumi);
 }
 
-/* 3. Link underline — left to right draw on hover and focus
- * ------------------------------------------------------------
- * Applied to two scopes:
- *   • Anchors inside prose containers (article, .prose).
- *   • The .nav-link selector used by Header.tsx.
- *
- * Implementation uses a ::after pseudo whose width animates from 0
- * to 100%. On leave the width retracts from the right side (no
- * transform-origin flip needed — width animates back symmetrically;
- * we shift the origin by anchoring the ::after at left:0 always,
- * which gives a left-anchored draw on enter and a right-side
- * retraction on leave because width transitions back to 0).
- *
- * IMPORTANT: do not apply this rule to every anchor on the page.
- * Buttons rendered as Link carry their own visual language and live
- * outside the prose / nav scopes.
- */
+/* Link underline. Left-anchored draw on hover and focus.
+   Restricted to nav links and prose anchors so buttons, badges,
+   and other affordances keep their own visual language. */
 .nav-link,
 article a,
 .prose a {
   position: relative;
   text-decoration: none;
 }
+
 .nav-link::after,
 article a::after,
 .prose a::after {
@@ -321,6 +351,7 @@ article a::after,
   transition: width var(--duration-glance) var(--ease-ink);
   pointer-events: none;
 }
+
 .nav-link:hover::after,
 .nav-link:focus-visible::after,
 article a:hover::after,
@@ -330,17 +361,9 @@ article a:focus-visible::after,
   width: 100%;
 }
 
-/* 6. Nav current-page seal dot
- * ------------------------------------------------------------
- * Header.tsx renders <span class="seal-dot" aria-hidden /> inside
- * the active nav link. Sized 5 px, centred horizontally beneath
- * the label. SEAL_RED is the single permitted crimson; one per
- * surface, and the header is its surface for this dot.
- *
- * .seal-dot--mobile shifts the dot to sit beside the text in the
- * larger mobile menu where the desktop bottom-centring would crowd
- * the line height.
- */
+/* Active-page indicator: small classification-red dot beneath the
+   active nav link. SEAL_RED is the single permitted crimson and
+   the masthead is its only surface for this dot. */
 .seal-dot {
   position: absolute;
   left: 50%;
@@ -352,6 +375,7 @@ article a:focus-visible::after,
   transform: translateX(-50%);
   pointer-events: none;
 }
+
 .seal-dot--mobile {
   position: relative;
   left: auto;
@@ -364,15 +388,6 @@ article a:focus-visible::after,
   vertical-align: middle;
 }
 
-/* Reduced motion overrides
- * ------------------------------------------------------------
- * Focus indicator: appears instantly at its rest position. No draw,
- * no fade. The still composition is the ring at full state.
- * Button press: no dip. Hover colour shift still registers.
- * Link underline: appears at full width on hover/focus, retracts
- * to nothing on leave, both instant. The composition is the
- * underline either present or absent, no animation between.
- */
 @media (prefers-reduced-motion: reduce) {
   :focus-visible {
     animation: none;
@@ -395,4 +410,3 @@ article a:focus-visible::after,
     transition: none;
   }
 }
-

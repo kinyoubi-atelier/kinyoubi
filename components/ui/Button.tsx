@@ -18,22 +18,29 @@ interface ButtonProps {
   [key: string]: any
 }
 
-/**
- * Variant styles
- *
- * Wave 6 cleanup: the previous primary variant carried `shadow-sm hover:shadow-md`,
- * a decorative drop shadow flagged by charter rule 6. It has been removed. Hover
- * state is now carried by the colour shift alone, which is the seijaku move:
- * the button changes character without announcing itself with a lifted plate.
- *
- * Focus rings are no longer authored per-variant. The global focus-visible rule
- * in app/globals.css ("Interaction Polish" block) draws a single brush-stroke
- * focus border in --ink-sumi over DURATION_GLANCE. One focus language site-wide.
- */
+/*
+  Variant styles, Kinyoubi-House translation.
+
+  primary   ink letterform on gold accent. The contrast pairing is
+            fixed (ink is static, never flipped) so the button reads
+            the same in both light and dark themes.
+  secondary inverts the page surface. Ink fill, paper letterform.
+            Reads as a 'firm' button, contrasting with primary's
+            accent treatment without introducing a third colour.
+  ghost     paper button with a hairline border that thickens to
+            gold on hover. The quietest of the three.
+
+  Focus rings are not authored per-variant; the global focus-visible
+  rule in globals.css draws a single brush-stroke focus border in
+  --ink-sumi over DURATION_GLANCE. One focus language site-wide.
+*/
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'btn-press bg-gold-ink text-white hover:bg-gold',
-  secondary: 'btn-press bg-surface-dark text-text-on-dark hover:bg-navy',
-  ghost: 'btn-press bg-transparent text-text-primary border border-text-primary/20 hover:border-gold hover:text-gold',
+  primary:
+    'btn-press bg-gold text-ink hover:bg-gold/90',
+  secondary:
+    'btn-press bg-text-primary text-background hover:bg-text-primary/90',
+  ghost:
+    'btn-press bg-transparent text-text-primary border border-hairline hover:border-gold hover:text-gold',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
