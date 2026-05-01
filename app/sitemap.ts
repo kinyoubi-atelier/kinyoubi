@@ -131,5 +131,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/notes/or-tools-vs-fet-comparison`,
+      lastModified: new Date('2026-05-01'),
+      changeFrequency: 'yearly',
+      priority: 0.8,
+    },
   ]
 }

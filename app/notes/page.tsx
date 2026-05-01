@@ -27,6 +27,14 @@ type Note = {
 
 const notes: Note[] = [
   {
+    slug: 'or-tools-vs-fet-comparison',
+    title: 'OR-Tools vs FET vs commercial timetabling: an honest comparison',
+    blurb:
+      'Three legitimate tools for the same problem. Picking the wrong one is the kind of unfinished decision that compounds for years.',
+    date: '1 May 2026',
+    topic: 'Constraint solvers · Build vs buy',
+  },
+  {
     slug: 'dpdp-for-saas-builders',
     title: 'DPDP for SaaS builders: where the Act meets the schema',
     blurb:
