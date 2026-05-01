@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { buildArticleSchema, buildBreadcrumbSchema } from '@/lib/schema'
 
 const title = 'OR-Tools vs FET vs commercial timetabling: an honest comparison'
 
@@ -29,6 +31,19 @@ export const metadata: Metadata = {
   },
   twitter: { title, description },
 }
+
+const articleSchema = buildArticleSchema({
+  url: '/notes/or-tools-vs-fet-comparison',
+  headline: title,
+  description,
+  datePublished: '2026-05-01T00:00:00.000Z',
+})
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Notes', url: '/notes' },
+  { name: 'OR-Tools vs FET vs commercial timetabling', url: '/notes/or-tools-vs-fet-comparison' },
+])
 
 function Section({ heading, children }: { heading: string; children: React.ReactNode }) {
   return (
@@ -70,7 +85,10 @@ function CompareCard({
 
 export default function OrToolsVsFetComparisonPage() {
   return (
-    <article className="min-h-screen">
+    <>
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      <article className="min-h-screen">
       {/* Header */}
       <header className="py-20 md:py-28 px-6 md:px-12 border-b border-text-primary/5">
         <div className="max-w-3xl mx-auto">
@@ -426,5 +444,6 @@ export default function OrToolsVsFetComparisonPage() {
         </div>
       </div>
     </article>
+    </>
   )
 }

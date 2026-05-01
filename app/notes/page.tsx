@@ -2,6 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { notes } from '@/lib/notes'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { buildBreadcrumbSchema } from '@/lib/schema'
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Notes', url: '/notes' },
+])
 
 const description =
   'Engineering notes from Kinyoubi Atelier & Co. on DPDP Act compliance, multi-tenant architecture, constraint solvers, fuzzy record linkage, and the long tail of regulated SaaS work.'
@@ -20,7 +27,9 @@ export const metadata: Metadata = {
 
 export default function NotesIndexPage() {
   return (
-    <div className="min-h-screen">
+    <>
+      <JsonLd data={breadcrumbSchema} />
+      <div className="min-h-screen">
       {/* Header */}
       <section className="py-20 md:py-28 px-6 md:px-12 border-b border-text-primary/5">
         <div className="max-w-4xl mx-auto">
@@ -63,5 +72,6 @@ export default function NotesIndexPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

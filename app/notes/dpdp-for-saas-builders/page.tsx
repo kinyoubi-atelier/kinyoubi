@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { buildArticleSchema, buildBreadcrumbSchema } from '@/lib/schema'
 
 const title = 'DPDP for SaaS builders: where the Act meets the schema'
 
@@ -30,6 +32,19 @@ export const metadata: Metadata = {
   twitter: { title, description },
 }
 
+const articleSchema = buildArticleSchema({
+  url: '/notes/dpdp-for-saas-builders',
+  headline: title,
+  description,
+  datePublished: '2026-05-01T00:00:00.000Z',
+})
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Notes', url: '/notes' },
+  { name: 'DPDP for SaaS builders', url: '/notes/dpdp-for-saas-builders' },
+])
+
 function Section({ heading, children }: { heading: string; children: React.ReactNode }) {
   return (
     <section className="mb-14">
@@ -43,7 +58,10 @@ function Section({ heading, children }: { heading: string; children: React.React
 
 export default function DpdpForSaasBuildersPage() {
   return (
-    <article className="min-h-screen">
+    <>
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      <article className="min-h-screen">
       {/* Header */}
       <header className="py-20 md:py-28 px-6 md:px-12 border-b border-text-primary/5">
         <div className="max-w-3xl mx-auto">
@@ -343,5 +361,6 @@ export default function DpdpForSaasBuildersPage() {
         </div>
       </div>
     </article>
+    </>
   )
 }
