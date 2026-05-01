@@ -293,7 +293,19 @@ export function TechStack() {
               )}
             >
               <TechIcon path={tech.icon} color={tech.color} />
-              <span className="relative z-10 text-xs md:text-sm font-medium text-text-secondary group-hover:text-gold group-active:text-gold group-focus-visible:text-gold transition-colors duration-300 text-center">
+              {/* The label and the brand mark are reciprocal. At rest, the
+                  label reads and the logo is a dim greyscale watermark. On
+                  hover / tap / focus, the label fades out as the logo lights
+                  up in its brand colour, so the mark stands alone. The
+                  fade-out is non-display (opacity, not display: none) so
+                  the link's accessible name still resolves to tech.name. */}
+              <span
+                className={cn(
+                  'relative z-10 text-xs md:text-sm font-medium text-text-secondary text-center',
+                  'transition-opacity duration-300 ease-out',
+                  'group-hover:opacity-0 group-active:opacity-0 group-focus-visible:opacity-0',
+                )}
+              >
                 {tech.name}
               </span>
             </motion.a>
