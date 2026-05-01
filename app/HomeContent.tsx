@@ -1,15 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import {
-  ArrowRight,
-  Cpu,
-  Layers,
-  Zap,
-  Shield,
-  GitBranch,
-  CheckCircle2,
-} from 'lucide-react'
+import { ArrowRight, Cpu, Layers, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
@@ -55,30 +47,6 @@ const services = [
   },
 ]
 
-
-const processSteps = [
-  {
-    number: '01',
-    title: 'Understand',
-    description: 'We listen. Deep-dive into your constraints, goals, and existing systems before writing a line of code.',
-  },
-  {
-    number: '02',
-    title: 'Architect',
-    description: 'System design, technology selection, and an implementation roadmap. No surprises down the line.',
-  },
-  {
-    number: '03',
-    title: 'Build',
-    description: 'Parallel workstreams, continuous integration, weekly demos. You see progress every week.',
-  },
-  {
-    number: '04',
-    title: 'Ship',
-    description: 'Production deployment, monitoring, documentation, and handoff. The system runs without us.',
-  },
-]
-
 // Static, verifiable numbers. No animation; the earlier in-view counter
 // was flashing "0+" on first paint, which reads as broken JS. Every number
 // here is traceable: quantitative-analysis tenure, disciplines on file,
@@ -89,29 +57,6 @@ const stats = [
   { value: '4', label: 'Disciplines integrated' },
   { value: '48h', label: 'Response SLA, business days' },
   { value: '~14 hrs', label: 'Manual work replaced, most recent build' },
-]
-
-const capabilities = [
-  {
-    icon: Layers,
-    title: 'Multi-Agent Orchestration',
-    description: 'We build AI systems where orchestrators decompose problems and workers execute in parallel.',
-  },
-  {
-    icon: GitBranch,
-    title: 'Systematized Pipelines',
-    description: 'Every build follows a structured pipeline: from requirements to deployment, nothing is ad hoc.',
-  },
-  {
-    icon: Shield,
-    title: 'Regulatory Research',
-    description: 'Tiered research methodology that scales from landscape scans to full compliance mapping.',
-  },
-  {
-    icon: Zap,
-    title: 'Accelerated Timelines',
-    description: 'Our systematized approach means faster delivery without cutting corners on quality.',
-  },
 ]
 
 /* ─── Inline SVG Components ─── */
@@ -132,113 +77,10 @@ function HeroPattern() {
   )
 }
 
-/* Diagrams below are translated to the Kinyoubi-House language: a
-   monochrome ink figure on the page surface, with a single gold
-   accent for connectors and strokes. CSS custom properties drive
-   each fill so the figure flips with prefers-color-scheme. */
-const DIAGRAM_INK = { fill: 'rgb(var(--ink))' }
-const DIAGRAM_SURFACE = {
-  fill: 'rgb(var(--surface))',
-  stroke: 'rgb(var(--gold))',
-}
-const DIAGRAM_GOLD_STROKE = { stroke: 'rgb(var(--gold))' }
-const DIAGRAM_TEXT_ON_INK = { fill: 'rgb(var(--bg))' }
-const DIAGRAM_TEXT_ON_SURFACE = { fill: 'rgb(var(--ink))' }
-const DIAGRAM_GOLD_TEXT = { fill: 'rgb(var(--gold))' }
-
-function OrchestratorDiagram() {
-  return (
-    <div className="w-full overflow-x-auto -mx-4 px-4">
-      <svg viewBox="0 0 420 190" className="w-full min-w-[320px] max-w-lg mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Orchestrator node */}
-        <rect x="140" y="8" width="140" height="46" rx="23" style={DIAGRAM_INK} />
-        <text x="210" y="37" textAnchor="middle" style={DIAGRAM_TEXT_ON_INK} fontSize="14" fontFamily="system-ui" fontWeight="500">Orchestrator</text>
-
-        {/* Connection lines */}
-        <line x1="175" y1="54" x2="70" y2="96" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
-        <line x1="210" y1="54" x2="210" y2="96" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
-        <line x1="245" y1="54" x2="350" y2="96" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
-
-        {/* Worker nodes */}
-        <rect x="10" y="96" width="120" height="42" rx="21" style={DIAGRAM_SURFACE} strokeWidth="1.5" />
-        <text x="70" y="122" textAnchor="middle" style={DIAGRAM_TEXT_ON_SURFACE} fontSize="13" fontFamily="system-ui">Worker A</text>
-
-        <rect x="150" y="96" width="120" height="42" rx="21" style={DIAGRAM_SURFACE} strokeWidth="1.5" />
-        <text x="210" y="122" textAnchor="middle" style={DIAGRAM_TEXT_ON_SURFACE} fontSize="13" fontFamily="system-ui">Worker B</text>
-
-        <rect x="290" y="96" width="120" height="42" rx="21" style={DIAGRAM_SURFACE} strokeWidth="1.5" />
-        <text x="350" y="122" textAnchor="middle" style={DIAGRAM_TEXT_ON_SURFACE} fontSize="13" fontFamily="system-ui">Worker C</text>
-
-        {/* Synthesis lines */}
-        <line x1="70" y1="138" x2="170" y2="160" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
-        <line x1="210" y1="138" x2="210" y2="160" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
-        <line x1="350" y1="138" x2="250" y2="160" style={DIAGRAM_GOLD_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
-
-        {/* Synthesis node */}
-        <rect x="150" y="156" width="120" height="32" rx="16" style={DIAGRAM_INK} />
-        <text x="210" y="177" textAnchor="middle" style={DIAGRAM_GOLD_TEXT} fontSize="13" fontFamily="system-ui" fontWeight="500">Synthesis</text>
-      </svg>
-    </div>
-  )
-}
-
-function PipelineDiagram() {
-  const steps = ['Requirements', 'Architecture', 'Build', 'Test', 'Deploy']
-  return (
-    <div className="w-full overflow-x-auto -mx-4 px-4">
-      <svg viewBox="0 0 520 80" className="w-full min-w-[340px] max-w-xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {steps.map((step, i) => {
-          const isFinal = i === 4
-          return (
-            <g key={step}>
-              <rect
-                x={i * 104}
-                y="20"
-                width="92"
-                height="42"
-                rx="21"
-                style={isFinal ? { ...DIAGRAM_INK, stroke: 'rgb(var(--gold))' } : DIAGRAM_SURFACE}
-                strokeWidth="1.5"
-              />
-              <text
-                x={i * 104 + 46}
-                y="46"
-                textAnchor="middle"
-                style={isFinal ? DIAGRAM_TEXT_ON_INK : DIAGRAM_TEXT_ON_SURFACE}
-                fontSize="12"
-                fontFamily="system-ui"
-                fontWeight="500"
-              >
-                {step}
-              </text>
-              {!isFinal && (
-                <line
-                  x1={i * 104 + 94}
-                  y1="41"
-                  x2={i * 104 + 102}
-                  y2="41"
-                  style={DIAGRAM_GOLD_STROKE}
-                  strokeWidth="1.5"
-                />
-              )}
-            </g>
-          )
-        })}
-      </svg>
-    </div>
-  )
-}
-
 /*
-  Project glyphs.
-
-  Each is a 44x44 inline SVG that sits where the navy-box-with-initial
-  used to live. Style matches OrchestratorDiagram and PipelineDiagram:
-  stroke-only, 1.5 weight, no fill, with the single gold accent.
-
-  Theme handling: the SVG inherits its colour from the parent text
-  colour via `currentColor`, so wrapping each glyph in `text-gold`
-  flips the stroke automatically with prefers-color-scheme.
+  Project glyphs. Each is a 44x44 stroke-only inline SVG with a single gold
+  accent. Inherits colour from the parent text colour via currentColor, so
+  wrapping each glyph in text-gold flips the stroke with prefers-color-scheme.
 */
 
 function ProjectGlyph({ kind }: { kind: 'plate' | 'records' | 'pillars' | 'grid' | 'scroll' }) {
@@ -424,86 +266,7 @@ export default function HomeContent() {
       </section>
 
       {/* ──────────────────────────────────────────────
-          SECTION 4: Process - "How We Work"
-      ────────────────────────────────────────────── */}
-      <section className="py-24 md:py-32 px-6 md:px-12 bg-surface-dark">
-        <div className="max-w-6xl mx-auto">
-          {/* Wave 7 reduced motion pass: replaced raw motion.div with Reveal so
-              the section heading honours the house still composition (opacity
-              one, no translate from frame one) under prefers reduced motion. */}
-          <Reveal className="mb-16">
-            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">Process</p>
-            <h2 className="font-heading text-display-sm md:text-display text-text-on-dark tracking-tight max-w-lg">
-              How every engagement works
-            </h2>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
-            {processSteps.map((step, index) => (
-              <Reveal
-                key={step.number}
-                delay={index * STAGGER_LONG}
-                className="relative"
-              >
-                {/* Connector line (desktop only) */}
-                {index < processSteps.length - 1 && (
-                  <div className="hidden md:block absolute -top-4 left-[calc(100%_-_8px)] w-[calc(100%_-_40px)] h-px bg-gold/20" />
-                )}
-                <div className="text-4xl font-heading text-gold/30 mb-4">{step.number}</div>
-                <h3 className="text-lg font-semibold text-text-on-dark mb-2">{step.title}</h3>
-                <p className="text-sm text-text-on-dark/60 leading-relaxed">{step.description}</p>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Pipeline diagram — Reveal with a longer delay so the structural
-              illustration arrives after the four step cards have settled. */}
-          <Reveal
-            delay={STAGGER_LONG * 4}
-            className="mt-16 pt-12 border-t border-text-on-dark/10"
-          >
-            <PipelineDiagram />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ──────────────────────────────────────────────
-          SECTION 5: Capabilities Visual Grid
-      ────────────────────────────────────────────── */}
-      <section className="py-24 md:py-32 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto">
-          <Reveal className="mb-14">
-            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">Capabilities</p>
-            <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-lg">
-              What sets us apart
-            </h2>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
-            {capabilities.map((cap, index) => (
-              <Reveal key={cap.title} delay={index * STAGGER_LONG}>
-                <div className="p-6 md:p-8 rounded-card border border-text-primary/5 hover:border-gold/20 transition-colors h-full">
-                  <cap.icon className="h-6 w-6 text-gold mb-4" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-text-primary mb-2">{cap.title}</h3>
-                  <p className="text-text-secondary leading-relaxed">{cap.description}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Orchestrator diagram */}
-          <Reveal className="bg-background-alt rounded-card p-8 md:p-12">
-            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-6 text-center">Multi-Agent Architecture</p>
-            <OrchestratorDiagram />
-            <p className="text-xs text-text-tertiary text-center mt-6">
-              Proprietary framework. © 2026 Kinyoubi Atelier & Co.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ──────────────────────────────────────────────
-          SECTION 6: Stats / Numbers
+          SECTION 4: Stats / Numbers
       ────────────────────────────────────────────── */}
       <section className="py-20 md:py-24 px-6 md:px-12 bg-background-alt border-y border-text-primary/5">
         <div className="max-w-5xl mx-auto">
@@ -521,7 +284,7 @@ export default function HomeContent() {
       </section>
 
       {/* ──────────────────────────────────────────────
-          SECTION 7: Credibility / Founder Signal
+          SECTION 5: Credibility / Founder Signal
       ────────────────────────────────────────────── */}
       <section className="py-24 md:py-32 px-6 md:px-12">
         <div className="max-w-3xl mx-auto text-center">
@@ -549,46 +312,7 @@ export default function HomeContent() {
       </section>
 
       {/* ──────────────────────────────────────────────
-          SECTION 8: What You Get (Checklist)
-      ────────────────────────────────────────────── */}
-      <section className="py-24 md:py-32 px-6 md:px-12 bg-background-alt">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            {/* Wave 7: replaced the horizontal x slide with the house Reveal so
-                the heading column lands at its natural position from the first
-                frame in reduced motion. The previous x slide was decorative
-                only; the composition reads the same without it. */}
-            <Reveal>
-              <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">Every engagement</p>
-              <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight mb-4">
-                What you get
-              </h2>
-              <p className="text-text-secondary text-lg leading-relaxed">
-                We don't just write code and disappear. Every engagement includes the structure, documentation, and thinking that makes your investment last.
-              </p>
-            </Reveal>
-
-            <Reveal delay={STAGGER_LONG} className="space-y-4">
-              {[
-                'Production-ready, tested code',
-                'Architecture documentation',
-                'Deployment & CI/CD setup',
-                'Knowledge transfer & handoff',
-                'Post-launch support window',
-                'Weekly progress demos',
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                  <span className="text-text-primary">{item}</span>
-                </div>
-              ))}
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ──────────────────────────────────────────────
-          SECTION 9: Portfolio / Built with Care
+          SECTION 6: Portfolio / Built with Care
       ────────────────────────────────────────────── */}
       <section id="built-with-care" className="scroll-mt-24 py-24 md:py-32 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
@@ -807,12 +531,12 @@ export default function HomeContent() {
       </section>
 
       {/* ──────────────────────────────────────────────
-          SECTION 10: Testimonials (hidden until populated)
+          SECTION 7: Testimonials (hidden until populated)
       ────────────────────────────────────────────── */}
       <Testimonials />
 
       {/* ──────────────────────────────────────────────
-          SECTION 11: Final CTA
+          SECTION 8: Final CTA
       ────────────────────────────────────────────── */}
       <section className="py-28 md:py-36 px-6 md:px-12 bg-surface-dark relative overflow-hidden">
         {/* Decorative gradient orb */}
