@@ -608,20 +608,6 @@ export default function HomeContent() {
             </p>
           </Reveal>
 
-          {/* ──────────────────────────────────────────────
-              Group 1: Client work
-              Three redacted client engagements that are public on
-              this site. Roobaroo is a live link to the client's
-              own production site; Archive automation and BFSI MIS
-              are case-study sub-pages with redacted client
-              identities.
-          ────────────────────────────────────────────── */}
-          <Reveal className="mb-6 mt-4">
-            <p className="text-xs font-semibold uppercase tracking-widest text-text-tertiary border-t border-hairline pt-4">
-              Client work
-            </p>
-          </Reveal>
-
           <Reveal className="mb-6">
             <a
               href="https://roobaroo.vercel.app"
@@ -738,118 +724,50 @@ export default function HomeContent() {
             </a>
           </Reveal>
 
-          {/* ──────────────────────────────────────────────
-              Group 2: Labs in flight
-              In-house product builds, public progress, link to
-              the labs site at /labs/. The Cloudflare Worker
-              proxies kinyoubiatelier.com/labs/* to a separate
-              Cloudflare Pages deployment that ships from the
-              kinyoubi-atelier/arka monorepo. The links below
-              are regular anchor tags; the proxy is transparent.
-          ────────────────────────────────────────────── */}
-          <Reveal className="mb-6 mt-4">
-            <div className="flex items-baseline justify-between gap-4 border-t border-hairline pt-4">
-              <p className="text-xs font-semibold uppercase tracking-widest text-text-tertiary">
-                Labs in flight
-              </p>
-              <a
-                href="/labs/"
-                className="text-xs font-medium text-gold hover:underline inline-flex items-center gap-1"
-              >
-                All labs
-                <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-          </Reveal>
-
-          <Reveal delay={STAGGER_LONG / 2} className="mb-6">
-            <a href="/labs/project-barnowl/" className="group block">
+          {/* In-house R&D case study. The named lab projects (Barn
+              Owl, Dalmatian) are not publicly promoted on this
+              surface yet, pending trademark filings on the product
+              names. The timetable engine remains as a published
+              engineering case study because the work itself is
+              ours and the page does not name the surrounding
+              product. */}
+          <Reveal delay={STAGGER_LONG * 1.5} className="mb-10">
+            <a href="/work/timetable-engine" className="group block">
               <div className="card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
                   <ProjectGlyph kind="grid" />
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-6 mb-3">
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1.5">Lab · In private beta · Indian K&ndash;12</p>
+                        <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1.5">In house R&amp;D · End to end product build</p>
                         <h3 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight font-semibold leading-snug">
-                          Project Barn Owl
+                          Building a timetable management engine from the solver up
                         </h3>
                       </div>
                       <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0 self-start mt-4 md:mt-1">
-                        See the project
+                        Read case study
                         <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                       </span>
                     </div>
                     <p className="text-sm md:text-base text-text-secondary leading-relaxed">
-                      Operating software for Indian K&ndash;12 schools. Eighteen modules behind one login: admissions, academics, accounting, communications, transport, library, and the rest of a school day. Currently in private beta with a small founding cohort.
+                      An in house R&amp;D build: a constraint engine, a multi tenant data platform, an API, and a role aware surface. Engine, platform, API, exporters, front end, and mobile packaging, all shipped end to end under one roof.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 pt-6 border-t border-text-primary/5">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-text-primary/5">
                   {[
-                    '18 modules',
-                    'CSP scheduling',
-                    'Double-entry accounting',
-                    'GST · TDS · Form 16A',
-                    'Multi-tenant',
-                  ].map((chip) => (
-                    <span
-                      key={chip}
-                      className="text-[11px] uppercase tracking-widest text-text-secondary bg-background border border-hairline rounded-full px-3 py-1.5"
-                    >
-                      {chip}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </a>
-          </Reveal>
-
-          <Reveal delay={STAGGER_LONG} className="mb-10">
-            <a href="/labs/project-dalmatian/" className="group block">
-              <div className="card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-10">
-                <div className="flex items-start gap-4 mb-6">
-                  <ProjectGlyph kind="scroll" />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-6 mb-3">
-                      <div className="min-w-0 flex-1">
-                        <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1.5">Lab · In knowledge bootstrap · Pilot 2026</p>
-                        <h3 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight font-semibold leading-snug">
-                          Project Dalmatian
-                        </h3>
-                      </div>
-                      <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0 self-start mt-4 md:mt-1">
-                        See the project
-                        <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </span>
+                    { num: '~30.8k', label: 'Lines of code' },
+                    { num: '68+', label: 'REST endpoints shipped' },
+                    { num: '3.6s', label: 'Solve time at 5k variables' },
+                    { num: '94%', label: 'Allotment across scales' },
+                  ].map((m) => (
+                    <div key={m.label}>
+                      <div className="font-heading text-2xl text-gold mb-1 tracking-tight">{m.num}</div>
+                      <div className="text-[11px] text-text-tertiary uppercase tracking-widest leading-tight">{m.label}</div>
                     </div>
-                    <p className="text-sm md:text-base text-text-secondary leading-relaxed">
-                      AI-assisted legal drafting for Indian advocates, built corpus-first. Sixteen agents, six phases, one rule: no clause leaves the system until every citation in it resolves to a SHA256-verified primary source. Pilot opens in Bhubaneswar, Cuttack, Rourkela, and Koraput.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-2 pt-6 border-t border-text-primary/5">
-                  {[
-                    '16-agent orchestration',
-                    'SHA256-verified corpus',
-                    'Postgres · pgvector',
-                    'DPDP · BCI compliant',
-                    'Odisha pilot',
-                  ].map((chip) => (
-                    <span
-                      key={chip}
-                      className="text-[11px] uppercase tracking-widest text-text-secondary bg-background border border-hairline rounded-full px-3 py-1.5"
-                    >
-                      {chip}
-                    </span>
                   ))}
                 </div>
               </div>
@@ -872,7 +790,7 @@ export default function HomeContent() {
                     Core Web Vitals, published with the screenshot
                   </h3>
                   <p className="text-text-secondary max-w-xl leading-relaxed">
-                    We don&apos;t print targets on our own homepage. The latest PageSpeed Insights run &mdash; date, URL, and the unedited screenshot &mdash; is hosted on our security page alongside the measurement methodology.
+                    We don&apos;t print targets on our own homepage. The latest PageSpeed Insights run (date, URL, and the unedited screenshot) is hosted on our security page alongside the measurement methodology.
                   </p>
                 </div>
                 <a

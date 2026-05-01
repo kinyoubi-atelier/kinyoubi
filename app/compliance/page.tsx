@@ -5,7 +5,7 @@ import { SITE } from '@/lib/constants'
 export const metadata: Metadata = {
   title: 'Email Compliance & Notices | Kinyoubi Atelier & Co.',
   description:
-    'Email compliance policies for Kinyoubi Atelier & Co. — confidentiality, intellectual property, data protection, and communication integrity.',
+    'Email compliance policies for Kinyoubi Atelier & Co.: confidentiality, intellectual property, data protection, and communication integrity.',
 }
 
 /**
@@ -117,7 +117,7 @@ export default function CompliancePage() {
               intellectual property of {SITE.name} unless expressly assigned or
               licensed in writing under a separate executed agreement. Receipt of
               an email does not grant the recipient any licence, right, title, or
-              interest — whether by implication, estoppel, or otherwise — in any
+              interest (whether by implication, estoppel, or otherwise) in any
               such materials.
             </p>
           </LegalSection>
@@ -143,8 +143,8 @@ export default function CompliancePage() {
               GDPR.
             </p>
             <p className="text-text-secondary leading-relaxed">
-              For data inquiries — including access, correction, erasure, or
-              withdrawal of consent — contact{' '}
+              For data inquiries (including access, correction, erasure, or
+              withdrawal of consent), contact{' '}
               <a
                 href={`mailto:${SITE.email}`}
                 className="text-gold hover:underline"
