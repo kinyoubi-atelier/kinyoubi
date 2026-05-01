@@ -247,7 +247,7 @@ export default function WorkContent() {
           >
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">Work</p>
             <h1 className="font-heading text-hero-sm md:text-hero text-text-primary mb-6 tracking-tight">
-              Four published case studies. Every number traceable.
+              Selected published work, from an active practice. Every number traceable.
             </h1>
             <p className="text-lg md:text-xl text-text-secondary max-w-2xl leading-relaxed">
               What we ship, how we ship it, and the numbers we are willing to stand behind. Client identifiers are sanitised. Metrics are counted, not rounded.
