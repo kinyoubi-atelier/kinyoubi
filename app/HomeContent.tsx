@@ -322,14 +322,19 @@ export default function HomeContent() {
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight">
               The proof is in the work
             </h2>
-            {/* Section underline. Static gold hairline left-aligned under
-                the h2; no animation, by design (the InkStroke primitive's
-                IntersectionObserver doesn't fire reliably under React 19 +
-                Next 16, and a still hairline reads correctly without it). */}
-            <hr
-              aria-hidden="true"
-              className="mt-5 mb-4 h-px border-0 bg-gold/50 w-[min(18rem,40%)]"
-            />
+            {/* Section underline. One ink stroke per section, drawn once
+                on viewport entry. Different surface from the hero stroke
+                at the top of the page: this one signs off the portfolio
+                header. */}
+            <div className="mt-5 mb-4 flex" aria-hidden="true">
+              <InkStroke
+                d="M 0 1 L 100 1"
+                viewBox="0 0 100 2"
+                strokeWidth={1}
+                color="var(--ink-sumi)"
+                className="h-[2px] w-[min(18rem,40%)] opacity-60"
+              />
+            </div>
             <p className="text-text-secondary mt-4 max-w-xl">
               A small, growing portfolio: from live client sites to the one you're reading now.
             </p>

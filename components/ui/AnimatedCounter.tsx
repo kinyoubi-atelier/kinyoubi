@@ -13,10 +13,12 @@
  * § A1) using a polled visibility check plus framer-motion's animate(),
  * but the animation refused to settle under React 19 + Next 16
  * StrictMode in dev: each mount's animation was cancelled before any
- * tick fired. The other four interventions in that round shipped fine;
- * this one is left as a passthrough until the StrictMode interaction
- * is understood. Keep the static render; the wrong fix is worse than
- * no animation here.
+ * tick fired. The InkStroke primitive in the same round had a related
+ * bug (its IntersectionObserver also did not fire reliably) that was
+ * fixed by switching to framer-motion's whileInView API; reapplying
+ * the same pattern here is the natural next attempt, but is left for
+ * a follow-up rather than reopening this round. Keep the static render
+ * until then.
  *
  * Current behaviour: dumb passthrough. No hooks, no animation, no
  * in-view gate. The component is kept as a named export so any

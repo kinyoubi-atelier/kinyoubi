@@ -5,27 +5,36 @@
  *
  * Seijaku purpose
  * A brush stroke that draws itself from one end to the other, using
- * stroke-dasharray and stroke-dashoffset on a single SVG path. This is the
+ * framer-motion's pathLength animation on a single SVG path. This is the
  * atomic gesture the studio vocabulary is built from: underlines beneath
- * hero headings, seal marks, the signature object candidates for case study
- * hero surfaces in Wave 2. One stroke per surface is the rule; this
+ * hero headings, seal marks, and the signature object candidates for case
+ * study hero surfaces in Wave 2. One stroke per surface is the rule; this
  * primitive does not enforce it, the consumer does.
  *
+ * Implementation note (2026-05-02)
+ * The previous version drove the animation from a local useState +
+ * IntersectionObserver pair. Under React 19 + Next 16 that combination
+ * raced with framer-motion's animation lifecycle: animations stalled
+ * partway through (the home-hero stroke was stuck at ~22% in production)
+ * and below-the-fold strokes never started at all. This rewrite uses
+ * framer-motion's own whileInView + viewport API instead, which is
+ * StrictMode-safe by design and removes the race entirely.
+ *
  * Contract
- *   a) Exactly one path. If the intended mark is a compound shape, it is not
- *      a stroke; use SVG elsewhere.
- *   b) Duration defaults to DURATION_SETTLE because a finishing line is an
- *      arrival.
- *   c) Reduced motion renders the stroke fully drawn from the first frame.
- *      The still composition is the completed stroke itself, not an empty
- *      canvas.
- *   d) Draws once on enter-in-view. Does not replay on re-enter.
- *   e) The stroke colour defaults to currentColor so surrounding text colour
- *      controls the ink. Consumers who need a specific ink pass an explicit
- *      value, typically var(--ink-sumi) or var(--seal-red).
+ *   a) Exactly one path. If the intended mark is a compound shape, it is
+ *      not a stroke; use SVG elsewhere.
+ *   b) Duration defaults to DURATION_SETTLE because a finishing line is
+ *      an arrival.
+ *   c) Reduced motion renders the stroke fully drawn from the first
+ *      frame. The still composition is the completed stroke itself, not
+ *      an empty canvas.
+ *   d) Draws once on enter-in-view (viewport.once: true). Does not
+ *      replay on re-enter.
+ *   e) The stroke colour defaults to currentColor so surrounding text
+ *      colour controls the ink. Consumers who need a specific ink pass
+ *      an explicit value, typically var(--ink-sumi) or var(--seal-red).
  */
 
-import { useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 
 import {
@@ -67,35 +76,21 @@ export function InkStroke({
   ariaLabel,
 }: InkStrokeProps) {
   const prefersReducedMotion = useReducedMotion()
-  const ref = useRef<SVGPathElement | null>(null)
-  const [inView, setInView] = useState(false)
-
-  // A local IntersectionObserver is used instead of framer-motion's
-  // whileInView because the stroke animates via the path element's own
-  // pathLength, which benefits from being triggered once with exact timing.
-  useEffect(() => {
-    if (prefersReducedMotion) return
-    const node = ref.current
-    if (!node) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setInView(true)
-            observer.disconnect()
-            break
-          }
-        }
-      },
-      { threshold: 0.2 },
-    )
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [prefersReducedMotion])
 
   const ariaProps = ariaLabel
     ? { role: 'img', 'aria-label': ariaLabel }
     : { 'aria-hidden': true as const }
+
+  // Reduced motion: render the stroke fully drawn from the first frame
+  // by setting initial directly to pathLength: 1 and skipping whileInView
+  // entirely. The composition at rest is the completed stroke, not an
+  // empty canvas.
+  const initial = prefersReducedMotion
+    ? { pathLength: 1 as const }
+    : { pathLength: 0 as const }
+  const whileInView = prefersReducedMotion
+    ? undefined
+    : { pathLength: 1 as const }
 
   return (
     <svg
@@ -106,14 +101,14 @@ export function InkStroke({
       {...ariaProps}
     >
       <motion.path
-        ref={ref}
         d={d}
         stroke={color}
         strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
-        initial={prefersReducedMotion ? { pathLength: 1 } : { pathLength: 0 }}
-        animate={prefersReducedMotion || inView ? { pathLength: 1 } : undefined}
+        initial={initial}
+        whileInView={whileInView}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{
           duration: msToSec(durationMs),
           delay: msToSec(delay),

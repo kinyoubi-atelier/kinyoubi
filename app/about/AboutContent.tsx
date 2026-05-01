@@ -8,6 +8,7 @@ import { Card } from '@/components/ui/Card'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { PaperTexture } from '@/components/ui/PaperTexture'
 import { SITE } from '@/lib/constants'
+import { InkStroke } from '@/design/primitives/InkStroke'
 import {
   DURATION_SETTLE,
   EASE_SETTLE,
@@ -177,11 +178,16 @@ export default function AboutContent() {
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight">
               Three principles we follow
             </h2>
-            {/* Static gold hairline under the section h2. */}
-            <hr
-              aria-hidden="true"
-              className="mt-5 h-px border-0 bg-gold/50 w-[min(18rem,40%)]"
-            />
+            {/* Section underline drawn once on viewport entry. */}
+            <div className="mt-5 flex" aria-hidden="true">
+              <InkStroke
+                d="M 0 1 L 100 1"
+                viewBox="0 0 100 2"
+                strokeWidth={1}
+                color="var(--ink-sumi)"
+                className="h-[2px] w-[min(18rem,40%)] opacity-60"
+              />
+            </div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
