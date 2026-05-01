@@ -117,5 +117,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.6,
     },
+    // Notes / editorial surface. Each piece targets a buyer-research query
+    // that the case studies do not directly answer.
+    {
+      url: `${baseUrl}/notes`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/notes/dpdp-for-saas-builders`,
+      lastModified: new Date('2026-05-01'),
+      changeFrequency: 'yearly',
+      priority: 0.8,
+    },
   ]
 }
