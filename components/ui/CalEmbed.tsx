@@ -45,7 +45,7 @@ export function CalEmbed({ eventType = '30min', variant = 'card', className = ''
           </div>
         </div>
         <p className="text-sm text-text-secondary leading-relaxed mb-4">
-          We'll discuss your project requirements, timeline, and how we can help. No commitment, no pressure — just a conversation.
+          We&rsquo;ll discuss your project requirements, timeline, and how we can help. No commitment, no pressure; just a conversation.
         </p>
         <p className="text-xs text-text-tertiary italic">
           Scheduling widget will appear here once configured.
@@ -94,7 +94,7 @@ export function CalEmbed({ eventType = '30min', variant = 'card', className = ''
         </div>
       </div>
       <p className="text-sm text-text-secondary leading-relaxed mb-5">
-        We'll discuss your project, timeline, and approach. No commitment — just a conversation to see if there's a fit.
+        We&rsquo;ll discuss your project, timeline, and approach. No commitment; just a conversation to see if there&rsquo;s a fit.
       </p>
       <a
         href={calUrl}
