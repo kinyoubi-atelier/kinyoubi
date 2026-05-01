@@ -51,12 +51,18 @@ interface TechItem {
  *   AWS Lambda      · BFSI MIS (compute layer)
  *   Cloudflare      · this site, /labs Worker proxy
  *   Vercel          · this site, Roobaroo
+ *   Burp Suite      · BFSI MIS pentest pass (regulated handover artifact)
+ *   OWASP ZAP       · BFSI MIS pentest pass (open-source counterpart)
+ *   Nmap            · BFSI MIS network reconnaissance
+ *   sqlmap          · BFSI MIS injection-surface coverage
  *
- * Tools held until their case study lands on main, or until founder names them:
+ * Tools held until their case study lands on main:
  *   Anthropic API   · legal-drafting-methodology (in-flight)
- *   Pentest tooling · awaiting specific names
- *   Beads           · classed as a coding-agent workflow tool, not architectural;
- *                     proposed for a separate "How we work" surface, not this grid
+ *
+ * Tools intentionally NOT on this grid (they are workflow / dev-side, not
+ * architectural; surfaced instead in the "How the code gets written" note
+ * on /about):
+ *   Beads, Claude Code, Cursor
  */
 const techStack: TechItem[] = [
   // Frontend / UI
@@ -189,6 +195,35 @@ const techStack: TechItem[] = [
     href: 'https://vercel.com',
     color: 'var(--ink)',
     icon: 'M12 1L24 22H0L12 1z',
+  },
+  // Security audit toolchain (BFSI MIS pentest pass)
+  {
+    name: 'Burp Suite',
+    href: 'https://portswigger.net/burp',
+    color: '#FF6633',
+    // Concentric target rings + centre dot.
+    icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm0 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4z',
+  },
+  {
+    name: 'OWASP ZAP',
+    href: 'https://www.zaproxy.org',
+    color: '#00549E',
+    // Lightning bolt for the "Zap" mark.
+    icon: 'M14 2L4 14h6l-2 8 10-12h-6l2-8z',
+  },
+  {
+    name: 'Nmap',
+    href: 'https://nmap.org',
+    color: '#1F7A8C',
+    // Five-node network graph (corners + centre).
+    icon: 'M5 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM19 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM12 11a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM5 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM19 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4z',
+  },
+  {
+    name: 'sqlmap',
+    href: 'https://sqlmap.org',
+    color: '#C8102E',
+    // Database stack — three rings with cylinder body.
+    icon: 'M5 5c0-1.7 3.1-3 7-3s7 1.3 7 3v14c0 1.7-3.1 3-7 3s-7-1.3-7-3V5zm14 0c0 1.1-3.1 2-7 2s-7-.9-7-2 3.1-2 7-2 7 .9 7 2zm0 4c0 1.1-3.1 2-7 2s-7-.9-7-2v-1c0 1.1 3.1 2 7 2s7-.9 7-2v1zm0 5c0 1.1-3.1 2-7 2s-7-.9-7-2v-1c0 1.1 3.1 2 7 2s7-.9 7-2v1z',
   },
 ]
 

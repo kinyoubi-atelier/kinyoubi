@@ -291,6 +291,78 @@ export default function AboutContent() {
         </div>
       </section>
 
+      {/* How the code gets written — workflow tooling note. Sits between
+          the founder bio and the CTA so the reader has just absorbed
+          who is doing the work; this paragraph is honest about how. */}
+      <section className="py-20 md:py-28 px-6 md:px-12">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
+              Working method
+            </p>
+            <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight mb-8 leading-tight">
+              How the code gets written.
+            </h2>
+            <div className="space-y-6 text-text-primary text-lg leading-relaxed">
+              <p>
+                AI coding agents (
+                <a
+                  href="https://claude.com/claude-code"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold hover:underline"
+                >
+                  Claude Code
+                </a>
+                ,{' '}
+                <a
+                  href="https://cursor.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold hover:underline"
+                >
+                  Cursor
+                </a>
+                ) are the daily writing tool, with{' '}
+                <a
+                  href="https://paddo.dev/blog/beads-memory-for-coding-agents/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold hover:underline"
+                >
+                  Beads
+                </a>{' '}
+                layered on top to maintain cross-session memory across long
+                refactors. Without that memory layer the agent silently
+                rewrites a pattern it forgot the next morning, and the
+                architectural consistency that took two weeks to establish
+                is gone in a single session.
+              </p>
+              <p>
+                The agent is the typist, not the architect. Trade-offs,
+                structural calls, naming, and the decisions that compound for
+                years remain mine. The output is not, on average, faster than
+                what I would write alone. It is more thorough, because the
+                agent does not get tired of writing the test that catches the
+                edge case I would have skipped.
+              </p>
+              <p className="text-text-secondary text-base">
+                Listed here, not on the &ldquo;What we build with&rdquo; grid
+                on the home page, because these tools sit on the studio side
+                of the keyboard. Nothing on that grid touches the
+                client&rsquo;s system through the agent; the deployed
+                architecture is its own inventory.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-24 md:py-32 px-6 md:px-12">
         <div className="max-w-2xl mx-auto text-center">
