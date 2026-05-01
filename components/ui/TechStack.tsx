@@ -28,7 +28,8 @@ interface TechItem {
 
 /**
  * The tools on this grid are traceable: every item appears in at least one
- * published case study below. Ordered by layer, frontend to infra.
+ * published case study or labs project on this site. Ordered by layer,
+ * frontend to infra.
  *
  *   Next.js         · this site, Roobaroo
  *   React           · this site, timetable engine
@@ -41,7 +42,8 @@ interface TechItem {
  *   Python          · consumer archive automation
  *   pandas          · consumer archive automation (Excel reconciliation)
  *   openpyxl        · consumer archive automation (Excel write with hyperlinks)
- *   PostgreSQL      · timetable engine, BFSI MIS (under RLS)
+ *   PostgreSQL      · timetable engine, BFSI MIS (under RLS), labs project D
+ *   pgvector        · labs project D (semantic-search / RAG layer)
  *   OR-Tools        · timetable engine (CP-SAT solver core)
  *   AWS             · BFSI MIS (ap-south-1 region, general infra)
  *   AWS Cognito     · BFSI MIS (auth and identity)
@@ -50,9 +52,11 @@ interface TechItem {
  *   Cloudflare      · this site, /labs Worker proxy
  *   Vercel          · this site, Roobaroo
  *
- * Tools held until their case study lands on main:
+ * Tools held until their case study lands on main, or until founder names them:
  *   Anthropic API   · legal-drafting-methodology (in-flight)
- *   Beads + sec audit · awaiting tool names from the founder
+ *   Pentest tooling · awaiting specific names
+ *   Beads           · classed as a coding-agent workflow tool, not architectural;
+ *                     proposed for a separate "How we work" surface, not this grid
  */
 const techStack: TechItem[] = [
   // Frontend / UI
@@ -130,6 +134,13 @@ const techStack: TechItem[] = [
     href: 'https://www.postgresql.org',
     color: '#4169E1',
     icon: 'M17.128 0a10.134 10.134 0 0 0-2.755.403l-.063.02A10.922 10.922 0 0 0 12.6.258C11.422.238 10.41.524 9.594 1 8.79.721 7.122.24 5.364.336 4.14.403 2.804.775 1.814 1.82.827 2.86.377 4.382.493 6.397.534 7.115.65 7.869.84 8.642c.188.77.45 1.564.798 2.358.347.794.786 1.607 1.343 2.386.272.381.573.74.912 1.062a4.12 4.12 0 0 0-.006.044c-.075.588-.074 1.09.04 1.537.115.449.363.838.753 1.076.39.238.856.312 1.372.2a3.3 3.3 0 0 0 .895-.357c.057.047.116.092.176.134.344.244.747.404 1.199.474-.074.283-.09.584-.015.885a2.16 2.16 0 0 0 .48.857 6.148 6.148 0 0 0-.186.4c-.19.441-.36.91-.367 1.424-.01.669.27 1.286.855 1.692.583.405 1.387.548 2.39.282 1.081-.286 1.816-.945 2.276-1.66.459-.714.667-1.468.714-2.069a4.908 4.908 0 0 0-.043-.726c.397-.129.741-.324 1.032-.576.538-.466.835-1.073.975-1.687.282-1.226.06-2.512-.248-3.477a6.6 6.6 0 0 0-.42-.96l.096-.063c.789-.54 1.344-1.257 1.597-2.092.252-.835.172-1.715-.17-2.508-.342-.792-.916-1.497-1.581-2.059A8.335 8.335 0 0 0 17.128 0z',
+  },
+  {
+    name: 'pgvector',
+    href: 'https://github.com/pgvector/pgvector',
+    color: '#336791',
+    // Nested diamonds, evoking a vector field / nearest-neighbour space.
+    icon: 'M12 2L22 12 12 22 2 12zM12 6L18 12 12 18 6 12zM12 10L14 12 12 14 10 12z',
   },
   // Engines / Infra / AI
   {
