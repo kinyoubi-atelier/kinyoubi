@@ -334,7 +334,7 @@ export default function CapabilitiesContent() {
               What we build with these frameworks
             </p>
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-2xl">
-              Five product shapes, every one in a published case study
+              Product shapes, each one in a published case study
             </h2>
           </motion.div>
 

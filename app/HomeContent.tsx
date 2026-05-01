@@ -5,6 +5,7 @@ import { ArrowRight, Cpu, Layers, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
 import { BrandLockup } from '@/components/ui/BrandLockup'
 import { ScrollCue } from '@/components/ui/ScrollCue'
 import { Testimonials } from '@/components/ui/Testimonials'
@@ -233,7 +234,7 @@ export default function HomeContent() {
           <Reveal className="mb-14">
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">What we do</p>
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-2xl">
-              Three engagement shapes, three published case studies
+              The engagement shapes we are free to publish
             </h2>
           </Reveal>
 
@@ -273,12 +274,11 @@ export default function HomeContent() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-4xl md:text-5xl font-heading text-text-primary mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-text-secondary">{stat.label}</div>
-              </div>
+              <AnimatedCounter
+                key={stat.label}
+                value={stat.value}
+                label={stat.label}
+              />
             ))}
           </div>
         </div>
@@ -322,6 +322,19 @@ export default function HomeContent() {
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight">
               The proof is in the work
             </h2>
+            {/* Section underline. One ink stroke per section, drawn once
+                on viewport entry. Different surface from the hero stroke
+                at the top of the page: this one signs off the portfolio
+                header. */}
+            <div className="mt-5 mb-4 flex" aria-hidden="true">
+              <InkStroke
+                d="M 0 1 L 100 1"
+                viewBox="0 0 100 2"
+                strokeWidth={1}
+                color="var(--ink-sumi)"
+                className="h-[2px] w-[min(18rem,40%)] opacity-60"
+              />
+            </div>
             <p className="text-text-secondary mt-4 max-w-xl">
               A small, growing portfolio: from live client sites to the one you're reading now.
             </p>

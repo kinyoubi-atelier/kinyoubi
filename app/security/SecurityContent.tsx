@@ -15,6 +15,7 @@ import {
   CheckCircle2,
 } from 'lucide-react'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { InkStroke } from '@/design/primitives/InkStroke'
 import {
   DURATION_CONSIDER,
   EASE_INK_ARRAY,
@@ -293,9 +294,19 @@ export default function SecurityContent() {
             viewport={{ once: true }}
           >
             <p className="text-xs font-medium text-gold uppercase tracking-widest mb-3">Scope 1</p>
-            <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight mb-6">
+            <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight">
               This marketing site
             </h2>
+            {/* Section underline drawn once on viewport entry. */}
+            <div className="mt-5 mb-6 flex" aria-hidden="true">
+              <InkStroke
+                d="M 0 1 L 100 1"
+                viewBox="0 0 100 2"
+                strokeWidth={1}
+                color="var(--ink-sumi)"
+                className="h-[2px] w-[min(18rem,40%)] opacity-60"
+              />
+            </div>
             <p className="text-text-secondary text-lg leading-relaxed mb-10">
               A Next.js static export hosted on Cloudflare Pages at kinyoubiatelier.com. No backend, no database,
               no login, no customer data at rest on our infrastructure. The only third parties that

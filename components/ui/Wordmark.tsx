@@ -1,3 +1,4 @@
+import { BreathingGroup } from '@/design/primitives/BreathingGroup'
 import { cn } from '@/lib/utils'
 
 /*
@@ -73,13 +74,22 @@ export function Wordmark({
         )}
       >
         Kinyoubi Atelier &amp; Co.
-        <sup
-          aria-hidden="true"
-          className="ml-[0.1em] align-super text-gold"
-          style={{ fontSize: '0.55em', lineHeight: 0 }}
+        {/* The gold superscript bullet breathes on a DURATION_BREATH cycle so
+            the masthead has a barely-perceptible heartbeat on every page.
+            Reduced motion locks the bullet at the centre of the cycle and
+            no animation runs. */}
+        <BreathingGroup
+          intensity="faint"
+          className="inline-block ml-[0.1em] align-super text-gold"
         >
-          •
-        </sup>
+          <sup
+            aria-hidden="true"
+            className="text-gold"
+            style={{ fontSize: '0.55em', lineHeight: 0 }}
+          >
+            •
+          </sup>
+        </BreathingGroup>
       </span>
       {showRule && (
         <hr aria-hidden="true" className="wordmark-rule mt-3" />

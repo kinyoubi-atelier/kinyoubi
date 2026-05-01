@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { FolioCurrent } from '@/components/motifs/FolioCurrent'
 import { LatticeMotif } from '@/components/motifs/LatticeMotif'
 import { VaultMotif } from '@/components/motifs/VaultMotif'
 // RiverMotif is the page level signature for the Archive Automation
@@ -19,11 +20,11 @@ import {
 
 /* ─── Data ─── */
 
-// 'none' is reserved for case studies that do not yet have a dedicated
-// surface motif. Cards rendered with 'none' show no watermark; this is
-// preferred over borrowing another study's motif, which would break the
-// 50 metre silhouette rule the seijaku motifs are designed around.
-type MotifKey = 'lattice' | 'vault' | 'river' | 'none'
+// Each case study has a dedicated surface motif. Borrowing another study's
+// motif would break the 50 metre silhouette rule the seijaku motifs are
+// designed around, so a new study without a motif is design debt; close
+// it by adding to this union and to CardMotif before publishing the study.
+type MotifKey = 'lattice' | 'vault' | 'river' | 'folio'
 
 interface CaseStudy {
   eyebrow: string
@@ -39,14 +40,15 @@ function CardMotif({ motif }: { motif: MotifKey }) {
   // Wave 3 motifs are rendered at a soft watermark opacity inside the
   // card bounds. The wrapping div is absolute and pointer-events none so
   // it never interferes with link behaviour; the motifs themselves are
-  // aria-hidden. 'none' renders nothing; see the type comment for why.
-  if (motif === 'none') return null
-  const MotifNode: ComponentType | null =
+  // aria-hidden.
+  const MotifNode: ComponentType =
     motif === 'lattice'
       ? () => <LatticeMotif />
       : motif === 'vault'
       ? () => <VaultMotif />
-      : null
+      : motif === 'folio'
+      ? () => <FolioCurrent />
+      : () => <RiverCurrent />
   return (
     <div
       aria-hidden="true"
@@ -59,16 +61,16 @@ function CardMotif({ motif }: { motif: MotifKey }) {
         borderRadius: 'inherit',
       }}
     >
-      {MotifNode ? <MotifNode /> : <RiverCurrent />}
+      <MotifNode />
     </div>
   )
 }
 
 // Case study order reflects the engagement shapes the studio publishes
 // proof for: product and platform engineering, regulated builds, workflow
-// automation, and a sanitised methodology brief from in-house R&D. The
-// methodology slot sits last because it is the most recent publication
-// and the only one without a dedicated surface motif yet.
+// automation, and a sanitised methodology brief from in-house R&D. Each
+// study has its own dedicated surface motif so the four cards differ at
+// 50 metres.
 const caseStudies: CaseStudy[] = [
   {
     eyebrow: 'In house R&D · End to end product build',
@@ -128,7 +130,7 @@ const caseStudies: CaseStudy[] = [
     ],
     href: '/work/legal-drafting-methodology',
     tags: ['In house R&D', 'Knowledge bootstrap', 'Deterministic verification', 'Foundation first'],
-    motif: 'none',
+    motif: 'folio',
   },
 ]
 
@@ -245,7 +247,7 @@ export default function WorkContent() {
           >
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">Work</p>
             <h1 className="font-heading text-hero-sm md:text-hero text-text-primary mb-6 tracking-tight">
-              Four published case studies. Every number traceable.
+              Selected published work, from an active practice. Every number traceable.
             </h1>
             <p className="text-lg md:text-xl text-text-secondary max-w-2xl leading-relaxed">
               What we ship, how we ship it, and the numbers we are willing to stand behind. Client identifiers are sanitised. Metrics are counted, not rounded.

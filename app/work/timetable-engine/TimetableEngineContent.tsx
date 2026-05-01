@@ -347,7 +347,7 @@ export default function TimetableEngineContent() {
           >
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">Stage 4 · Surface</p>
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight mb-6">
-              Five themes and a role for every viewer
+              A theme set, with a role for every viewer
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed">
               The front end is a small, purpose built design system with no external component library. Five themes, including two high contrast variants, shipped in the first pass. Role aware views mean the admin sees a full editor, a teacher sees only their own schedule plus substitute requests, and students and parents see a read only schedule tuned to their enrolment. The app is PWA capable for offline reading, and a mobile scaffold lets the same codebase ship as a native package when the engagement calls for it.
