@@ -27,6 +27,22 @@ type Note = {
 
 const notes: Note[] = [
   {
+    slug: 'postgres-rls-multitenant',
+    title: 'Multi-tenant Postgres with Row-Level Security: a working pattern',
+    blurb:
+      'RLS is one SQL clause and three operational disciplines. Skip a discipline and the clause stops protecting you.',
+    date: '1 May 2026',
+    topic: 'Postgres · Multi-tenant · RLS',
+  },
+  {
+    slug: 'python-fuzzy-record-linkage',
+    title: 'Fuzzy record linkage in Python: when rapidfuzz is enough',
+    blurb:
+      'Most reconciliations need a normalisation pass and a string distance, not a machine-learning system. Until they don’t.',
+    date: '1 May 2026',
+    topic: 'Python · Fuzzy matching · Record linkage',
+  },
+  {
     slug: 'or-tools-vs-fet-comparison',
     title: 'OR-Tools vs FET vs commercial timetabling: an honest comparison',
     blurb:

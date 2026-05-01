@@ -137,5 +137,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/notes/postgres-rls-multitenant`,
+      lastModified: new Date('2026-05-01'),
+      changeFrequency: 'yearly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/notes/python-fuzzy-record-linkage`,
+      lastModified: new Date('2026-05-01'),
+      changeFrequency: 'yearly',
+      priority: 0.8,
+    },
   ]
 }
