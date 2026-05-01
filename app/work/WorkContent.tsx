@@ -19,7 +19,11 @@ import {
 
 /* ─── Data ─── */
 
-type MotifKey = 'lattice' | 'vault' | 'river'
+// 'none' is reserved for case studies that do not yet have a dedicated
+// surface motif. Cards rendered with 'none' show no watermark; this is
+// preferred over borrowing another study's motif, which would break the
+// 50 metre silhouette rule the seijaku motifs are designed around.
+type MotifKey = 'lattice' | 'vault' | 'river' | 'none'
 
 interface CaseStudy {
   eyebrow: string
@@ -35,7 +39,8 @@ function CardMotif({ motif }: { motif: MotifKey }) {
   // Wave 3 motifs are rendered at a soft watermark opacity inside the
   // card bounds. The wrapping div is absolute and pointer-events none so
   // it never interferes with link behaviour; the motifs themselves are
-  // aria-hidden.
+  // aria-hidden. 'none' renders nothing; see the type comment for why.
+  if (motif === 'none') return null
   const MotifNode: ComponentType | null =
     motif === 'lattice'
       ? () => <LatticeMotif />
@@ -59,10 +64,11 @@ function CardMotif({ motif }: { motif: MotifKey }) {
   )
 }
 
-// Case study order reflects the three engagement shapes the studio publishes
-// proof for: product and platform engineering, regulated builds, and
-// workflow automation. The fourth slot is reserved for a research brief
-// once sanitised for publication.
+// Case study order reflects the engagement shapes the studio publishes
+// proof for: product and platform engineering, regulated builds, workflow
+// automation, and a sanitised methodology brief from in-house R&D. The
+// methodology slot sits last because it is the most recent publication
+// and the only one without a dedicated surface motif yet.
 const caseStudies: CaseStudy[] = [
   {
     eyebrow: 'In house R&D · End to end product build',
@@ -108,6 +114,21 @@ const caseStudies: CaseStudy[] = [
     href: '/work/archive-automation',
     tags: ['Python', 'Fuzzy matching', 'Idempotent pipelines', 'Batch reconciliation'],
     motif: 'river',
+  },
+  {
+    eyebrow: 'In house R&D · Methodology',
+    title: 'AI-assisted legal drafting for Indian advocates: a methodology',
+    summary:
+      'A working methodology from an in house R&D build, with an Odisha pilot in preparation. Knowledge bootstrap before code, a deterministic floor under every LLM judge, and a refuse-to-draft gate that names what it is missing. Architecture shaped by a hard constraint: no practising advocate on the team pre-launch.',
+    metrics: [
+      { value: '0', label: 'Adversarial hallucinations' },
+      { value: '98.5%', label: 'Citation precision' },
+      { value: '4 / 4', label: 'AI-judge pass band' },
+      { value: '36', label: 'Indian jurisdictions' },
+    ],
+    href: '/work/legal-drafting-methodology',
+    tags: ['In house R&D', 'Knowledge bootstrap', 'Deterministic verification', 'Foundation first'],
+    motif: 'none',
   },
 ]
 
@@ -224,7 +245,7 @@ export default function WorkContent() {
           >
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">Work</p>
             <h1 className="font-heading text-hero-sm md:text-hero text-text-primary mb-6 tracking-tight">
-              Three published case studies. Every number traceable.
+              Four published case studies. Every number traceable.
             </h1>
             <p className="text-lg md:text-xl text-text-secondary max-w-2xl leading-relaxed">
               What we ship, how we ship it, and the numbers we are willing to stand behind. Client identifiers are sanitised. Metrics are counted, not rounded.
