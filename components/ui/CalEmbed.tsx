@@ -5,31 +5,54 @@ import { motion } from 'framer-motion'
 import { Calendar, ExternalLink } from 'lucide-react'
 
 /**
- * Cal.com Scheduling Embed
+ * Scheduling Embed
  *
- * Renders an inline Cal.com booking widget.
- * Set your Cal.com username in .env.local:
- * NEXT_PUBLIC_CAL_USERNAME=your-username
+ * Renders a card linking out to whichever scheduling backend the studio is
+ * using. The component is provider-agnostic; configure ONE of:
  *
- * Cal.com free tier: unlimited bookings, 1 event type, 1 calendar connection.
- * Sign up at https://cal.com
+ *   NEXT_PUBLIC_SCHEDULER_URL   (preferred; any full URL)
+ *     e.g. https://calendar.app.google/abc123  (Google Appointment Schedule)
+ *     e.g. https://cal.com/username/30min      (Cal.com)
+ *     e.g. https://savvycal.com/u/event        (SavvyCal)
+ *
+ *   NEXT_PUBLIC_CAL_USERNAME    (legacy; Cal.com-specific)
+ *     The component builds https://cal.com/{username}/{eventType}
+ *
+ * Recommended: Google Calendar Appointment Schedule. Workspace native,
+ * auto-generates Google Meet links, writes events back to the linked
+ * Google Calendar, no third-party SaaS dependency.
+ *
+ * Both env vars are inlined at build time; set them as repo secrets in
+ * the deploy workflow (.github/workflows/deploy.yml).
  */
 
+const SCHEDULER_URL = process.env.NEXT_PUBLIC_SCHEDULER_URL
 const CAL_USERNAME = process.env.NEXT_PUBLIC_CAL_USERNAME
 
 interface CalEmbedProps {
-  /** Cal.com event type slug (e.g., "30min", "discovery") */
+  /** Cal.com event type slug (used only with the legacy CAL_USERNAME env var) */
   eventType?: string
-  /** Display variant */
+  /** Display variant. Inline iframe embedding is Cal.com-specific; the
+   *  card variant works for every scheduler URL. */
   variant?: 'inline' | 'card'
   className?: string
 }
 
 export function CalEmbed({ eventType = '30min', variant = 'card', className = '' }: CalEmbedProps) {
   const [loaded, setLoaded] = useState(false)
-  const calUrl = CAL_USERNAME
-    ? `https://cal.com/${CAL_USERNAME}/${eventType}`
-    : null
+
+  // Resolve the booking URL: prefer SCHEDULER_URL, fall back to legacy
+  // CAL_USERNAME, otherwise return null and render the placeholder.
+  const calUrl = SCHEDULER_URL
+    ? SCHEDULER_URL
+    : CAL_USERNAME
+      ? `https://cal.com/${CAL_USERNAME}/${eventType}`
+      : null
+
+  // The inline iframe variant only works with Cal.com. If a generic
+  // SCHEDULER_URL is configured, force the card variant; iframe embed
+  // is unreliable across providers.
+  const effectiveVariant = SCHEDULER_URL ? 'card' : variant
 
   // If no Cal.com username configured, show a placeholder
   if (!calUrl) {
@@ -54,7 +77,7 @@ export function CalEmbed({ eventType = '30min', variant = 'card', className = ''
     )
   }
 
-  if (variant === 'inline') {
+  if (effectiveVariant === 'inline') {
     return (
       <div className={`relative ${className}`}>
         {!loaded && (

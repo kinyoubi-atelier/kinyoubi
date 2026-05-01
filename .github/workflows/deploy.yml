@@ -42,6 +42,11 @@ jobs:
           # Add your env vars as GitHub Secrets if needed:
           # NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
           # NEXT_PUBLIC_CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
+          # Scheduling backend. Configure ONE in repo Settings -> Secrets:
+          #   SCHEDULER_URL  (preferred; any full booking URL, e.g.
+          #                   Google Appointment Schedule, Cal.com, SavvyCal)
+          #   CAL_USERNAME   (legacy; Cal.com username only)
+          NEXT_PUBLIC_SCHEDULER_URL: ${{ secrets.SCHEDULER_URL }}
           NEXT_PUBLIC_CAL_USERNAME: ${{ secrets.CAL_USERNAME }}
           # NEXT_PUBLIC_FORMSPREE_ID: ${{ secrets.FORMSPREE_ID }}
           # NEXT_PUBLIC_GOOGLE_SHEETS_URL: ${{ secrets.GOOGLE_SHEETS_URL }}
