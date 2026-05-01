@@ -8,11 +8,19 @@
  * load, the observer race could leave it at 0 indefinitely on some
  * browsers).
  *
- * It's now a dumb passthrough. No hooks, no animation, no in-view gate.
- * If you want a number to change over time, compute the new value and
- * re-render the page — don't animate to it.
+ * It was reattempted in the 2026-05-02 visual-engagement round (see
+ * /Users/ankitsahu/.claude/plans/we-need-to-do-harmonic-lollipop.md
+ * § A1) using a polled visibility check plus framer-motion's animate(),
+ * but the animation refused to settle under React 19 + Next 16
+ * StrictMode in dev: each mount's animation was cancelled before any
+ * tick fired. The other four interventions in that round shipped fine;
+ * this one is left as a passthrough until the StrictMode interaction
+ * is understood. Keep the static render; the wrong fix is worse than
+ * no animation here.
  *
- * Kept as a named export so any lingering imports don't break the build.
+ * Current behaviour: dumb passthrough. No hooks, no animation, no
+ * in-view gate. The component is kept as a named export so any
+ * lingering imports do not break the build.
  */
 
 interface AnimatedCounterProps {

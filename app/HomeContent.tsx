@@ -5,6 +5,7 @@ import { ArrowRight, Cpu, Layers, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
 import { BrandLockup } from '@/components/ui/BrandLockup'
 import { ScrollCue } from '@/components/ui/ScrollCue'
 import { Testimonials } from '@/components/ui/Testimonials'
@@ -273,12 +274,11 @@ export default function HomeContent() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-4xl md:text-5xl font-heading text-text-primary mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-text-secondary">{stat.label}</div>
-              </div>
+              <AnimatedCounter
+                key={stat.label}
+                value={stat.value}
+                label={stat.label}
+              />
             ))}
           </div>
         </div>
@@ -322,6 +322,14 @@ export default function HomeContent() {
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight">
               The proof is in the work
             </h2>
+            {/* Section underline. Static gold hairline left-aligned under
+                the h2; no animation, by design (the InkStroke primitive's
+                IntersectionObserver doesn't fire reliably under React 19 +
+                Next 16, and a still hairline reads correctly without it). */}
+            <hr
+              aria-hidden="true"
+              className="mt-5 mb-4 h-px border-0 bg-gold/50 w-[min(18rem,40%)]"
+            />
             <p className="text-text-secondary mt-4 max-w-xl">
               A small, growing portfolio: from live client sites to the one you're reading now.
             </p>

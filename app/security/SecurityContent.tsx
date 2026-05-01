@@ -293,9 +293,14 @@ export default function SecurityContent() {
             viewport={{ once: true }}
           >
             <p className="text-xs font-medium text-gold uppercase tracking-widest mb-3">Scope 1</p>
-            <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight mb-6">
+            <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight">
               This marketing site
             </h2>
+            {/* Static gold hairline under the section h2. */}
+            <hr
+              aria-hidden="true"
+              className="mt-5 mb-6 h-px border-0 bg-gold/50 w-[min(18rem,40%)]"
+            />
             <p className="text-text-secondary text-lg leading-relaxed mb-10">
               A Next.js static export hosted on Cloudflare Pages at kinyoubiatelier.com. No backend, no database,
               no login, no customer data at rest on our infrastructure. The only third parties that

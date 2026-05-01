@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { PaperTexture } from '@/components/ui/PaperTexture'
 import { SITE } from '@/lib/constants'
 import {
   DURATION_SETTLE,
@@ -138,6 +139,11 @@ const principles = [
 export default function AboutContent() {
   return (
     <>
+      {/* Ambient paper grain backdrop. Fixed to viewport, behind all content,
+          aria-hidden, no pointer events. Gives the long prose sections a
+          subtle texture without competing for attention. */}
+      <PaperTexture />
+
       {/* Hero */}
       <section className="py-24 md:py-36 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
@@ -171,6 +177,11 @@ export default function AboutContent() {
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight">
               Three principles we follow
             </h2>
+            {/* Static gold hairline under the section h2. */}
+            <hr
+              aria-hidden="true"
+              className="mt-5 h-px border-0 bg-gold/50 w-[min(18rem,40%)]"
+            />
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

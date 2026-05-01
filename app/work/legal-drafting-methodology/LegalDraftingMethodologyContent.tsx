@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
+import { FolioMotif } from '@/components/motifs/FolioMotif'
 
 /* ─── Data ─── */
 
@@ -228,6 +229,12 @@ function Tag({ children }: { children: React.ReactNode }) {
 export default function LegalDraftingMethodologyContent() {
   return (
     <div>
+      {/* Wave 3 motif: folio binding edge with two review-mark ticks at
+          top and bottom thirds. Page-level signature for the legal-
+          drafting methodology study; right side so it complements the
+          archive automation study's left-edge river. */}
+      <FolioMotif side="right" />
+
       {/* Hero */}
       <section className="pt-24 md:pt-36 pb-16 md:pb-20 px-6 md:px-12">
         <div className="max-w-3xl mx-auto">

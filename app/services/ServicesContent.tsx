@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { Card } from '@/components/ui/Card'
 import { FAQAccordion, faqStructuredData } from '@/components/ui/FAQAccordion'
+import { PaperTexture } from '@/components/ui/PaperTexture'
 import { ProjectEstimator } from '@/components/ui/ProjectEstimator'
 import { Reveal } from '@/design/primitives/Reveal'
 import { STAGGER_LONG } from '@/design/tokens/motion'
@@ -250,6 +251,10 @@ const faqItems = [
 export default function ServicesContent() {
   return (
     <>
+      {/* Ambient paper grain backdrop. Same primitive as the about page;
+          fixed to viewport, aria-hidden, no pointer events. */}
+      <PaperTexture />
+
       {/* Hero */}
       <section className="py-24 md:py-36 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
