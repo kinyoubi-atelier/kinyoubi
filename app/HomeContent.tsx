@@ -10,6 +10,7 @@ import { ScrollCue } from '@/components/ui/ScrollCue'
 import { Testimonials } from '@/components/ui/Testimonials'
 import { TechStack } from '@/components/ui/TechStack'
 import { SITE } from '@/lib/constants'
+import { notes } from '@/lib/notes'
 import { BreathingGroup } from '@/design/primitives/BreathingGroup'
 import { InkStroke } from '@/design/primitives/InkStroke'
 import { Reveal } from '@/design/primitives/Reveal'
@@ -531,12 +532,63 @@ export default function HomeContent() {
       </section>
 
       {/* ──────────────────────────────────────────────
-          SECTION 7: Testimonials (hidden until populated)
+          SECTION 7: From the studio (Notes preview)
+      ────────────────────────────────────────────── */}
+      <section className="py-24 md:py-32 px-6 md:px-12 bg-background-alt border-y border-text-primary/5">
+        <div className="max-w-6xl mx-auto">
+          <Reveal className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">From the studio</p>
+              <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-2xl">
+                Engineering notes
+              </h2>
+              <p className="text-text-secondary mt-4 max-w-xl leading-relaxed">
+                Working notes on the architecture, regulation, and craft of the systems we build. Written for the architect at the schema design step, not the buyer at the brochure step.
+              </p>
+            </div>
+            <a
+              href="/notes"
+              className="text-sm font-medium text-gold hover:underline inline-flex items-center gap-1.5 flex-shrink-0 self-start md:self-end"
+            >
+              All notes
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+            {notes.slice(0, 3).map((note, index) => (
+              <Reveal key={note.slug} delay={index * STAGGER_LONG}>
+                <a
+                  href={`/notes/${note.slug}`}
+                  className="group block h-full card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background shadow-card p-6 md:p-7"
+                >
+                  <p className="text-[11px] text-text-tertiary uppercase tracking-widest mb-3 leading-snug">
+                    {note.topic}
+                  </p>
+                  <h3 className="font-heading text-lg md:text-xl text-text-primary tracking-tight leading-snug mb-3">
+                    {note.title}
+                  </h3>
+                  <p className="text-sm text-text-secondary leading-relaxed mb-5">
+                    {note.blurb}
+                  </p>
+                  <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5">
+                    Read the note
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ──────────────────────────────────────────────
+          SECTION 8: Testimonials (hidden until populated)
       ────────────────────────────────────────────── */}
       <Testimonials />
 
       {/* ──────────────────────────────────────────────
-          SECTION 8: Final CTA
+          SECTION 9: Final CTA
       ────────────────────────────────────────────── */}
       <section className="py-28 md:py-36 px-6 md:px-12 bg-surface-dark relative overflow-hidden">
         {/* Decorative gradient orb */}

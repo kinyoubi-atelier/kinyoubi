@@ -8,12 +8,18 @@ export const SITE = {
   copyright: `© ${new Date().getFullYear()} Kinyoubi Atelier & Co. All rights reserved.`,
 } as const
 
+// Nav labels are boutique register, not SaaS register. URLs are kept on
+// the conventional slugs (/about, /services, /capabilities, /contact) so
+// search-engine titles, deep links from emails, and existing inbound
+// references continue to resolve. Visitors see Studio / Practice / Method
+// / Commission. Search engines see the page metadata as published.
 export const NAV_LINKS = [
-  { label: 'About', href: '/about' },
-  { label: 'Services', href: '/services' },
+  { label: 'Studio', href: '/about' },
+  { label: 'Practice', href: '/services' },
   { label: 'Work', href: '/work' },
-  { label: 'Capabilities', href: '/capabilities' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Method', href: '/capabilities' },
+  { label: 'Notes', href: '/notes' },
+  { label: 'Commission', href: '/contact' },
 ] as const
 
 export const LEGAL_LINKS = [
