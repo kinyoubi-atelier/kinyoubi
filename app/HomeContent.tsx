@@ -234,7 +234,7 @@ export default function HomeContent() {
           <Reveal className="mb-14">
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">What we do</p>
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight max-w-2xl">
-              Three engagement shapes we are free to publish
+              The engagement shapes we are free to publish
             </h2>
           </Reveal>
 

@@ -176,7 +176,7 @@ export default function AboutContent() {
           >
             <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">Philosophy</p>
             <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight">
-              Three principles we follow
+              Principles we follow
             </h2>
             {/* Section underline drawn once on viewport entry. */}
             <div className="mt-5 flex" aria-hidden="true">
