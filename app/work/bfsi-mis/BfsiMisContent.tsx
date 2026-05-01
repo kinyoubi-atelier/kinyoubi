@@ -524,6 +524,66 @@ export default function BfsiMisContent() {
         </div>
       </section>
 
+      {/* Further reading — companion notes from the studio that pull
+          their patterns from this engagement. Sits before the vault
+          seal so the seal stamps the body and the further reading as
+          a single artifact. */}
+      <section className="py-16 md:py-20 px-6 md:px-12">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
+              Further reading
+            </p>
+            <h2 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight mb-6">
+              From the studio
+            </h2>
+            <div className="space-y-5">
+              <Link
+                href="/notes/dpdp-for-saas-builders"
+                className="group block card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-8"
+              >
+                <p className="text-xs text-text-tertiary uppercase tracking-widest mb-2">
+                  Note · Regulated SaaS · DPDP
+                </p>
+                <h3 className="font-heading text-xl md:text-2xl text-text-primary tracking-tight mb-2">
+                  DPDP for SaaS builders: where the Act meets the schema
+                </h3>
+                <p className="text-text-secondary leading-relaxed mb-4">
+                  The architect&rsquo;s reading of DPDP. Notice, consent, retention, data principal rights, and breach notification mapped to schema and request-flow patterns from this engagement.
+                </p>
+                <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5">
+                  Read the note
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+              <Link
+                href="/notes/postgres-rls-multitenant"
+                className="group block card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-8"
+              >
+                <p className="text-xs text-text-tertiary uppercase tracking-widest mb-2">
+                  Note · Postgres · Multi-tenant · RLS
+                </p>
+                <h3 className="font-heading text-xl md:text-2xl text-text-primary tracking-tight mb-2">
+                  Multi-tenant Postgres with Row-Level Security: a working pattern
+                </h3>
+                <p className="text-text-secondary leading-relaxed mb-4">
+                  The exact RLS pattern that shipped on this engagement. The clause, the connection-pool problem, the BYPASSRLS trap, and the audit answer the regulator wants.
+                </p>
+                <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5">
+                  Read the note
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Wave 3 · vault seal, stamped once above the compliance
           footer area. The seal is the single crimson on this page;
           it sits above the IP protective language, never inside it. */}

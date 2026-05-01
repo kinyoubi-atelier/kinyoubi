@@ -487,6 +487,44 @@ export default function ArchiveAutomationContent() {
         </div>
       </section>
 
+      {/* Further reading — companion note from the studio that
+          generalises the matcher pattern used on this engagement. */}
+      <section className="py-16 md:py-20 px-6 md:px-12">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
+              Further reading
+            </p>
+            <h2 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight mb-6">
+              From the studio
+            </h2>
+            <Link
+              href="/notes/python-fuzzy-record-linkage"
+              className="group block card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-8"
+            >
+              <p className="text-xs text-text-tertiary uppercase tracking-widest mb-2">
+                Note · Python · Fuzzy matching · Record linkage
+              </p>
+              <h3 className="font-heading text-xl md:text-2xl text-text-primary tracking-tight mb-2">
+                Fuzzy record linkage in Python: when rapidfuzz is enough
+              </h3>
+              <p className="text-text-secondary leading-relaxed mb-4">
+                The matcher pattern from this engagement, generalised. Normalise, block, match, audit: the four-step pipeline and the deletion-log discipline that lets you replay a wrong merge six months later.
+              </p>
+              <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5">
+                Read the note
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* DPDPA disclosure footer */}
       <section className="py-12 px-6 md:px-12 border-t border-text-primary/5">
         <div className="max-w-3xl mx-auto">

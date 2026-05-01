@@ -420,6 +420,44 @@ export default function TimetableEngineContent() {
         </div>
       </section>
 
+      {/* Further reading — companion note from the studio that pulls
+          its build-versus-buy reasoning from this engagement. */}
+      <section className="py-16 md:py-20 px-6 md:px-12">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">
+              Further reading
+            </p>
+            <h2 className="font-heading text-2xl md:text-3xl text-text-primary tracking-tight mb-6">
+              From the studio
+            </h2>
+            <Link
+              href="/notes/or-tools-vs-fet-comparison"
+              className="group block card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-8"
+            >
+              <p className="text-xs text-text-tertiary uppercase tracking-widest mb-2">
+                Note · Constraint solvers · Build vs buy
+              </p>
+              <h3 className="font-heading text-xl md:text-2xl text-text-primary tracking-tight mb-2">
+                OR-Tools vs FET vs commercial timetabling: an honest comparison
+              </h3>
+              <p className="text-text-secondary leading-relaxed mb-4">
+                The build-versus-buy reasoning behind this engagement. Three legitimate tools, three different fits, and the matrix that decides which one belongs in your build.
+              </p>
+              <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5">
+                Read the note
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Provenance + IP footer */}
       <section className="py-12 px-6 md:px-12 border-t border-text-primary/5">
         <div className="max-w-3xl mx-auto space-y-4">
