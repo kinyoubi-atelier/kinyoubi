@@ -285,8 +285,6 @@ export default function AboutContent() {
                   What I learned across those years was one lesson, told in different vocabulary: every system that breaks was left unfinished somewhere earlier, by someone who thought they could come back to it. The studio is where I try not to do that again.
                 </p>
               </div>
-
-              <p className="text-sm text-gold/80">{SITE.location}</p>
             </motion.div>
           </div>
           <BrushStrokeDivider variant={2} className="mt-16 opacity-40" />

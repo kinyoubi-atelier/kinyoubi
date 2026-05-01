@@ -376,13 +376,9 @@ export default function ContactContent() {
                   </div>
                   <div>
                     <p className="text-sm text-text-tertiary mb-1">Registered office</p>
-                    {/* Full address disclosed here only — the rest of the
-                        site reads SITE.location from lib/constants.ts and
-                        renders "Remote-first · Serving North America & EMEA".
-                        This is the one surface where the registered address
-                        belongs, for contract and invoicing purposes. */}
+                    {/* The registered address lives on this surface only,
+                        for contract and invoicing purposes. */}
                     <p className="text-lg text-text-primary">Jeypore, Koraput District, Odisha, India</p>
-                    <p className="text-sm text-text-secondary mt-1">Remote-first · Working hours spanning North America &amp; EMEA</p>
                   </div>
                 </div>
               </div>

@@ -22,9 +22,6 @@ export function Footer() {
             <p className="text-sm text-text-secondary max-w-xs leading-relaxed">
               {SITE.tagline}
             </p>
-            <address className="text-sm not-italic text-text-tertiary">
-              {SITE.location}
-            </address>
           </div>
 
           <nav aria-label="Footer navigation">

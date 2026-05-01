@@ -4,13 +4,6 @@ export const SITE = {
   description: 'Software development, technical consulting, and regulatory research. Delivered with precision and speed.',
   url: 'https://kinyoubiatelier.com',
   email: 'ankit@kinyoubiatelier.com',
-  // Public-facing location string. Used in the footer and About panel.
-  // The full registered address (Jeypore, Koraput District, Odisha, India)
-  // is disclosed on the Contact page and in legal/copyright — kept off
-  // every other surface because enterprise buyers scan for jurisdiction
-  // and "Remote-first" signals delivery posture more accurately than
-  // a pin on a specific town.
-  location: 'Remote-first · Serving North America & EMEA',
   founder: 'Ankit Sahu',
   copyright: `© ${new Date().getFullYear()} Kinyoubi Atelier & Co. All rights reserved.`,
 } as const

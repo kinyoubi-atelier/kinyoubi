@@ -22,7 +22,6 @@ const organizationSchema = {
     addressRegion: 'Odisha',
     addressCountry: 'IN',
   },
-  // Public positioning is Remote-first NA + EMEA — this mirrors the footer/Contact page claim.
   areaServed: [
     { '@type': 'Country', name: 'United States' },
     { '@type': 'Country', name: 'Canada' },
@@ -56,7 +55,6 @@ const professionalServiceSchema = {
     addressRegion: 'Odisha',
     addressCountry: 'IN',
   },
-  // Public positioning is Remote-first NA + EMEA — this mirrors the footer/Contact page claim.
   areaServed: [
     { '@type': 'Country', name: 'United States' },
     { '@type': 'Country', name: 'Canada' },
