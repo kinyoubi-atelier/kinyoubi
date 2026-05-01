@@ -41,9 +41,9 @@ const services = [
   },
   {
     icon: Shield,
-    title: 'Regulated Systems & Research',
-    description: 'DPDP and RBI aligned builds. Encryption and tenant isolation designed in, controls mapped to frameworks from week one. Research and platform work, integrated.',
-    href: '/services#regulatory-research',
+    title: 'Enterprise & Institutional Systems',
+    description: 'Custom ERPs, accounting modules, and data platforms for private institutions and government. Built with the encryption, isolation, and compliance posture each sector needs: DPDP, RBI, or the bare disciplines any production-grade system should have anyway.',
+    href: '/services#enterprise-systems',
   },
 ]
 

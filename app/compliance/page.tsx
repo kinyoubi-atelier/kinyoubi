@@ -2,10 +2,19 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE } from '@/lib/constants'
 
+const description =
+  'Email compliance policies for Kinyoubi Atelier & Co.: confidentiality, intellectual property, data protection, and communication integrity.'
+
 export const metadata: Metadata = {
-  title: 'Email Compliance & Notices | Kinyoubi Atelier & Co.',
-  description:
-    'Email compliance policies for Kinyoubi Atelier & Co.: confidentiality, intellectual property, data protection, and communication integrity.',
+  title: 'Email Compliance & Notices',
+  description,
+  alternates: { canonical: '/compliance' },
+  openGraph: {
+    description,
+    url: '/compliance',
+    type: 'website',
+  },
+  twitter: { description },
 }
 
 /**

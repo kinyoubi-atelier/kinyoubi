@@ -2,10 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import DpaContent from './DpaContent'
 
+const description =
+  'Data Processing Addendum (DPA) for Kinyoubi Atelier & Co. GDPR-compliant and DPDP Act 2023 aligned.'
+
 export const metadata: Metadata = {
-  title: 'Data Processing Addendum | Kinyoubi Atelier & Co.',
-  description:
-    'Data Processing Addendum (DPA) for Kinyoubi Atelier & Co. GDPR-compliant and DPDP Act 2023 aligned.',
+  title: 'Data Processing Addendum',
+  description,
+  alternates: { canonical: '/legal/dpa' },
+  openGraph: { description, url: '/legal/dpa', type: 'article' },
+  twitter: { description },
 }
 
 export default function DpaPage() {

@@ -10,18 +10,29 @@ import { SITE } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import './globals.css'
 
+// Title and OG title use Next.js metadata templates so child pages
+// only set a short page title; the suffix and the og:title/twitter:title
+// versions are derived once here.
+const TITLE_SUFFIX = ` | ${SITE.name}`
+
 export const metadata: Metadata = {
-  title: SITE.name,
+  title: {
+    default: SITE.name,
+    template: `%s${TITLE_SUFFIX}`,
+  },
   description: SITE.description,
-  keywords: ['software development', 'technical consulting', 'web applications', 'regulatory research'],
   authors: [{ name: SITE.founder }],
   creator: SITE.founder,
+  metadataBase: new URL(SITE.url),
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: SITE.url,
     siteName: SITE.name,
-    title: SITE.name,
+    title: {
+      default: SITE.name,
+      template: `%s${TITLE_SUFFIX}`,
+    },
     description: SITE.description,
     images: [
       {
@@ -34,7 +45,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: SITE.name,
+    title: {
+      default: SITE.name,
+      template: `%s${TITLE_SUFFIX}`,
+    },
     description: SITE.description,
     images: ['/og-image.png'],
   },
@@ -46,7 +60,6 @@ export const metadata: Metadata = {
       { url: '/favicon.svg', type: 'image/svg+xml' },
     ],
   },
-  metadataBase: new URL(SITE.url),
 }
 
 interface RootLayoutProps {

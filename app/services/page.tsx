@@ -1,16 +1,19 @@
 import type { Metadata } from 'next'
-import { SITE } from '@/lib/constants'
 import ServicesContent from './ServicesContent'
 
+const description =
+  'Custom software for institutions: ERPs, accounting modules, data platforms, and DBMS work for private corporates, government departments, and educational institutions. Plus product engineering, AI-powered workflow automation, and technical consulting.'
+
 export const metadata: Metadata = {
-  title: `Services | ${SITE.name}`,
-  description: 'Software development, technical consulting, AI workflow development, and regulatory research services.',
+  title: 'Services',
+  description,
+  alternates: { canonical: '/services' },
   openGraph: {
-    title: `Services | ${SITE.name}`,
-    description: 'Software, consulting, and research. Delivered with engineering precision.',
-    url: `${SITE.url}/services`,
+    description,
+    url: '/services',
     type: 'website',
   },
+  twitter: { description },
 }
 
 export default function ServicesPage() {

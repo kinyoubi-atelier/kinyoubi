@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Code2, Cpu, Lightbulb, FileSearch, Layers } from 'lucide-react'
+import { ArrowRight, Code2, Cpu, Database, Lightbulb, FileSearch, Layers } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { Card } from '@/components/ui/Card'
@@ -197,15 +197,22 @@ const services: ServiceData[] = [
     visual: <AgentWorkflowVisual />,
   },
   {
-    icon: FileSearch,
-    id: 'regulatory-research',
-    label: 'Regulatory Research & Contract Analysis',
-    title: 'DPDP and RBI alignment built into the code, not bolted on after launch.',
+    icon: Database,
+    id: 'enterprise-systems',
+    label: 'Enterprise & Institutional Systems',
+    title: 'Custom ERPs, accounting modules, and data platforms for private institutions and government.',
     description:
-      'Our BFSI-MIS engagement was designed to India\'s Digital Personal Data Protection Act from week one: threat model before schema, row-level security before API, client-side field-level encryption on every sensitive free-text field before a row hits the database. We research the regulatory framework that applies to your build, map it to concrete controls, and hand the mapping to your legal counsel in a form they can sign off on in a single review.',
-    deliverables: ['Regulatory landscape briefs', 'Control-to-framework mappings', 'Contract-clause analysis', 'Compliance workflow design', 'Research memoranda'],
+      'Custom ERPs, accounting modules, SQL data platforms, DBMS migrations, and institutional websites. Built directly for the team that has to operate them, not handed off to a vendor pool. Where the sector requires it (DPDP, RBI, MeitY guidelines, ministry IT spec), the compliance posture is designed in, not bolted on. Our BFSI-MIS engagement was built this way: threat model before schema, row-level security before API, client-side field-level encryption on every sensitive free-text field before a row hits the database.',
+    deliverables: [
+      'Custom ERPs and internal tools',
+      'Accounting modules and Tally migrations',
+      'SQL data platforms and DBMS migrations',
+      'Government department and institutional websites',
+      'Compliance posture: DPDP, RBI, sector-specific',
+      'Regulatory research and control-to-framework mappings',
+    ],
     visual: <ResearchVisual />,
-    disclaimer: 'We provide research and analysis to support decision-making. We do not provide legal advice or representation. For legal matters, we recommend working with qualified legal counsel.',
+    disclaimer: 'Where regulatory research is part of an engagement, we provide research and analysis to support decision-making. We do not provide legal advice or representation. For legal matters, we recommend working with qualified legal counsel.',
   },
 ]
 

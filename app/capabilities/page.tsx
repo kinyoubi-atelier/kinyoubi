@@ -1,16 +1,19 @@
 import type { Metadata } from 'next'
-import { SITE } from '@/lib/constants'
 import CapabilitiesContent from './CapabilitiesContent'
 
+const description =
+  'Frameworks the studio uses: software architecture, multi-agent orchestration, multi-tenant platform isolation, regulatory research, and risk management. Each engagement adapts these to its own terrain.'
+
 export const metadata: Metadata = {
-  title: `Capabilities | ${SITE.name}`,
-  description: 'Our frameworks for software architecture, development pipelines, regulatory research, and risk management.',
+  title: 'Capabilities',
+  description,
+  alternates: { canonical: '/capabilities' },
   openGraph: {
-    title: `Capabilities | ${SITE.name}`,
-    description: 'Frameworks, not formulas. Each engagement adapts these approaches to your specific terrain.',
-    url: `${SITE.url}/capabilities`,
+    description,
+    url: '/capabilities',
     type: 'website',
   },
+  twitter: { description },
 }
 
 export default function CapabilitiesPage() {

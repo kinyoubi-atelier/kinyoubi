@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import { SITE } from '@/lib/constants'
 import HomeContent from './HomeContent'
 
+// Home page uses the layout's default title (just SITE.name) so the
+// template suffix is not duplicated.
 export const metadata: Metadata = {
-  title: `${SITE.name} | ${SITE.tagline}`,
   description: SITE.description,
+  alternates: { canonical: '/' },
   openGraph: {
-    title: `${SITE.name} | ${SITE.tagline}`,
     description: SITE.description,
-    url: SITE.url,
+    url: '/',
     type: 'website',
   },
 }

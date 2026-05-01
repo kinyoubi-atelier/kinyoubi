@@ -1,10 +1,24 @@
 import type { Metadata } from 'next'
 import BfsiMisContent from './BfsiMisContent'
 
+const title = 'RBI-aligned and DPDP-ready MIS platform for a regulated Indian financial institution: case study'
+const description =
+  'A multi-tenant Management Information System with row-level security, client-side field-level encryption, offline-first field capture, and India data residency. Threat model in week one, RBI controls mapped by week five.'
+
 export const metadata: Metadata = {
-  title: 'Case study: Compliance-first MIS platform for a regulated Indian financial institution | Kinyoubi Atelier & Co.',
-  description:
-    'How Kinyoubi Atelier & Co. designed the secure data foundation, offline-first capture layer, and AI-assisted insight engine for a multi-site Management Information System, engineered from day one for RBI alignment and DPDP Act readiness.',
+  title,
+  description,
+  alternates: { canonical: '/work/bfsi-mis' },
+  openGraph: {
+    title,
+    description,
+    url: '/work/bfsi-mis',
+    type: 'article',
+  },
+  twitter: {
+    title,
+    description,
+  },
 }
 
 export default function BfsiMisPage() {

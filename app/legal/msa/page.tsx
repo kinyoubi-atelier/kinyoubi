@@ -2,10 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import MsaContent from './MsaContent'
 
+const description =
+  'Master Services Agreement (MSA) for Kinyoubi Atelier & Co. Governs all software development, consulting, and regulatory research services.'
+
 export const metadata: Metadata = {
-  title: 'Master Services Agreement | Kinyoubi Atelier & Co.',
-  description:
-    'Master Services Agreement (MSA) for Kinyoubi Atelier & Co. Governs all software development, consulting, and regulatory research services.',
+  title: 'Master Services Agreement',
+  description,
+  alternates: { canonical: '/legal/msa' },
+  openGraph: { description, url: '/legal/msa', type: 'article' },
+  twitter: { description },
 }
 
 export default function MsaPage() {

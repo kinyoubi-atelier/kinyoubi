@@ -2,9 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE } from '@/lib/constants'
 
+const description = 'Copyright notice and intellectual property information for Kinyoubi Atelier & Co.'
+
 export const metadata: Metadata = {
-  title: 'Copyright | Kinyoubi Atelier & Co.',
-  description: 'Copyright notice and intellectual property information for Kinyoubi Atelier & Co.',
+  title: 'Copyright',
+  description,
+  alternates: { canonical: '/legal/copyright' },
+  openGraph: { description, url: '/legal/copyright', type: 'article' },
+  twitter: { description },
 }
 
 /**

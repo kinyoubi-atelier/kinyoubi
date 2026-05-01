@@ -2,9 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE } from '@/lib/constants'
 
+const description = 'Privacy policy for Kinyoubi Atelier & Co. website. DPDP Act 2023 compliant.'
+
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Kinyoubi Atelier & Co.',
-  description: 'Privacy policy for Kinyoubi Atelier & Co. website. DPDP Act 2023 compliant.',
+  title: 'Privacy Policy',
+  description,
+  alternates: { canonical: '/legal/privacy' },
+  openGraph: { description, url: '/legal/privacy', type: 'article' },
+  twitter: { description },
 }
 
 /**

@@ -1,9 +1,19 @@
 import type { Metadata } from 'next'
 import AboutContent from './AboutContent'
 
+const description =
+  'How the studio thinks about building software, and the formation behind it: aerospace, derivatives markets, software, and contract law.'
+
 export const metadata: Metadata = {
-  title: 'About | Kinyoubi Atelier & Co.',
-  description: 'How we think about building software. The philosophy and multidisciplinary edge of Kinyoubi Atelier & Co.',
+  title: 'About',
+  description,
+  alternates: { canonical: '/about' },
+  openGraph: {
+    description,
+    url: '/about',
+    type: 'profile',
+  },
+  twitter: { description },
 }
 
 export default function AboutPage() {

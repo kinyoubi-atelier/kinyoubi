@@ -1,10 +1,23 @@
 import type { Metadata } from 'next'
 import TimetableEngineContent from './TimetableEngineContent'
 
+const description =
+  'An in-house OR-Tools CP-SAT solver, a multi-tenant platform with database-layer isolation, an API, and a role-aware front end, shipped end to end. Solves 5,000-variable timetables in 3.6 seconds at 94% allotment.'
+
 export const metadata: Metadata = {
-  title: 'Case study: Building a timetable management engine from the solver up | Kinyoubi Atelier & Co.',
-  description:
-    'An in house R&D build from Kinyoubi Atelier & Co.: a constraint engine, a multi tenant platform with isolation enforced at the database layer, an API, and a role aware surface, shipped end to end under one roof.',
+  title: 'OR-Tools constraint solver for school timetabling: case study',
+  description,
+  alternates: { canonical: '/work/timetable-engine' },
+  openGraph: {
+    title: 'OR-Tools constraint solver for school timetabling: case study',
+    description,
+    url: '/work/timetable-engine',
+    type: 'article',
+  },
+  twitter: {
+    title: 'OR-Tools constraint solver for school timetabling: case study',
+    description,
+  },
 }
 
 export default function TimetableEnginePage() {
