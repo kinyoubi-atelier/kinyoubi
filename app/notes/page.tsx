@@ -30,7 +30,7 @@ const notes: Note[] = [
     slug: 'dpdp-for-saas-builders',
     title: 'DPDP for SaaS builders: where the Act meets the schema',
     blurb:
-      'An engineering reading of DPDP Act 2023 compliance for SaaS architects. How notice, consent, retention, data principal rights, and breach notification live in a schema, a request flow, and a deletion job.',
+      'The architect’s reading of DPDP, not the buyer’s. Written for the schema design step, where the obligations actually have to land.',
     date: '1 May 2026',
     topic: 'Regulated SaaS · DPDP',
   },

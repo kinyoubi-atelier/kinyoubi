@@ -4,8 +4,16 @@ import { ArrowRight } from 'lucide-react'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 
 const title = 'DPDP for SaaS builders: where the Act meets the schema'
+
+// Meta description: utilitarian, keyword-aware, written for the SERP.
 const description =
-  'An engineering reading of DPDP Act 2023 compliance for SaaS architects. How notice, consent, retention, data principal rights, and breach notification live in a schema, a request flow, and a deletion job.'
+  'DPDP Act 2023 compliance for SaaS, read from the codebase: consent ledger, retention envelope, deletion propagation, immutable log, data principal rights.'
+
+// Sub-deck: written for the human reader, sits under the h1, calibrated
+// to the body voice. Deliberately not the same string as the meta
+// description: the SERP and the page header have different jobs.
+const subdeck =
+  'The architect’s reading of DPDP, not the buyer’s. Written for the schema design step, where the obligations actually have to land.'
 
 export const metadata: Metadata = {
   title,
@@ -52,7 +60,7 @@ export default function DpdpForSaasBuildersPage() {
             {title}
           </h1>
           <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl">
-            {description}
+            {subdeck}
           </p>
           <p className="text-sm text-text-tertiary mt-6">
             Published 1 May 2026 · Ankit Sahu
