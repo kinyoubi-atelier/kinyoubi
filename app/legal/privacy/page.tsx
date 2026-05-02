@@ -24,9 +24,9 @@ const LEGAL_HEADING_STYLE: React.CSSProperties = {
   paddingLeft: '12px',
 }
 
-function LegalSection({ title, children }: { title: string; children: React.ReactNode }) {
+function LegalSection({ title, id, children }: { title: string; id?: string; children: React.ReactNode }) {
   return (
-    <div className="space-y-4">
+    <div id={id} className="space-y-4">
       <h2
         className="text-xl font-semibold text-text-primary"
         style={LEGAL_HEADING_STYLE}
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
           <h1 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight mb-3">
             Privacy Policy
           </h1>
-          <p className="text-sm text-text-tertiary">Last updated: 9 April 2026</p>
+          <p className="text-sm text-text-tertiary">Last updated: 2 May 2026</p>
         </div>
       </section>
 
@@ -115,9 +115,13 @@ export default function PrivacyPage() {
             </p>
           </LegalSection>
 
-          <LegalSection title="5. Data Sharing">
+          <LegalSection id="ai-sub-processors" title="5. Data Sharing and Sub-Processors">
             <p className="text-text-secondary leading-relaxed">
               We do not sell, trade, or transfer your personal data to third parties. We do not share your contact information with any external parties except as required by law or to fulfill your explicit request.
+            </p>
+            <p className="text-text-secondary leading-relaxed">
+              <HighlightLabel>AI sub-processor for chat:</HighlightLabel> Aika, the chat agent on this site, sends your messages to Anthropic for the model response. Conversation contents are not stored on our servers; the chat session lives in your browser and clears on refresh. Anthropic processes those messages under its own privacy commitments at{' '}
+              <a href="https://www.anthropic.com/privacy" className="text-gold hover:underline" target="_blank" rel="noopener noreferrer">anthropic.com/privacy</a>.
             </p>
           </LegalSection>
 
