@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { AikaTrigger } from '@/components/aika/AikaTrigger'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { IPNotice } from '@/components/ui/IPNotice'
 import { InkStroke } from '@/design/primitives/InkStroke'
@@ -424,10 +425,10 @@ export default function CapabilitiesContent() {
             <p className="text-text-on-dark/60 mb-10 text-lg">
               We'd love to hear what you're building.
             </p>
-            <Button href="/contact" variant="primary" size="lg">
+            <AikaTrigger variant="primary" size="lg">
               Start a conversation
               <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            </AikaTrigger>
           </motion.div>
         </div>
       </section>

@@ -24,6 +24,12 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@aika/widget": [
+        "./vendor/aika-widget/index.ts"
+      ],
+      "@aika/widget/styles.css": [
+        "./vendor/aika-widget/styles.css"
       ]
     },
     "target": "ES2017"

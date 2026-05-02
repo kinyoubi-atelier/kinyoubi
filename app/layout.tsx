@@ -4,8 +4,9 @@ import { Footer } from '@/components/layout/Footer'
 import { AtmosphereLayer } from '@/components/atmosphere/AtmosphereLayer'
 import { Signature } from '@/components/signature/Signature'
 import { StructuredData } from './structured-data'
-import { UmamiAnalytics, CrispChat } from '@/components/scripts/Analytics'
+import { UmamiAnalytics } from '@/components/scripts/Analytics'
 import { CookieConsent } from '@/components/ui/CookieConsent'
+import { AikaProvider } from '@/components/aika/AikaProvider'
 import { SITE } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import './globals.css'
@@ -77,28 +78,30 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="flex flex-col min-h-screen">
         <AtmosphereLayer />
         <Signature />
-        <a
-          href="#main-content"
-          className={cn(
-            'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4',
-            'focus:z-50 focus:px-4 focus:py-2 focus:bg-gold focus:text-ink',
-            'focus:rounded-lg focus:text-sm'
-          )}
-        >
-          Skip to main content
-        </a>
+        <AikaProvider>
+          <a
+            href="#main-content"
+            className={cn(
+              'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4',
+              'focus:z-50 focus:px-4 focus:py-2 focus:bg-gold focus:text-ink',
+              'focus:rounded-lg focus:text-sm'
+            )}
+          >
+            Skip to main content
+          </a>
 
-        <Header />
+          <Header />
 
-        <main id="main-content" className="flex-1" role="main">
-          {children}
-        </main>
+          <main id="main-content" className="flex-1" role="main">
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
+        </AikaProvider>
 
-        {/* Third-party scripts — loaded after interactive */}
+        {/* Third-party scripts — loaded after interactive. CrispChat
+            removed when Aika took over the chat surface. */}
         <UmamiAnalytics />
-        <CrispChat />
         <CookieConsent />
       </body>
     </html>

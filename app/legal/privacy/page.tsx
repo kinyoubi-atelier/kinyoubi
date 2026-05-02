@@ -123,6 +123,9 @@ export default function PrivacyPage() {
               <HighlightLabel>AI sub-processor for chat:</HighlightLabel> Aika, the chat agent on this site, sends your messages to Anthropic for the model response. Conversation contents are not stored on our servers; the chat session lives in your browser and clears on refresh. Anthropic processes those messages under its own privacy commitments at{' '}
               <a href="https://www.anthropic.com/privacy" className="text-gold hover:underline" target="_blank" rel="noopener noreferrer">anthropic.com/privacy</a>.
             </p>
+            <p className="text-text-secondary leading-relaxed">
+              <HighlightLabel>Carrying the conversation to a contact request:</HighlightLabel> If you ask Aika to send Ankit a note, the conversation transcript can be carried along to the contact form so it arrives with your enquiry. The transcript is pre-filled in the message field; you can review and edit it before sending. Nothing is sent to Ankit unless you submit the form yourself.
+            </p>
           </LegalSection>
 
           <LegalSection title="6. Cookies and Tracking">

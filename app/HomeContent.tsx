@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Cpu, Layers, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { AikaTrigger } from '@/components/aika/AikaTrigger'
 import { Card } from '@/components/ui/Card'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
@@ -202,12 +203,13 @@ export default function HomeContent() {
               A software development studio that moves fast on hard problems, from backend architecture to regulatory compliance.
             </p>
 
-            {/* CTA */}
+            {/* CTA — opens Aika; falls through to /contact via Aika's
+                SEND_MESSAGE route once the visitor is qualified. */}
             <div className="flex items-center justify-center">
-              <Button href="/contact" variant="primary" size="lg">
+              <AikaTrigger variant="primary" size="lg">
                 Start a conversation
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              </AikaTrigger>
             </div>
           </motion.div>
         </div>
@@ -615,10 +617,10 @@ export default function HomeContent() {
             <p className="text-text-on-dark/60 mb-10 text-lg max-w-md mx-auto">
               Tell us about your project. We'll respond within 48 hours with how we'd approach it.
             </p>
-            <Button href="/contact" variant="primary" size="lg">
+            <AikaTrigger variant="primary" size="lg">
               Start a conversation
               <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            </AikaTrigger>
           </Reveal>
         </div>
       </section>

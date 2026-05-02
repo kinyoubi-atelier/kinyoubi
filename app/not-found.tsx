@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowLeft, Home, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { AikaTrigger } from '@/components/aika/AikaTrigger'
 import { SITE } from '@/lib/constants'
 
 export default function NotFound() {
@@ -69,10 +70,10 @@ export default function NotFound() {
             <Home className="mr-2 h-4 w-4" aria-hidden="true" />
             Back to home
           </Button>
-          <Button href="/contact" variant="ghost" size="lg">
+          <AikaTrigger variant="ghost" size="lg">
             <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" />
             Start a conversation
-          </Button>
+          </AikaTrigger>
         </motion.div>
 
         {/* Footer note */}
