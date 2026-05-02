@@ -170,7 +170,13 @@ export function AikaWidget(props: AikaWidgetProps) {
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ messages: next }),
+        body: JSON.stringify({
+          messages: next,
+          // Tell the worker whether scheduling is wired on this host
+          // so Aika can choose her route accordingly upfront, rather
+          // than promising a calendar that the visitor cannot reach.
+          scheduler_available: !!schedulerUrl,
+        }),
       });
 
       if (!res.ok) {
