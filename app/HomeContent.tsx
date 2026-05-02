@@ -224,6 +224,59 @@ export default function HomeContent() {
       </section>
 
       {/* ──────────────────────────────────────────────
+          SECTION 1B: Aika feature highlight
+          The studio's own AI craft, working on this page. Sits between
+          the hero (whose primary CTA is "Start a conversation" and opens
+          Aika) and the tech-stack list, so the visitor meets the working
+          artefact before the abstract tool inventory. Frames Aika as
+          (a) a useful screening layer, (b) a privacy-respecting one,
+          and (c) an artefact of the protocol-layer positioning we make
+          on /capabilities. Closes with a CTA that opens Aika directly,
+          so the section becomes interactive at the moment the reader
+          finishes the last paragraph.
+      ────────────────────────────────────────────── */}
+      <section className="py-24 md:py-32 px-6 md:px-12">
+        <div className="max-w-3xl mx-auto">
+          <Reveal className="mb-6">
+            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-3">On this page</p>
+            <h2 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight">
+              Aika: the first conversation, not the first form
+            </h2>
+            {/* Section underline drawn once on viewport entry, matching
+                the underlines on the portfolio and other major h2s. */}
+            <div className="mt-5 mb-2 flex" aria-hidden="true">
+              <InkStroke
+                d="M 0 1 L 100 1"
+                viewBox="0 0 100 2"
+                strokeWidth={1}
+                color="var(--ink-sumi)"
+                className="h-[2px] w-[min(18rem,40%)] opacity-60"
+              />
+            </div>
+          </Reveal>
+
+          <Reveal className="space-y-5 text-lg text-text-secondary leading-relaxed">
+            <p>
+              Most studios drop visitors straight onto a contact form. We built an agent instead. Aika sits in the corner of every page on this site, ready to ask the few clarifying questions a senior would ask on a first call. When you have said enough, Aika can carry the whole conversation across to a contact note for us, editable before you send. You never repeat yourself.
+            </p>
+            <p>
+              Aika runs on Claude, inside your browser. The transcript stays in your session and clears on refresh. Nothing is on our servers unless you choose to send the note. No tracking, no recording, no replay.
+            </p>
+            <p>
+              Aika is also an artefact of how we think about AI. Built at the protocol layer on Model Context Protocol primitives, with the same craft we would apply to a client engagement. The agent in the corner is small, deliberate, and shipped.
+            </p>
+          </Reveal>
+
+          <Reveal className="mt-10">
+            <AikaTrigger variant="primary" size="lg">
+              Talk to Aika
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </AikaTrigger>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ──────────────────────────────────────────────
           SECTION 2: Tech Stack
       ────────────────────────────────────────────── */}
       <TechStack />
