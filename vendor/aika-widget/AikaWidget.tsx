@@ -193,17 +193,26 @@ export function AikaWidget(props: AikaWidgetProps) {
   }
 
   function handleRouteClick(route: AikaRoute) {
-    if (route.kind === "BOOK_CALL") {
-      const target = schedulerUrl ?? contactPath;
-      window.open(target, "_blank", "noopener,noreferrer");
-    } else if (route.kind === "SEND_MESSAGE") {
+    // If BOOK_CALL fires but the host has not configured a scheduler URL,
+    // transparently downgrade to SEND_MESSAGE so the visitor still lands
+    // somewhere productive (the contact form with the conversation
+    // pre-filled) rather than a broken empty tab.
+    const effective: AikaRoute =
+      route.kind === "BOOK_CALL" && !schedulerUrl
+        ? { kind: "SEND_MESSAGE" }
+        : route;
+
+    if (effective.kind === "BOOK_CALL") {
+      // schedulerUrl is guaranteed defined by the downgrade above.
+      window.open(schedulerUrl!, "_blank", "noopener,noreferrer");
+    } else if (effective.kind === "SEND_MESSAGE") {
       const summary = summariseConversation(messages);
       const target =
         onSendMessageRoute?.(summary) ??
         defaultContactWithSummary(contactPath, summary);
       window.location.href = target;
-    } else if (route.kind === "READ_CASE_STUDY" && route.path) {
-      window.open(route.path, "_blank", "noopener,noreferrer");
+    } else if (effective.kind === "READ_CASE_STUDY" && effective.path) {
+      window.open(effective.path, "_blank", "noopener,noreferrer");
     }
   }
 
@@ -291,7 +300,7 @@ export function AikaWidget(props: AikaWidgetProps) {
                 className="aika-cta"
                 onClick={() => handleRouteClick(pendingRoute)}
               >
-                {ctaLabel(pendingRoute)}
+                {ctaLabel(pendingRoute, !!schedulerUrl)}
               </button>
             )}
           </div>
@@ -323,7 +332,13 @@ export function AikaWidget(props: AikaWidgetProps) {
   );
 }
 
-function ctaLabel(route: AikaRoute): string {
+function ctaLabel(route: AikaRoute, hasScheduler: boolean): string {
+  // BOOK_CALL silently downgrades to SEND_MESSAGE when no scheduler is
+  // configured (see handleRouteClick). The button label tracks the
+  // actual action the visitor will get, not the route the worker emitted.
+  if (route.kind === "BOOK_CALL" && !hasScheduler) {
+    return "Send us a note";
+  }
   switch (route.kind) {
     case "BOOK_CALL":
       return "Set up a call";

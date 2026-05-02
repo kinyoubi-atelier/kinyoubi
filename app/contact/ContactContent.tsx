@@ -3,7 +3,10 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
-import { CalEmbed } from '@/components/ui/CalEmbed'
+// CalEmbed temporarily removed; restore once a real scheduling
+// backend (Google Appointment Schedule URL or similar) is wired
+// via the SCHEDULER_URL repo secret.
+// import { CalEmbed } from '@/components/ui/CalEmbed'
 import { SITE } from '@/lib/constants'
 import { DURATION_CONSIDER, EASE_INK } from '@/design/tokens/motion'
 
@@ -456,8 +459,9 @@ export default function ContactContent() {
                 </p>
               </div>
 
-              {/* Cal.com scheduling embed */}
-              <CalEmbed variant="card" />
+              {/* Scheduling embed temporarily removed.
+                  Reinstate once SCHEDULER_URL is wired (then restore
+                  the import at the top): <CalEmbed variant="card" /> */}
             </motion.div>
           </div>
         </div>
