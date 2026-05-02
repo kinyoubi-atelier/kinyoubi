@@ -326,9 +326,9 @@ export function AikaWidget(props: AikaWidgetProps) {
 function ctaLabel(route: AikaRoute): string {
   switch (route.kind) {
     case "BOOK_CALL":
-      return "Put it on Ankit's calendar";
+      return "Set up a call";
     case "SEND_MESSAGE":
-      return "Send Ankit a note";
+      return "Send us a note";
     case "READ_CASE_STUDY":
       return "Open the case study";
   }

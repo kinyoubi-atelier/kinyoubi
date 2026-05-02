@@ -124,7 +124,7 @@ export default function PrivacyPage() {
               <a href="https://www.anthropic.com/privacy" className="text-gold hover:underline" target="_blank" rel="noopener noreferrer">anthropic.com/privacy</a>.
             </p>
             <p className="text-text-secondary leading-relaxed">
-              <HighlightLabel>Carrying the conversation to a contact request:</HighlightLabel> If you ask Aika to send Ankit a note, the conversation transcript can be carried along to the contact form so it arrives with your enquiry. The transcript is pre-filled in the message field; you can review and edit it before sending. Nothing is sent to Ankit unless you submit the form yourself.
+              <HighlightLabel>Carrying the conversation to a contact request:</HighlightLabel> If you ask Aika to send us a note, the conversation transcript can be carried along to the contact form so it arrives with your enquiry. The transcript is pre-filled in the message field; you can review and edit it before sending. Nothing is sent to Kinyoubi Atelier unless you submit the form yourself.
             </p>
           </LegalSection>
 
