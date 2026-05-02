@@ -270,6 +270,38 @@ export default function CapabilitiesContent() {
         </div>
       </section>
 
+      {/* Where we work — positioning section.
+          Sits between the hero and the capability deep-dives. The hero says
+          how we think; this section says where we sit on the AI stack,
+          because that distinction is doing real work for buyers in 2026 who
+          have heard "we use Cursor" too many times. */}
+      <section className="py-20 md:py-28 px-6 md:px-12">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            <p className="text-sm font-medium text-gold uppercase tracking-widest mb-4">Where we work</p>
+            <h2 className="font-heading text-display-sm md:text-display text-text-primary mb-8 tracking-tight">
+              Closer to the protocol than the plugin
+            </h2>
+            <div className="space-y-5 text-lg text-text-secondary leading-relaxed max-w-3xl">
+              <p>
+                Most studios working with AI in 2026 sit one layer above where the leverage actually is. They live in plugin UIs: Cursor in the IDE, Copilot in the editor, the chat window in a browser tab. Those tools are useful, and we use them too when they fit.
+              </p>
+              <p>
+                The leverage is the layer underneath. Model Context Protocol servers expose tools directly to the model. Skills compose those tools into reusable craft. Agentic workflows orchestrate them across long running tasks. Working there means fewer abstractions between intent and execution, and no waiting for a vendor to package the integration we need.
+              </p>
+              <p>
+                When a client asks for AI inside their build, that is the layer we work from.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Capability Sections */}
       {sections.map((section, index) => (
         <section
