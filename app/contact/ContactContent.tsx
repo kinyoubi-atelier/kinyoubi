@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { CalEmbed } from '@/components/ui/CalEmbed'
@@ -73,6 +73,24 @@ export default function ContactContent() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [projectType, setProjectType] = useState<ProjectType>('')
   const [error, setError] = useState<string | null>(null)
+  const [message, setMessage] = useState('')
+  const [prefilledFromAika, setPrefilledFromAika] = useState(false)
+
+  // If the visitor arrived via Aika's SEND_MESSAGE CTA, the widget
+  // forwards the conversation transcript on the URL as ?aika_summary=...
+  // (URL-encoded). Pre-fill the message field so the visitor can review
+  // the context, edit if they want, and submit. This is the studio's
+  // "record responses" path: opt-in via the visitor clicking the CTA,
+  // no server-side persistence on the Aika side.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const params = new URLSearchParams(window.location.search)
+    const summary = params.get('aika_summary')
+    if (summary && summary.trim()) {
+      setMessage(summary)
+      setPrefilledFromAika(true)
+    }
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -132,6 +150,8 @@ export default function ContactContent() {
         setSubmitted(false)
         form.reset()
         setProjectType('')
+        setMessage('')
+        setPrefilledFromAika(false)
       }, 4000)
     } catch {
       setError('Something went wrong. Please email us directly.')
@@ -295,11 +315,18 @@ export default function ContactContent() {
                   <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">
                     Tell us about your project *
                   </label>
+                  {prefilledFromAika && (
+                    <p className="text-xs text-text-tertiary mb-2 italic">
+                      Pre-filled from your conversation with Aika. Edit freely before sending.
+                    </p>
+                  )}
                   <textarea
                     id="message"
                     name="message"
-                    rows={5}
+                    rows={prefilledFromAika ? 10 : 5}
                     required
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className={`${inputStyles} resize-none`}
                     placeholder="What are you building? What problem are you solving? Any constraints we should know about?"
                   />

@@ -1,0 +1,379 @@
+/*
+ * Aika widget styles. Hooks into the host site's CSS custom properties
+ * so dark/light theme flips automatically. Falls back to house defaults
+ * if a property is absent.
+ *
+ * The site exposes its tokens as RGB triplets (e.g. --ink: 17 17 17),
+ * consumed via rgb(var(--ink)) and rgb(var(--ink) / alpha). We mirror
+ * that pattern.
+ *
+ * Class names are prefixed `aika-` to avoid collisions with consumer
+ * styles. No CSS-in-JS, no CSS Modules, no build step required.
+ */
+
+.aika-root {
+  --aika-ink: var(--ink, 17 17 17);
+  --aika-bg: var(--bg, 250 250 247);
+  --aika-surface: var(--surface, 255 255 255);
+  --aika-hairline: var(--hairline, 207 207 207);
+  --aika-gold: var(--gold, 181 138 58);
+  --aika-radius: 12px;
+  --aika-radius-sm: 8px;
+  --aika-shadow: 0 8px 32px rgb(0 0 0 / 0.18), 0 1px 4px rgb(0 0 0 / 0.08);
+  --aika-shadow-launcher: 0 2px 12px rgb(0 0 0 / 0.18);
+  --aika-font:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --aika-duration: var(--duration-glance, 200ms);
+  --aika-ease: var(--ease-sumi, cubic-bezier(0.2, 0.6, 0.1, 1));
+
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  font-family: var(--aika-font);
+  color: rgb(var(--aika-ink));
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Launcher button */
+.aika-launcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem 0.625rem 0.75rem;
+  background: rgb(var(--aika-ink));
+  color: rgb(var(--aika-bg));
+  border: 1px solid rgb(var(--aika-ink));
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--aika-shadow-launcher);
+  transition: transform var(--aika-duration) var(--aika-ease),
+    box-shadow var(--aika-duration) var(--aika-ease);
+}
+
+.aika-launcher:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.22);
+}
+
+.aika-launcher:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid
+    rgb(var(--aika-gold));
+  outline-offset: var(--focus-ring-offset, 3px);
+}
+
+.aika-launcher-mascot {
+  display: inline-flex;
+  color: rgb(var(--aika-gold));
+}
+
+.aika-launcher-name {
+  letter-spacing: 0.01em;
+}
+
+/* Panel */
+.aika-panel {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  max-width: calc(100vw - 3rem);
+  height: min(70vh, 600px);
+  background: rgb(var(--aika-surface));
+  border: 1px solid rgb(var(--aika-hairline));
+  border-radius: var(--aika-radius);
+  box-shadow: var(--aika-shadow);
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .aika-root {
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+  .aika-panel {
+    width: 100%;
+    max-width: 100%;
+    height: 88vh;
+    border-radius: var(--aika-radius) var(--aika-radius) 0 0;
+  }
+}
+
+/* Header */
+.aika-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid rgb(var(--aika-hairline) / 0.6);
+}
+
+.aika-header-mascot {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: rgb(var(--aika-gold));
+}
+
+.aika-header-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.aika-header-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: rgb(var(--aika-gold));
+  letter-spacing: 0.01em;
+}
+
+.aika-header-role {
+  font-size: 12px;
+  color: rgb(var(--aika-ink) / 0.6);
+  margin-top: 1px;
+}
+
+.aika-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: rgb(var(--aika-ink) / 0.55);
+  cursor: pointer;
+  transition: background var(--aika-duration) var(--aika-ease),
+    color var(--aika-duration) var(--aika-ease);
+}
+
+.aika-close:hover {
+  background: rgb(var(--aika-ink) / 0.06);
+  color: rgb(var(--aika-ink));
+}
+
+.aika-close:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid rgb(var(--aika-gold));
+  outline-offset: 1px;
+}
+
+/* Privacy notice */
+.aika-notice {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 11px;
+  color: rgb(var(--aika-ink) / 0.55);
+  border-bottom: 1px solid rgb(var(--aika-hairline) / 0.6);
+}
+
+.aika-notice a {
+  color: rgb(var(--aika-gold));
+  text-decoration: none;
+  border-bottom: 1px solid rgb(var(--aika-gold) / 0.4);
+}
+
+.aika-notice a:hover {
+  border-bottom-color: rgb(var(--aika-gold));
+}
+
+/* Thread */
+.aika-thread {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  scroll-behavior: smooth;
+}
+
+.aika-greeting {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  font-size: 13.5px;
+  color: rgb(var(--aika-ink) / 0.7);
+  background: rgb(var(--aika-ink) / 0.03);
+  border-left: 2px solid rgb(var(--aika-gold) / 0.6);
+  border-radius: 0 var(--aika-radius-sm) var(--aika-radius-sm) 0;
+  font-style: italic;
+}
+
+/* Messages */
+.aika-msg {
+  max-width: 85%;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--aika-radius-sm);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.aika-msg-user {
+  align-self: flex-end;
+  background: rgb(var(--aika-ink));
+  color: rgb(var(--aika-bg));
+  border-bottom-right-radius: 4px;
+}
+
+.aika-msg-assistant {
+  align-self: flex-start;
+  background: rgb(var(--aika-ink) / 0.05);
+  color: rgb(var(--aika-ink));
+  border-bottom-left-radius: 4px;
+}
+
+/* Typing indicator */
+.aika-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.875rem 0.875rem;
+}
+
+.aika-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(var(--aika-ink) / 0.4);
+  animation: aika-pulse 1.2s infinite ease-in-out;
+}
+
+.aika-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.aika-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes aika-pulse {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aika-launcher,
+  .aika-close {
+    transition: none;
+  }
+  .aika-thread {
+    scroll-behavior: auto;
+  }
+  .aika-dot {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* Error message */
+.aika-error {
+  margin: 0;
+  padding: 0.625rem 0.875rem;
+  font-size: 12.5px;
+  color: rgb(var(--red, 185 28 28));
+  background: rgb(var(--red, 185 28 28) / 0.08);
+  border-left: 2px solid rgb(var(--red, 185 28 28));
+  border-radius: 0 var(--aika-radius-sm) var(--aika-radius-sm) 0;
+}
+
+/* Conversion CTA */
+.aika-cta {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  padding: 0.625rem 1rem;
+  background: transparent;
+  color: rgb(var(--aika-gold));
+  border: 1px solid rgb(var(--aika-gold));
+  border-radius: var(--aika-radius-sm);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--aika-duration) var(--aika-ease),
+    color var(--aika-duration) var(--aika-ease);
+}
+
+.aika-cta:hover {
+  background: rgb(var(--aika-gold));
+  color: rgb(var(--aika-bg));
+}
+
+.aika-cta:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid rgb(var(--aika-gold));
+  outline-offset: 2px;
+}
+
+/* Input */
+.aika-input {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgb(var(--aika-hairline) / 0.6);
+  background: rgb(var(--aika-surface));
+}
+
+.aika-input input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  background: rgb(var(--aika-ink) / 0.04);
+  border: 1px solid rgb(var(--aika-hairline) / 0.6);
+  border-radius: var(--aika-radius-sm);
+  color: rgb(var(--aika-ink));
+  font: inherit;
+  outline: none;
+  transition: border-color var(--aika-duration) var(--aika-ease);
+}
+
+.aika-input input::placeholder {
+  color: rgb(var(--aika-ink) / 0.4);
+}
+
+.aika-input input:focus {
+  border-color: rgb(var(--aika-gold));
+}
+
+.aika-input input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.aika-input button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgb(var(--aika-ink));
+  color: rgb(var(--aika-bg));
+  border: none;
+  border-radius: var(--aika-radius-sm);
+  cursor: pointer;
+  transition: background var(--aika-duration) var(--aika-ease),
+    transform var(--aika-duration) var(--aika-ease);
+}
+
+.aika-input button:hover:not(:disabled) {
+  background: rgb(var(--aika-gold));
+}
+
+.aika-input button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.aika-input button:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid rgb(var(--aika-gold));
+  outline-offset: 2px;
+}

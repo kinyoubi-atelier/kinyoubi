@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { AikaTrigger } from '@/components/aika/AikaTrigger'
 import { Card } from '@/components/ui/Card'
 import { BrushStrokeDivider } from '@/components/ui/BrushStrokeDivider'
 import { PaperTexture } from '@/components/ui/PaperTexture'
@@ -395,10 +396,10 @@ export default function AboutContent() {
             <p className="text-text-secondary mb-8 text-lg">
               We'd love to hear about your project.
             </p>
-            <Button href="/contact" variant="primary" size="lg">
+            <AikaTrigger variant="primary" size="lg">
               Start a conversation
               <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            </AikaTrigger>
           </motion.div>
         </div>
       </section>
