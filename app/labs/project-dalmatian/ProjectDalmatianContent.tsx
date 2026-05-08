@@ -13,7 +13,6 @@ const heroMeta: { k: string; v: string }[] = [
   { k: 'Codename', v: 'Project Dalmatian' },
   { k: 'Working name', v: `${REDACTED_NAME} (mark not yet registered)` },
   { k: 'Audience', v: 'Advocates practising in India' },
-  { k: 'Phase', v: 'Pre-launch · Odisha pilot in preparation' },
   { k: 'Stack', v: 'Next.js 16 · FastAPI · PostgreSQL · IndiaCode anchors' },
 ]
 
@@ -51,7 +50,8 @@ const buildLog = [
   { state: 'wip', text: 'Clause library: 6 clauses indexed against the planned 2,000; risk profile and citation anchors live.' },
   { state: 'wip', text: 'Research surface: structured citation lookup and free-text retrieval, both grounded against the corpus.' },
   { state: 'wip', text: 'Drafting surface: template instantiation against jurisdictional defaults; advocate sign-off as a first-class state.' },
-  { state: 'next', text: 'Pilot onboarding: Koraput district pilot, then Cuttack and Bhubaneswar.' },
+  { state: 'next', text: 'Pilot onboarding: starting with one district partner; expansion is jurisdiction-pluggable, additional states wired on partner sign-up.' },
+  { state: 'next', text: 'Second-state expansion: Delhi (NCT) is reachable from the existing schema; partner advocate sought.' },
   { state: 'next', text: 'Licensed-source integration (SCC, Manupatra, LexisNexis) is deferred until pilot. Development runs on the public IndiaCode tier.' },
   { state: 'next', text: 'Coverage targets: 88 templates, 2,000 clauses, all 11 fee jurisdictions.' },
 ] as const
@@ -519,7 +519,7 @@ export default function ProjectDalmatianContent() {
           </h2>
           <p className="text-text-secondary text-lg leading-relaxed mb-8">
             Where the work stands today, what is in flight, and what is queued before the
-            Odisha pilot opens. No aspirational items.
+            first pilot opens. No aspirational items.
           </p>
 
           <ul className="space-y-3">
