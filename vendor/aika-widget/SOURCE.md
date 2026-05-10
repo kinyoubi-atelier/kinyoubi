@@ -5,7 +5,7 @@ separate repo:
 
 - Repo: https://github.com/kinyoubi-atelier/aika
 - Path inside repo: `packages/widget/src/`
-- Last synced: 2026-05-02 (commit `afa7f18` on `feature/aika`)
+- Last synced: 2026-05-02 (commit `50c5570` on `feature/aika`)
 
 ## Why a vendor copy
 
