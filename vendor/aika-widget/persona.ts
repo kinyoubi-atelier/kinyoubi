@@ -19,8 +19,15 @@ export const AIKA_GREETING =
 // (e.g. the "Start a conversation" CTA on the site). Static fallback;
 // the widget normally uses computeOpeningLine() which adds a time-of-
 // day greeting based on the visitor's local clock.
+//
+// Structure intentionally separates the wish, the introduction, and
+// the single soft question into three beats. The opening does not
+// ask for the visitor's name; the name is picked up naturally if
+// offered, or asked for at a more conversational moment a few turns
+// later. Combining "what should I call you" with "what brings you in"
+// felt like a form, not a welcome.
 export const AIKA_OPENING_LINE =
-  "Hi, I'm Aika, the studio's concierge. What should I call you, and what brings you in?";
+  "Hello. I'm Aika, the studio's concierge. Welcome to Kinyoubi Atelier & Co.\n\nWhat brings you in today?";
 
 // Time-aware opening line. Uses the visitor's local clock so the
 // greeting matches their part of the world. The JS Date object resolves
@@ -34,7 +41,7 @@ export function computeOpeningLine(): string {
   else if (hour >= 12 && hour < 17) greeting = "Good afternoon";
   else if (hour >= 17 && hour < 22) greeting = "Good evening";
   else greeting = "Hello";
-  return `${greeting}. I'm Aika, the studio's concierge. What should I call you, and what brings you in?`;
+  return `${greeting}. I'm Aika, the studio's concierge. Welcome to Kinyoubi Atelier & Co.\n\nWhat brings you in today?`;
 }
 
 // One-line role text under the Aika name in the header.

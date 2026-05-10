@@ -170,13 +170,18 @@
   outline-offset: 1px;
 }
 
-/* Privacy notice */
+/* Privacy notice. Lives as the first child inside the scrollable
+   thread so it scrolls up out of view as the conversation grows,
+   instead of remaining pinned and competing with the messages. The
+   small bottom border separates it from the first message until it
+   scrolls away. */
 .aika-notice {
   margin: 0;
-  padding: 0.5rem 1rem;
+  padding: 0 0 0.65rem 0;
   font-size: 11px;
-  color: rgb(var(--aika-ink) / 0.55);
-  border-bottom: 1px solid rgb(var(--aika-hairline) / 0.6);
+  line-height: 1.45;
+  color: rgb(var(--aika-ink) / 0.5);
+  border-bottom: 1px solid rgb(var(--aika-hairline) / 0.5);
 }
 
 .aika-notice a {

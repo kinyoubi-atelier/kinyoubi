@@ -357,14 +357,13 @@ export function AikaWidget(props: AikaWidgetProps) {
             </button>
           </header>
 
-          <p className="aika-notice">
-            {AIKA_PRIVACY_NOTICE}{" "}
-            <a href={privacyHref} target="_blank" rel="noopener noreferrer">
-              Privacy
-            </a>
-          </p>
-
           <div ref={threadRef} className="aika-thread" aria-live="polite">
+            <p className="aika-notice">
+              {AIKA_PRIVACY_NOTICE}{" "}
+              <a href={privacyHref} target="_blank" rel="noopener noreferrer">
+                Privacy
+              </a>
+            </p>
             {showGreeting && (
               <p className="aika-greeting">{AIKA_GREETING}</p>
             )}
