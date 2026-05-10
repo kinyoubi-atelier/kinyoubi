@@ -54,7 +54,7 @@ export default function PrivacyPage() {
           <h1 className="font-heading text-display-sm md:text-display text-text-primary tracking-tight mb-3">
             Privacy Policy
           </h1>
-          <p className="text-sm text-text-tertiary">Last updated: 2 May 2026</p>
+          <p className="text-sm text-text-tertiary">Last updated: 10 May 2026</p>
         </div>
       </section>
 
@@ -120,11 +120,15 @@ export default function PrivacyPage() {
               We do not sell, trade, or transfer your personal data to third parties. We do not share your contact information with any external parties except as required by law or to fulfill your explicit request.
             </p>
             <p className="text-text-secondary leading-relaxed">
-              <HighlightLabel>AI sub-processor for chat:</HighlightLabel> Aika, the chat agent on this site, sends your messages to Anthropic for the model response. Conversation contents are not stored on our servers; the chat session lives in your browser and clears on refresh. Anthropic processes those messages under its own privacy commitments at{' '}
+              <HighlightLabel>AI sub-processor for chat:</HighlightLabel> Aika, the chat agent on this site, sends your messages to Anthropic for the model response. Anthropic processes those messages under its own privacy commitments at{' '}
               <a href="https://www.anthropic.com/privacy" className="text-gold hover:underline" target="_blank" rel="noopener noreferrer">anthropic.com/privacy</a>.
             </p>
             <p className="text-text-secondary leading-relaxed">
-              <HighlightLabel>Carrying the conversation to a contact request:</HighlightLabel> If you ask Aika to send us a note, the conversation transcript can be carried along: pre-filled in the contact form on /contact (desktop), or pre-filled into a WhatsApp message to the studio (mobile). You can review and edit it before sending. Nothing reaches Kinyoubi Atelier unless you submit the form or send the WhatsApp message yourself. If you use the WhatsApp route, the message is delivered through WhatsApp's encrypted infrastructure under its own terms.
+              <HighlightLabel>Conversation retention:</HighlightLabel> Conversations with Aika are stored on Kinyoubi Atelier's edge infrastructure for 30 days so we can review real interactions and improve Aika's persona over time. Records are evicted automatically after 30 days. Conversations that touch crisis or distress signals are excluded from storage entirely. To request earlier deletion of a specific conversation, email{' '}
+              <a href={`mailto:${SITE.email}`} className="text-gold hover:underline">{SITE.email}</a> with your session details.
+            </p>
+            <p className="text-text-secondary leading-relaxed">
+              <HighlightLabel>Carrying the conversation to a contact request:</HighlightLabel> If you ask Aika to send us a note, the conversation transcript can be carried along: pre-filled in the contact form on /contact (desktop), or pre-filled into a WhatsApp message to the studio (mobile). You can review and edit it before sending. Nothing reaches Kinyoubi Atelier through these channels unless you submit the form or send the WhatsApp message yourself. If you use the WhatsApp route, the message is delivered through WhatsApp's encrypted infrastructure under its own terms.
             </p>
           </LegalSection>
 
