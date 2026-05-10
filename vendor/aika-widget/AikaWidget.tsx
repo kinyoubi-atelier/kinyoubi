@@ -28,6 +28,15 @@ export interface AikaWidgetProps {
   schedulerUrl?: string;
   /** Path opened on SEND_MESSAGE. Defaults to /contact. */
   contactPath?: string;
+  /**
+   * Optional WhatsApp phone number (digits only, no leading +). When
+   * set, mobile visitors who hit SEND_MESSAGE are redirected to
+   * wa.me/<number>?text=<transcript> instead of contactPath. Desktop
+   * visitors continue to use contactPath because WhatsApp Desktop is
+   * not universally installed. If absent, contactPath is used for
+   * every device.
+   */
+  whatsappPhone?: string;
   /** Privacy disclosure link in the chat header. Defaults to /legal/privacy#ai-sub-processors. */
   privacyHref?: string;
   /** Mascot illustration. Defaults to a placeholder line-art owl. */
@@ -83,6 +92,7 @@ export function AikaWidget(props: AikaWidgetProps) {
     endpoint = "/api/aika/chat",
     schedulerUrl,
     contactPath = "/contact",
+    whatsappPhone,
     privacyHref = AIKA_PRIVACY_LINK,
     mascot,
     className,
@@ -202,7 +212,7 @@ export function AikaWidget(props: AikaWidgetProps) {
     // If BOOK_CALL fires but the host has not configured a scheduler URL,
     // transparently downgrade to SEND_MESSAGE so the visitor still lands
     // somewhere productive (the contact form with the conversation
-    // pre-filled) rather than a broken empty tab.
+    // pre-filled, or WhatsApp on mobile) rather than a broken empty tab.
     const effective: AikaRoute =
       route.kind === "BOOK_CALL" && !schedulerUrl
         ? { kind: "SEND_MESSAGE" }
@@ -213,6 +223,13 @@ export function AikaWidget(props: AikaWidgetProps) {
       window.open(schedulerUrl!, "_blank", "noopener,noreferrer");
     } else if (effective.kind === "SEND_MESSAGE") {
       const summary = summariseConversation(messages);
+      // Mobile visitors with a WhatsApp number configured go straight
+      // to wa.me, the closest chat-to-chat hand-off. Desktop visitors
+      // get the contact form (WhatsApp Desktop is not universal).
+      if (whatsappPhone && isMobileDevice()) {
+        window.location.href = whatsappUrl(whatsappPhone, summary);
+        return;
+      }
       const target =
         onSendMessageRoute?.(summary) ??
         defaultContactWithSummary(contactPath, summary);
@@ -306,7 +323,10 @@ export function AikaWidget(props: AikaWidgetProps) {
                 className="aika-cta"
                 onClick={() => handleRouteClick(pendingRoute)}
               >
-                {ctaLabel(pendingRoute, !!schedulerUrl)}
+                {ctaLabel(pendingRoute, {
+                  hasScheduler: !!schedulerUrl,
+                  whatsappOnMobile: !!whatsappPhone && isMobileDevice(),
+                })}
               </button>
             )}
           </div>
@@ -338,21 +358,59 @@ export function AikaWidget(props: AikaWidgetProps) {
   );
 }
 
-function ctaLabel(route: AikaRoute, hasScheduler: boolean): string {
-  // BOOK_CALL silently downgrades to SEND_MESSAGE when no scheduler is
-  // configured (see handleRouteClick). The button label tracks the
-  // actual action the visitor will get, not the route the worker emitted.
-  if (route.kind === "BOOK_CALL" && !hasScheduler) {
-    return "Send us a note";
+interface CtaContext {
+  /** Whether a scheduler URL is configured on the host. */
+  hasScheduler: boolean;
+  /** Whether the visitor is on mobile AND a WhatsApp number is set. */
+  whatsappOnMobile: boolean;
+}
+
+function ctaLabel(route: AikaRoute, ctx: CtaContext): string {
+  // Label tracks the actual action the visitor will get after any
+  // downgrade or mobile redirect in handleRouteClick, not the route
+  // the worker emitted.
+  const goingToSendMessage =
+    route.kind === "SEND_MESSAGE" ||
+    (route.kind === "BOOK_CALL" && !ctx.hasScheduler);
+
+  if (goingToSendMessage) {
+    return ctx.whatsappOnMobile ? "Message us on WhatsApp" : "Send us a note";
   }
+
   switch (route.kind) {
     case "BOOK_CALL":
       return "Set up a call";
     case "SEND_MESSAGE":
+      // Unreachable because of the goingToSendMessage branch above,
+      // but TypeScript wants the case for exhaustiveness.
       return "Send us a note";
     case "READ_CASE_STUDY":
       return "Open the case study";
   }
+}
+
+// Mobile detection. Prefers explicit mobile user-agents; falls back
+// to catching iPadOS 13+ which reports as Macintosh but has touch.
+function isMobileDevice(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent;
+  if (
+    /Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)
+  ) {
+    return true;
+  }
+  if (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) {
+    return true;
+  }
+  return false;
+}
+
+// Build a wa.me URL with the conversation pre-filled as the message
+// text. `phone` is digits-only, no leading +. WhatsApp accepts up to
+// a few thousand characters in the `text` param, plenty for our cap.
+function whatsappUrl(phone: string, message: string): string {
+  const digits = phone.replace(/\D/g, "");
+  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
 }
 
 // Builds a plain-text transcript of the conversation. Used as the

@@ -22,5 +22,9 @@ export const AIKA_OPENING_LINE =
   "Hi, I'm Aika, the studio's screening agent. Tell me a bit about what you're working on.";
 
 // One-line role text under the Aika name in the header.
+// "AI" is named in the role line to satisfy the EU AI Act Article 50
+// expectation that visitors be informed they are interacting with an
+// AI system. The /legal/privacy page carries the longer sub-processor
+// disclosure; this line is the in-widget acknowledgement.
 export const AIKA_ROLE_LINE =
-  "A screening agent for Kinyoubi Atelier.";
+  "An AI screening agent for Kinyoubi Atelier.";
