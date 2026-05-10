@@ -62,6 +62,13 @@ export function AikaProvider({ children }: { children: ReactNode }) {
         schedulerUrl={schedulerUrl}
         contactPath="/contact"
         whatsappPhone="919513303079"
+        // Welcome first-time visitors without requiring a click. The
+        // widget tracks "shown once" in sessionStorage so it does not
+        // re-open on every page navigation, and respects
+        // prefers-reduced-motion. The opening line is computed in the
+        // widget from the visitor's local clock for a time-of-day
+        // greeting.
+        autoOpen
       />
     </AikaContext.Provider>
   )
