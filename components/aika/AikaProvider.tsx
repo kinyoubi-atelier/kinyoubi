@@ -31,9 +31,16 @@ export function useAika(): AikaContextValue {
  *
  * `schedulerUrl` is sourced from NEXT_PUBLIC_SCHEDULER_URL (the same
  * env var the rest of the site already uses for the contact page
- * scheduler card). When the visitor clicks SEND_MESSAGE the widget
- * navigates to /contact?aika_summary=<encoded transcript>; the
- * contact form picks that up and pre-fills the message field.
+ * scheduler card). When the visitor clicks SEND_MESSAGE on desktop
+ * the widget navigates to /contact?aika_summary=<encoded transcript>;
+ * the contact form picks that up and pre-fills the message field.
+ *
+ * `whatsappPhone` (the studio's WhatsApp number, digits only, no +)
+ * is hard-coded here because it is part of the brand surface, not a
+ * deploy-time secret. Mobile visitors clicking SEND_MESSAGE go to
+ * wa.me/<phone>?text=<transcript> instead of the contact form; the
+ * conversation lands in the studio's WhatsApp pre-filled. Desktop
+ * visitors stay on the contact-form path.
  */
 export function AikaProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false)
@@ -54,6 +61,7 @@ export function AikaProvider({ children }: { children: ReactNode }) {
         onOpenChange={setOpen}
         schedulerUrl={schedulerUrl}
         contactPath="/contact"
+        whatsappPhone="919513303079"
       />
     </AikaContext.Provider>
   )
