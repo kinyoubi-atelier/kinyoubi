@@ -6,6 +6,7 @@ export {
   AIKA_PRIVACY_LINK,
   AIKA_PRIVACY_NOTICE,
   AIKA_ROLE_LINE,
+  computeOpeningLine,
 } from "./persona";
 export type {
   AikaChatResponse,

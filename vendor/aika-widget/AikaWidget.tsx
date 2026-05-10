@@ -10,10 +10,10 @@ import {
 } from "react";
 import {
   AIKA_GREETING,
-  AIKA_OPENING_LINE,
   AIKA_PRIVACY_LINK,
   AIKA_PRIVACY_NOTICE,
   AIKA_ROLE_LINE,
+  computeOpeningLine,
 } from "./persona";
 import type {
   AikaChatResponse,
@@ -69,10 +69,26 @@ export interface AikaWidgetProps {
   initiateOnOpen?: boolean;
 
   /**
-   * Aika's opening line when `initiateOnOpen` fires. Defaults to
-   * AIKA_OPENING_LINE from persona.ts.
+   * Aika's opening line when `initiateOnOpen` fires. If omitted, the
+   * widget computes a time-of-day-aware line via computeOpeningLine()
+   * using the visitor's local clock (DST handled by the JS Date object).
    */
   openingLine?: string;
+
+  /**
+   * When true, the widget opens itself once per session after a short
+   * delay, so first-time visitors are welcomed without needing to click.
+   * Tracks "shown" in sessionStorage so it does not re-open on every
+   * page navigation. Honours prefers-reduced-motion (no auto-open).
+   */
+  autoOpen?: boolean;
+
+  /**
+   * Delay before auto-open fires, in milliseconds. Defaults to 1800ms
+   * so the page has time to render and the visitor has time to land
+   * before the panel slides in.
+   */
+  autoOpenDelayMs?: number;
 
   /**
    * Called when the visitor clicks the SEND_MESSAGE CTA, before the
@@ -100,7 +116,9 @@ export function AikaWidget(props: AikaWidgetProps) {
     onOpenChange,
     hideLauncher = false,
     initiateOnOpen,
-    openingLine = AIKA_OPENING_LINE,
+    openingLine,
+    autoOpen = false,
+    autoOpenDelayMs = 1800,
     onSendMessageRoute,
   } = props;
 
@@ -125,6 +143,19 @@ export function AikaWidget(props: AikaWidgetProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [pendingRoute, setPendingRoute] = useState<AikaRoute | null>(null);
+
+  // Per-conversation session token. Generated once on mount, sent on
+  // every chat request so the worker can correlate turns in `wrangler
+  // tail` logs. Lives only in component state; reload kills it. No
+  // persistence; the visitor is not tracked across visits.
+  const [sessionToken] = useState<string>(() => {
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+      return crypto.randomUUID();
+    }
+    // Fallback for older runtimes. Not cryptographically strong; that
+    // is fine because this is only a correlation handle for our own logs.
+    return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+  });
 
   const inputRef = useRef<HTMLInputElement>(null);
   const threadRef = useRef<HTMLDivElement>(null);
@@ -154,12 +185,49 @@ export function AikaWidget(props: AikaWidgetProps) {
 
   // Aika initiates: when the panel opens with an empty thread and the
   // host wants Aika to greet first, seed the conversation with her
-  // opening line as if she sent it. The model takes over from turn 2.
+  // opening line as if she sent it. If no opening line was passed, use
+  // the time-aware default so the greeting matches the visitor's part
+  // of the world. The model takes over from turn 2.
   useEffect(() => {
     if (open && shouldInitiate && messages.length === 0) {
-      setMessages([{ role: "assistant", content: openingLine }]);
+      const line = openingLine ?? computeOpeningLine();
+      setMessages([{ role: "assistant", content: line }]);
     }
   }, [open, shouldInitiate, messages.length, openingLine]);
+
+  // Auto-open: welcome first-time visitors without requiring a click.
+  // Guarded by sessionStorage so it does not re-open on every page
+  // navigation; respected by prefers-reduced-motion as a courtesy.
+  // Skipped if already open (host triggered or visitor opened).
+  useEffect(() => {
+    if (!autoOpen || open) return;
+    if (typeof window === "undefined") return;
+
+    const SHOWN_KEY = "aika-auto-shown";
+    try {
+      if (sessionStorage.getItem(SHOWN_KEY)) return;
+    } catch {
+      // sessionStorage can throw in some strict private-mode contexts;
+      // fall through to opening anyway since the visitor will still see
+      // it just once per page load.
+    }
+
+    const reduceMotion =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    const t = window.setTimeout(() => {
+      setOpen(true);
+      try {
+        sessionStorage.setItem(SHOWN_KEY, "1");
+      } catch {
+        // Ignore. We are at "best effort" already.
+      }
+    }, autoOpenDelayMs);
+
+    return () => window.clearTimeout(t);
+  }, [autoOpen, autoOpenDelayMs, open, setOpen]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -186,6 +254,9 @@ export function AikaWidget(props: AikaWidgetProps) {
           // so Aika can choose her route accordingly upfront, rather
           // than promising a calendar that the visitor cannot reach.
           scheduler_available: !!schedulerUrl,
+          // Per-conversation correlation handle for our own logs.
+          // No PII, no cross-session tracking.
+          session_token: sessionToken,
         }),
       });
 
