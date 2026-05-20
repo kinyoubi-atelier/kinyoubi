@@ -402,33 +402,6 @@ export default function HomeContent() {
           </Reveal>
 
           <Reveal className="mb-6">
-            <a
-              href="https://roobaroo.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block"
-            >
-              <div className="card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-10">
-                <div className="flex items-start gap-4">
-                  <ProjectGlyph kind="plate" />
-                  <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-4 gap-3">
-                    <div className="min-w-0">
-                      <p className="text-xs text-text-tertiary uppercase tracking-widest mb-1">Client project</p>
-                      <h3 className="text-xl font-semibold text-text-primary">Roobaroo</h3>
-                    </div>
-                    <span className="text-sm font-medium text-gold group-hover:underline inline-flex items-center gap-1.5 flex-shrink-0 self-start sm:self-auto">
-                      View live site
-                      <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </Reveal>
-
-          <Reveal delay={STAGGER_LONG / 2} className="mb-6">
             <a href="/work/archive-automation" className="group block">
               <div className="card-hover-lift rounded-card border border-text-primary/5 hover:border-gold/25 bg-background-alt shadow-card p-6 md:p-10">
                 <div className="flex items-start gap-4 mb-6">
